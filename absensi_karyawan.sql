@@ -51,8 +51,8 @@ CREATE TABLE `users` (
   `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `level` enum('User','Admin') NOT NULL,
-  `divisi_id` int NOT NULL,
-  `jam_id` int NOT NULL,
+  `divisi_id` int NULL,
+  `jam_id` int NULL,
   `password` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 );

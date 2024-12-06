@@ -1,14 +1,13 @@
 <?php 
 include 'config/database_connection.php';
 if(isset($_POST['register'])) {
-  $nik = $_POST['nik'];
   $namaLengkap = $_POST['namaLengkap'];
   $username = $_POST['username'];
   $email = $_POST['email'];
   $level = 'User';
   $password = md5($_POST['password']);
 
-  $sqlInsert = "INSERT INTO users (nik, nama_lengkap, username, email, level, password) VALUES ('$nik', '$namaLengkap', '$username', '$email', '$level', '$password')";
+  $sqlInsert = "INSERT INTO users (nama_lengkap, username, email, level, password) VALUES ('$namaLengkap', '$username', '$email', '$level', '$password')";
   $queryInsert = mysqli_query($db, $sqlInsert);
   if($queryInsert) {
     echo "<script>alert('Berhasil register!');location.href='login.php'</script>";
@@ -33,9 +32,6 @@ if(isset($_POST['register'])) {
       <div class="card-body">
         <form method="post">
           <h3 class="text-center mb-3">Register</h3>
-          <div class="form-group">
-            <input type="text" name="nik" id="nik" placeholder="NIK" class="form-control">
-          </div>
           <div class="form-group">
             <input type="text" name="namaLengkap" id="namaLengkap" placeholder="Nama Lengkap" class="form-control">
           </div>
