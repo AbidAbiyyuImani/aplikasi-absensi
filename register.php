@@ -5,11 +5,10 @@ if(isset($_POST['register'])) {
   $namaLengkap = $_POST['namaLengkap'];
   $username = $_POST['username'];
   $email = $_POST['email'];
-  $divisi = $_POST['divisi'];
   $level = 'User';
   $password = md5($_POST['password']);
 
-  $sqlInsert = "INSERT INTO users (nik, nama_lengkap, username, email, divisi_id, level, password) VALUES ('$nik', '$namaLengkap', '$username', '$email', '$divisi', '$level', '$password')";
+  $sqlInsert = "INSERT INTO users (nik, nama_lengkap, username, email, level, password) VALUES ('$nik', '$namaLengkap', '$username', '$email', '$level', '$password')";
   $queryInsert = mysqli_query($db, $sqlInsert);
   if($queryInsert) {
     echo "<script>alert('Berhasil register!');location.href='login.php'</script>";
@@ -45,19 +44,6 @@ if(isset($_POST['register'])) {
           </div>
           <div class="form-group">
             <input type="email" name="email" id="email" placeholder="Email" class="form-control">
-          </div>
-          <div class="form-group">
-            <select name="divisi" id="divisi" class="form-control">
-              <option selected disabled>Pilih divisi</option>
-              <?php
-              $querySelectDivisi = mysqli_query($db, "SELECT * FROM divisi");
-              if (mysqli_num_rows($querySelectDivisi) > 0) {
-                while ($dataDivisi = mysqli_fetch_assoc($querySelectDivisi)) { ?>
-                <option value="<?= $dataDivisi['id_divisi'] ?>"><?= $dataDivisi['nama_divisi'] ?></option>
-              <?php } } else { ?>
-              <option value="0">Tidak ada divisi</option>
-              <?php } ?>
-            </select>
           </div>
           <div class="form-group">
             <input type="password" name="password" placeholder="Password" id="password" class="form-control">

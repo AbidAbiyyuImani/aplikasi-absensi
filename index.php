@@ -34,7 +34,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">Home</a>
+        <a href="index.php" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
@@ -48,9 +48,9 @@
           <img src="dist/img/user2-160x160.jpg" class="user-image img-circle elevation-2" alt="User Image">
           <span class="d-none d-md-inline"><?= $_SESSION['pengguna']['nama_lengkap'] ?></span>
         </a>
-        <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <li class="nav-item"><a href="#" class="nav-link">Profile</a></li>
-          <li class="nav-item"><a href="logout.php" class="nav-link">Sign out</a> </li>
+        <ul class="dropdown-menu">
+          <li class="nav-item"><a href="?page=profile" class="nav-link">Profile</a></li>
+          <li class="nav-item"><a href="logout.php" class="nav-link">Logout</a></li>
         </ul>
       </li>
       <li class="nav-item">
@@ -86,19 +86,19 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="?page=" class="nav-link">
+            <a href="?page=jadwal" class="nav-link">
               <i class="nav-icon fas fa-clock"></i>
               <p>Atur Jadwal</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="?page=" class="nav-link">
+            <a href="?page=data_divisi" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>Divisi</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="?page=" class="nav-link">
+            <a href="?page=data_karyawan" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>Karyawan</p>
             </a>
@@ -111,12 +111,12 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="?page=" class="nav-link">
+                <a href="?page=data_cuti" class="nav-link">
                   <p>Cuti</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="?page=" class="nav-link">
+                <a href="?page=data_izin" class="nav-link">
                   <p>Izin</p>
                 </a>
               </li>
