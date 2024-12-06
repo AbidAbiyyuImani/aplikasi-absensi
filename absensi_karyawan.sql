@@ -27,7 +27,7 @@ CREATE TABLE `divisi` (
   `nama_divisi` varchar(255) NOT NULL
 );
 
--- --------------------------------------------------------
+- --------------------------------------------------------
 
 --
 -- Table structure for table `jam_kerja`
@@ -35,8 +35,8 @@ CREATE TABLE `divisi` (
 
 CREATE TABLE `jam_kerja` (
   `id_jam` int NOT NULL,
-  `jam_masuk` int NOT NULL,
-  `jam_keluar` int NOT NULL
+  `jam_masuk` time NOT NULL,
+  `jam_keluar` time NOT NULL
 );
 
 -- --------------------------------------------------------
@@ -51,8 +51,9 @@ CREATE TABLE `users` (
   `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `level` enum('User','Admin') NOT NULL,
-  `divisi_id` int NULL,
-  `jam_id` int NULL,
+  `divisi_id` int DEFAULT NULL,
+  `jam_id` int DEFAULT NULL,
+  `foto` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 );

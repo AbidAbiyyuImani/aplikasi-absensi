@@ -20,7 +20,6 @@ if(isset($_POST['login'])) {
     echo "<script>alert('Akun tidak ditemukan!')</script>";
   }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -38,11 +37,9 @@ if(isset($_POST['login'])) {
         <form method="post">
           <h3 class="text-center mb-3">Login</h3>
           <div class="form-group">
-            <!-- <label for="username" class="form-label">Username</label> -->
-            <input type="text" name="username" id="username" placeholder="Username" required class="form-control">
+            <input type="text" name="username" id="username" placeholder="Username" required autofocus class="form-control">
           </div>
           <div class="form-group">
-            <!-- <label for="password" class="form-label">Password</label> -->
             <input type="password" name="password" id="password" placeholder="Password" required class="form-control">
           </div>
           <button type="submit" name="login" class="btn btn-primary mb-2">Login</button>
@@ -51,6 +48,7 @@ if(isset($_POST['login'])) {
       </div>
     </div>
   </div>
+  
   <script src="dist/css/adminlte.min.js"></script>
 </body>
 </html>

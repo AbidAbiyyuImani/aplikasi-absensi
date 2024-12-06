@@ -1,13 +1,12 @@
-<?php
-if(isset($_POST['tambah'])) {
+<?php include 'config/functions.php';
+if(isset($_POST['tambahDivisi'])) {
   $namaDivisi = $_POST['namaDivisi'];
 
-  $query = "INSERT INTO divisi (nama_divisi) VALUES ('$namaDivisi')";
-  $result = mysqli_query($db, $query);
-  if($result) {
-    echo "<script>alert('Berhasil menambahkan divisi!');location.href='?page=data_divisi'</script>";
+  $queryInsert = querySQL("INSERT INTO divisi (nama_divisi) VALUES ('$namaDivisi')");
+  if($queryInsert) {
+    echo "<script>alert('Berhasil menambahkan divisi');location.href='?page=data_divisi'</script>";
   } else {
-    echo "<script>alert('Gagal menambahkan divisi!')</script>";
+    echo "<script>alert('Gagal menambahkan divisi')</script>";
   }
 }
 ?>
@@ -22,7 +21,7 @@ if(isset($_POST['tambah'])) {
             <input type="text" name="namaDivisi" id="namaDivisi" class="form-control">
           </div>
           <a href="?page=data_divisi" class="btn btn-secondary">Kembali</a>
-          <button type="submit" name="tambah" class="btn btn-primary">Tambahkan Divisi</button>
+          <button type="submit" name="tambahDivisi" class="btn btn-primary">Tambahkan Divisi</button>
         </form>
       </div>
     </div>

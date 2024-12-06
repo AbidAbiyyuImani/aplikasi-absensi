@@ -1,8 +1,8 @@
 <?php 
 // query
 function querySQL($sql) {
-  global $link;
-  $query = mysqli_query($link, $sql);
+  global $db;
+  $query = mysqli_query($db, $sql);
   return $query;
 }
 

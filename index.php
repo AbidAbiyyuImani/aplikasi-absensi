@@ -43,16 +43,6 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item dropdown user-menu">
-        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-          <img src="dist/img/user2-160x160.jpg" class="user-image img-circle elevation-2" alt="User Image">
-          <span class="d-none d-md-inline"><?= $_SESSION['pengguna']['nama_lengkap'] ?></span>
-        </a>
-        <ul class="dropdown-menu">
-          <li class="nav-item"><a href="?page=profile" class="nav-link">Profile</a></li>
-          <li class="nav-item"><a href="logout.php" class="nav-link">Logout</a></li>
-        </ul>
-      </li>
       <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">
           <i class="fas fa-expand-arrows-alt"></i>
@@ -62,6 +52,16 @@
         <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#" role="button">
           <i class="fas fa-th-large"></i>
         </a>
+      </li>
+      <li class="nav-item  dropdown user-menu">
+        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+          <img style="object-fit: cover;" src="dist/img/avatar/<?= $_SESSION['pengguna']['foto'] ?>" class="user-image img-circle elevation-2" alt="User Image">
+          <span class="d-none d-md-inline"><?= $_SESSION['pengguna']['nama_lengkap'] ?></span>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <li class="nav-item"><a href="?page=profile" class="nav-link">Profile</a></li>
+          <li class="nav-item"><a href="logout.php" class="nav-link">Logout</a></li>
+        </ul>
       </li>
     </ul>
   </nav>
@@ -86,7 +86,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="?page=jadwal" class="nav-link">
+            <a href="?page=data_jam" class="nav-link">
               <i class="nav-icon fas fa-clock"></i>
               <p>Atur Jadwal</p>
             </a>
@@ -170,7 +170,14 @@
     <?php $page = isset($_GET['page']) ? $_GET['page'] : 'dashboard'; ?>
     <section class="content">
       <div class="container-fluid">
-        <?php if ($page == 'login' || $page == 'register') { include '404.php'; } else if (file_exists($page.'.php')){ include $page . '.php'; } else { include '404.php'; } ?>
+        <?php if ($page == 'login' || $page == 'register') {
+          include '404.php'; 
+          } else if (file_exists("./pages/$page.php")) {
+            include "./pages/$page.php";
+          } else {
+            include '404.php';
+          }
+        ?>
     </section>
     <!-- /.content -->
   </div>
@@ -205,5 +212,17 @@
 <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.js"></script>
+<!-- bs-custom-file-input -->
+<script src="plugins/bs-custom-file-input/bs-custom-file-input.js"></script>
+<script>
+$(function () {
+  bsCustomFileInput.init();
+});
+</script>
+<script>
+  if(window.history.replaceState) {
+    window.history.replaceState(null, null, window.location.href);
+  }
+</script>
 </body>
 </html>
