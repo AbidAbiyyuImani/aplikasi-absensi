@@ -22,7 +22,6 @@
                 $i = 1;
                 $queryUsers = querySQL("SELECT * FROM users LEFT JOIN divisi ON users.divisi_id = divisi.id_divisi LEFT JOIN jam_kerja ON users.jam_id = jam_kerja.id_jam");
                 if(mysqli_num_rows($queryUsers) > 0) {
-                // ada data
                 while ($dataUsers = mysqli_fetch_assoc($queryUsers)) {
               ?>
                 <tr>
@@ -37,12 +36,7 @@
                     <a href="?page=hapus_karyawan&id=<?= $dataUsers['id_user'] ?>" onclick="return confirm('Apakah anda yakin akan menghapus data karyawan ini?');" class="btn btn-danger">Hapus</a>
                   </td>
                 </tr>
-              <?php } }else { ?>
-                <!-- ga ada data -->
-                <tr>
-                  <td colspan="7" class="text-center">Tidak ada data karyawan</td>
-                </tr>
-              <?php } ?>
+              <?php } } ?>
             </tbody>
           </table>
         </div>

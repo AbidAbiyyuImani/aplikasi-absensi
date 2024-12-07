@@ -19,7 +19,6 @@
                 $i = 1;
                 $queryJamKerja = querySQL("SELECT * FROM jam_kerja");
                 if(mysqli_num_rows($queryJamKerja) > 0) {
-                // ada data
                 while ($dataJamKerja = mysqli_fetch_assoc($queryJamKerja)) {
               ?>
                 <tr>
@@ -31,12 +30,7 @@
                     <a href="?page=hapus_jam&id=<?= $dataJamKerja['id_jam'] ?>" onclick="return confirm('Apakah anda yakin akan menghapus data jam kerja ini?');" class="btn btn-danger">Hapus</a>
                   </td>
                 </tr>
-              <?php } }else { ?>
-                <!-- ga ada data -->
-                <tr>
-                  <td colspan="4" class="text-center">Tidak ada data jam kerja</td>
-                </tr>
-              <?php } ?>
+              <?php } } ?>
             </tbody>
           </table>
         </div>

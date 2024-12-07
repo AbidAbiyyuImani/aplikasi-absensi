@@ -18,7 +18,6 @@
                 $i = 1;
                 $queryDivisi = querySQL("SELECT * FROM divisi");
                 if(mysqli_num_rows($queryDivisi) > 0) {
-                // ada data
                 while ($dataDivisi = mysqli_fetch_assoc($queryDivisi)) {
               ?>
                 <tr>
@@ -29,12 +28,7 @@
                     <a href="?page=hapus_divisi&id=<?= $dataDivisi['id_divisi'] ?>" onclick="return confirm('Apakah anda yakin akan menghapus data divisi ini?')" class="btn btn-danger">Hapus</a>
                   </td>
                 </tr>
-              <?php } }else { ?>
-                <!-- ga ada data -->
-                <tr>
-                  <td colspan="3" class="text-center">Tidak ada data divisi</td>
-                </tr>
-              <?php } ?>
+              <?php } } ?>
             </tbody>
           </table>
         </div>
