@@ -1,6 +1,7 @@
 <?php include 'config/database_connection.php'; if(!isset($_SESSION['pengguna'])) {
   echo "<script>alert('Login terlebih dahulu');location.href='login.php';</script>";
 }
+$level = $_SESSION['pengguna']['level'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -88,62 +89,74 @@
               <p>Dashboard</p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="?page=data_jam" class="nav-link">
-              <i class="nav-icon fas fa-clock"></i>
-              <p>Jam Kerja</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="?page=data_divisi" class="nav-link">
-              <i class="nav-icon fas fa-user"></i>
-              <p>Divisi</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="?page=data_karyawan" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
-              <p>Karyawan</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link">
-              <i class="nav-icon fas fa-address-book"></i>
-              <p>Manajemen Absensi</p>
-              <i class="right fas fa-angle-left"></i>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="?page=data_cuti" class="nav-link">
-                  <p>Cuti</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="?page=data_izin" class="nav-link">
-                  <p>Izin</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link">
-              <i class="nav-icon fas fa-book"></i>
-              <p>Laporan</p>
-              <i class="right fas fa-angle-left"></i>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="?page=data_absensi" class="nav-link">
-                  <p>Laporan Absensi</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="?page=data_absensi_sakit" class="nav-link">
-                  <p>Laporan Bukti Sakit</p>
-                </a>
-              </li>
-            </ul>
-          </li>
+          <?php switch ($level) {
+            case "Super Admin":
+              case "Admin":
+          ?>
+            <li class="nav-item">
+              <a href="?page=data_jam" class="nav-link">
+                <i class="nav-icon fas fa-clock"></i>
+                <p>Jam Kerja</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="?page=data_divisi" class="nav-link">
+                <i class="nav-icon fas fa-user"></i>
+                <p>Divisi</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="?page=data_karyawan" class="nav-link">
+                <i class="nav-icon fas fa-users"></i>
+                <p>Karyawan</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link">
+                <i class="nav-icon fas fa-address-book"></i>
+                <p>Manajemen Absensi</p>
+                <i class="right fas fa-angle-left"></i>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="?page=data_cuti" class="nav-link">
+                    <p>Cuti</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="?page=data_izin" class="nav-link">
+                    <p>Izin</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link">
+                <i class="nav-icon fas fa-book"></i>
+                <p>Laporan</p>
+                <i class="right fas fa-angle-left"></i>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="?page=data_absensi" class="nav-link">
+                    <p>Laporan Absensi</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="?page=data_absensi_sakit" class="nav-link">
+                    <p>Laporan Bukti Sakit</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          <?php break; case "User": ?>
+            <li class="nav-item">
+              <a href="?page=absensi" class="nav-link">
+                <i class="nav-icon fas fa-book"></i>
+                <p>Absensi</p>
+              </a>
+            </li>
+          <?php } ?>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
