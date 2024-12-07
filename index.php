@@ -17,6 +17,9 @@
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -88,7 +91,7 @@
           <li class="nav-item">
             <a href="?page=data_jam" class="nav-link">
               <i class="nav-icon fas fa-clock"></i>
-              <p>Atur Jadwal</p>
+              <p>Jam Kerja</p>
             </a>
           </li>
           <li class="nav-item">
@@ -149,23 +152,7 @@
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="mb-0">Dashboard</h1>
-          </div>
-          <div class="col-sm-6">
-            <div class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard</li>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
+  <div class="content-wrapper py-2">
     <!-- Main content -->
     <?php $page = isset($_GET['page']) ? $_GET['page'] : 'dashboard'; ?>
     <section class="content">
@@ -183,10 +170,10 @@
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+    <strong>Copyright &copy; 2024 <a href="#">Abid Abiyyu Imani</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.2.0
+      <b>Version</b> 1.0
     </div>
   </footer>
 
@@ -218,6 +205,23 @@
 $(function () {
   bsCustomFileInput.init();
 });
+</script>
+<!-- DataTables  & Plugins -->
+<script src="plugins/datatables/jquery.dataTables.min.js"></script></script>
+<script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script></script>
+<script>
+  $(function () {
+    $(".table").dataTable({
+      "paging": true,
+      "lengthChange": true,
+      "searching": true,
+      "ordering": false,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
 </script>
 <script>
   if(window.history.replaceState) {

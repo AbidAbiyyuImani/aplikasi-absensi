@@ -7,7 +7,7 @@ if(isset($_POST['ubah_jam_kerja'])) {
   $jamMasuk = $_POST['jamMasuk'];
   $jamKeluar = $_POST['jamKeluar'];
 
-  $queryUpdate = querySQL("INSERT INTO jam_kerja(jam_masuk, jam_keluar) VALUES('$jamMasuk', '$jamKeluar')");
+  $queryUpdate = querySQL("UPDATE jam_kerja SET jam_masuk = '$jamMasuk', jam_keluar = '$jamKeluar' WHERE id_jam = $idJam");
   if($queryUpdate) {
     echo "<script>alert('Ubah Jam Kerja Berhasil'); location.href='?page=data_jam'</script>";
   } else {

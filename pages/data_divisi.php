@@ -1,11 +1,11 @@
 <?php include 'config/functions.php'; ?>
+<?php $namaHalaman = "Divisi"; $linkHalaman = "Data Divisi"; include 'components/breadcrumb.php';?>
 <div class="row">
   <div class="col-12">
-    <div class="card">
+    <div class="card card-outline card-primary">
       <div class="card-body">
-        <a href="?page=tambah_divisi" class="mb-3 btn btn-primary float-right">Tambah</a>
         <div class="table-responsive">
-          <table class="table table-bordered text-nowrap">
+          <table id="divisi" class="table table-bordered text-nowrap">
             <thead>
               <tr>
                 <th>No</th>
@@ -38,6 +38,10 @@
             </tbody>
           </table>
         </div>
+      </div>
+      <div class="card-footer">
+        <a href="index.php" class="btn btn-secondary">Kembali</a>
+        <a href="?page=tambah_divisi" class="btn btn-primary float-right">Tambah</a>
       </div>
     </div>
   </div>

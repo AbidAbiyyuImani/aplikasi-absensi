@@ -1,9 +1,9 @@
 <?php include 'config/functions.php'; ?>
+<?php $namaHalaman = "Jam Kerja"; $linkHalaman = "Data Jam Kerja"; include 'components/breadcrumb.php';?>
 <div class="row">
   <div class="col-12">
-    <div class="card">
+    <div class="card card-outline card-primary">
       <div class="card-body">
-        <a href="?page=tambah_jam" class="mb-3 btn btn-primary float-right">Tambah</a>
         <div class="table-responsive">
           <table class="table table-bordered text-nowrap">
             <thead>
@@ -40,6 +40,10 @@
             </tbody>
           </table>
         </div>
+      </div>
+      <div class="card-footer">
+        <a href="index.php" class="btn btn-secondary">Kembali</a>
+        <a href="?page=tambah_jam" class="btn btn-primary float-right">Tambah</a>
       </div>
     </div>
   </div>
