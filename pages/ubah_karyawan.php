@@ -1,26 +1,49 @@
-<?php include 'config/functions.php';
+<?php include 'config/functions.php'; $level = $_SESSION['pengguna']['level'];
 $idUser = $_GET['id'];
 $queryUser = querySQL("SELECT * FROM users WHERE id_user = $idUser");
 $dataUser = mysqli_fetch_assoc($queryUser);
 
 if(isset($_POST['ubah_karyawan'])) {
   try {
-    $namaLengkap = $_POST['namaLengkap'];
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $divisi = $_POST['divisi'];
-    $jamKerja = $_POST['jamKerja'];
-  
-    if($idUser == $_SESSION['pengguna']['id_user']) {
-      $_SESSION['pengguna']['divisi_id'] = $divisi;
-      $_SESSION['pengguna']['jam_id'] = $jamKerja;
-    }
-  
-    $queryUpdate = querySQL("UPDATE users SET nama_lengkap = '$namaLengkap', username = '$username', email = '$email', divisi_id = '$divisi', jam_id = '$jamKerja' WHERE id_user = $idUser");
-    if($queryUpdate) {
-      echo "<script>alert('Ubah Data Karyawan Berhasil'); location.href='?page=data_karyawan';</script>";
-    } else {
-      echo "<script>alert('Ubah Data Karyawan Gagal');</script>";
+    switch ($level) {
+      case "Super Admin":
+        $namaLengkap = $_POST['namaLengkap'];
+        $username = $_POST['username'];
+        $email = $_POST['email'];
+        $divisi = $_POST['divisi'];
+        $jamKerja = $_POST['jamKerja'];
+      
+        if($idUser == $_SESSION['pengguna']['id_user']) {
+          $_SESSION['pengguna']['nama_lengkap'] = $namaLengkap;
+          $_SESSION['pengguna']['username'] = $username;
+          $_SESSION['pengguna']['email'] = $email;
+          $_SESSION['pengguna']['divisi_id'] = $divisi;
+          $_SESSION['pengguna']['jam_id'] = $jamKerja;
+        }
+      
+        $queryUpdate = querySQL("UPDATE users SET nama_lengkap = '$namaLengkap', username = '$username', email = '$email', divisi_id = '$divisi', jam_id = '$jamKerja' WHERE id_user = $idUser");
+        if($queryUpdate) {
+          echo "<script>alert('Ubah Data Karyawan Berhasil'); location.href='?page=data_karyawan';</script>";
+        } else {
+          echo "<script>alert('Ubah Data Karyawan Gagal');</script>";
+        }
+      break;
+      case "Admin":
+        $divisi = $_POST['divisi'];
+        $jamKerja = $_POST['jamKerja'];
+      
+        if($idUser == $_SESSION['pengguna']['id_user']) {
+          $_SESSION['pengguna']['divisi_id'] = $divisi;
+          $_SESSION['pengguna']['jam_id'] = $jamKerja;
+        }
+      
+        $queryUpdate = querySQL("UPDATE users SET divisi_id = '$divisi', jam_id = '$jamKerja' WHERE id_user = $idUser");
+        if($queryUpdate) {
+          echo "<script>alert('Ubah Data Karyawan Berhasil'); location.href='?page=data_karyawan';</script>";
+        } else {
+          echo "<script>alert('Ubah Data Karyawan Gagal');</script>";
+        }
+      break;
     }
   } catch (Exception $e) {
     echo "<script>alert('Ubah Data Karyawan Gagal');location.href='?page=data_karyawan';</script>";
@@ -35,15 +58,15 @@ if(isset($_POST['ubah_karyawan'])) {
         <form method="post">
           <div class="form-group">
             <label for="namaLengkap">Nama Lengkap</label>
-            <input type="text" name="namaLengkap" id="namaLengkap" value="<?= $dataUser['nama_lengkap']; ?>" class="form-control">
+            <input type="text" name="namaLengkap" id="namaLengkap" value="<?= $dataUser['nama_lengkap']; ?>" <?= ($level === "Admin") ? 'readonly' : '' ?> class="form-control">
           </div>
           <div class="form-group">
             <label for="username">Username</label>
-            <input type="text" name="username" id="username" value="<?= $dataUser['username']; ?>" class="form-control">
+            <input type="text" name="username" id="username" value="<?= $dataUser['username']; ?>" <?= ($level === "Admin") ? 'readonly' : '' ?> class="form-control">
           </div>
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="text" name="email" id="email" value="<?= $dataUser['email']; ?>" class="form-control">
+            <input type="text" name="email" id="email" value="<?= $dataUser['email']; ?>" <?= ($level === "Admin") ? 'readonly' : '' ?> class="form-control">
           </div>
           <div class="form-group">
             <label for="divisi">Divisi</label>

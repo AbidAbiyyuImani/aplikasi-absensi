@@ -32,8 +32,15 @@
                   <td><?= $dataUsers['nama_divisi'] ?></td>
                   <td><?= $dataUsers['jam_masuk'] ?> - <?= $dataUsers['jam_keluar'] ?></td>
                   <td>
-                    <a href="?page=ubah_karyawan&id=<?= $dataUsers['id_user'] ?>" class="btn btn-warning">Ubah</a>
-                    <a href="?page=hapus_karyawan&id=<?= $dataUsers['id_user'] ?>" onclick="return confirm('Apakah anda yakin akan menghapus data karyawan ini?');" class="btn btn-danger">Hapus</a>
+                    <?php $level = $_SESSION['pengguna']['level'];
+                    switch ($level) {
+                      case "Admin":
+                    ?>
+                      <a href="?page=ubah_karyawan&id=<?= $dataUsers['id_user'] ?>" class="btn btn-warning">Ubah</a>
+                    <?php break; case "Super Admin": ?>
+                      <a href="?page=ubah_karyawan&id=<?= $dataUsers['id_user'] ?>" class="btn btn-warning">Ubah</a>
+                      <a href="?page=hapus_karyawan&id=<?= $dataUsers['id_user']; ?>" onclick="return confirm('Apakah anda yakin akan menghapus data karyawan ini?');" class="btn btn-danger">Hapus</a>
+                    <?php break; } ?>
                   </td>
                 </tr>
               <?php } } ?>
