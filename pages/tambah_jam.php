@@ -1,17 +1,21 @@
 <?php include 'config/functions.php';
 if(isset($_POST['tambahJamKerja'])) {
-  $jamMasuk = $_POST['jamMasuk'];
-  $jamKeluar = $_POST['jamKeluar'];
-
-  $queryInsert = querySQL("INSERT INTO jam_kerja(jam_masuk, jam_keluar) VALUES('$jamMasuk', '$jamKeluar')");
-  if($queryInsert) {
-    echo "<script>alert('Tambah Jam Kerja Berhasil'); location.href='?page=data_jam'</script>";
-  } else {
-    echo "<script>alert('Tambah Jam Kerja Gagal')</script>";
+  try {
+    $jamMasuk = $_POST['jamMasuk'];
+    $jamKeluar = $_POST['jamKeluar'];
+  
+    $queryInsert = querySQL("INSERT INTO jam_kerja(jam_masuk, jam_keluar) VALUES('$jamMasuk', '$jamKeluar')");
+    if($queryInsert) {
+      echo "<script>alert('Tambah Jam Kerja Berhasil'); location.href='?page=data_jam';</script>";
+    } else {
+      echo "<script>alert('Tambah Jam Kerja Gagal');</script>";
+    }
+  } catch (Exception $e) {
+    echo "<script>alert('Tambah Jam Kerja Gagal');location.href='?page=data_jam';</script>";
   }
 }
-
 ?>
+
 <div class="row">
   <div class="col-12">
     <div class="card">

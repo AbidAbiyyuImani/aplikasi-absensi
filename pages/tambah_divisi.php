@@ -1,12 +1,16 @@
 <?php include 'config/functions.php';
 if(isset($_POST['tambahDivisi'])) {
-  $namaDivisi = $_POST['namaDivisi'];
-
-  $queryInsert = querySQL("INSERT INTO divisi (nama_divisi) VALUES ('$namaDivisi')");
-  if($queryInsert) {
-    echo "<script>alert('Berhasil menambahkan divisi');location.href='?page=data_divisi'</script>";
-  } else {
-    echo "<script>alert('Gagal menambahkan divisi')</script>";
+  try {
+    $namaDivisi = $_POST['namaDivisi'];
+  
+    $queryInsert = querySQL("INSERT INTO divisi (nama_divisi) VALUES ('$namaDivisi')");
+    if($queryInsert) {
+      echo "<script>alert('Berhasil menambahkan divisi');location.href='?page=data_divisi';</script>";
+    } else {
+      echo "<script>alert('Gagal menambahkan divisi');</script>";
+    }
+  } catch (Exception $e) {
+    echo "<script>alert('Gagal menambahkan divisi');location.href='?page=data_divisi';</script>";
   }
 }
 ?>
