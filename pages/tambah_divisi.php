@@ -22,7 +22,7 @@ if(isset($_POST['tambahDivisi'])) {
         <form method="post">
           <div class="form-group">
             <label for="namaDivisi">Nama Divisi</label>
-            <input type="text" name="namaDivisi" id="namaDivisi" class="form-control">
+            <input type="text" name="namaDivisi" id="namaDivisi" required class="form-control">
           </div>
           <a href="?page=data_divisi" class="btn btn-secondary">Kembali</a>
           <button type="submit" name="tambahDivisi" class="btn btn-primary">Tambahkan Divisi</button>

@@ -25,11 +25,11 @@ if(isset($_POST['tambahJamKerja'])) {
           <div class="row">
             <div class="form-group col-12 col-sm-6">
               <label for="jamMasuk" class="form-label">Jam Masuk</label>
-              <input type="time" name="jamMasuk" id="jamMasuk" class="form-control">
+              <input type="time" name="jamMasuk" id="jamMasuk" required class="form-control">
             </div>
             <div class="form-group col-12 col-sm-6">
               <label for="jamMasuk" class="form-label">Jam Keluar</label>
-              <input type="time" name="jamKeluar" id="jamKeluar" class="form-control">
+              <input type="time" name="jamKeluar" id="jamKeluar" required class="form-control">
             </div>
           </div>
           <a href="?page=data_jam" class="btn btn-secondary">Kembali</a>
