@@ -41,22 +41,12 @@ $level = $_SESSION['pengguna']['level'];
         <a href="index.php" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
+        <a href="?page=about" class="nav-link">About</a>
       </li>
     </ul>
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-          <i class="fas fa-expand-arrows-alt"></i>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#" role="button">
-          <i class="fas fa-th-large"></i>
-        </a>
-      </li>
       <li class="nav-item  dropdown user-menu">
         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
           <img style="object-fit: cover;" src="dist/img/avatar/<?= $_SESSION['pengguna']['foto'] ?>" class="user-image img-circle elevation-2" alt="User Image">
@@ -94,9 +84,9 @@ $level = $_SESSION['pengguna']['level'];
               case "Admin":
           ?>
             <li class="nav-item">
-              <a href="?page=data_jam" class="nav-link">
-                <i class="nav-icon fas fa-clock"></i>
-                <p>Jam Kerja</p>
+              <a href="?page=data_karyawan" class="nav-link">
+                <i class="nav-icon fas fa-users"></i>
+                <p>Karyawan</p>
               </a>
             </li>
             <li class="nav-item">
@@ -106,16 +96,18 @@ $level = $_SESSION['pengguna']['level'];
               </a>
             </li>
             <li class="nav-item">
-              <a href="?page=data_karyawan" class="nav-link">
-                <i class="nav-icon fas fa-users"></i>
-                <p>Karyawan</p>
+              <a href="?page=data_jam" class="nav-link">
+                <i class="nav-icon fas fa-clock"></i>
+                <p>Jam Kerja</p>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link">
                 <i class="nav-icon fas fa-address-book"></i>
-                <p>Manajemen Absensi</p>
-                <i class="right fas fa-angle-left"></i>
+                <p>
+                  Manajemen Absensi
+                  <i class="right fas fa-angle-left"></i>
+                </p>
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
@@ -133,8 +125,11 @@ $level = $_SESSION['pengguna']['level'];
             <li class="nav-item">
               <a class="nav-link">
                 <i class="nav-icon fas fa-book"></i>
-                <p>Laporan</p>
-                <i class="right fas fa-angle-left"></i>
+                <p>
+                  Laporan
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+                
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">

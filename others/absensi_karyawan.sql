@@ -5,29 +5,15 @@
 -- --------------------------------------------------------
 
 --
--- Table structure for table `absensi`
---
-
-CREATE TABLE `absensi` (
-  `id_absensi` int NOT NULL,
-  `user_id` int NOT NULL,
-  `jam_masuk` time NOT NULL,
-  `jam_keluar` time NOT NULL,
-  `tangga_absen` date NOT NULL
-);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `divisi`
 --
 
 CREATE TABLE `divisi` (
   `id_divisi` int NOT NULL,
-  `nama_divisi` varchar(255) NOT NULL
+  `nama_divisi` TEXT NOT NULL
 );
 
-- --------------------------------------------------------
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `jam_kerja`
@@ -47,27 +33,20 @@ CREATE TABLE `jam_kerja` (
 
 CREATE TABLE `users` (
   `id_user` int NOT NULL,
-  `nama_lengkap` varchar(255) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `level` enum('User','Admin') NOT NULL,
+  `nama_lengkap` TEXT NOT NULL,
+  `username` TEXT NOT NULL,
+  `email` TEXT NOT NULL,
+  `level` enum('Super Admin','Admin','User') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `divisi_id` int DEFAULT NULL,
   `jam_id` int DEFAULT NULL,
-  `foto` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
+  `foto` TEXT NOT NULL,
+  `password` TEXT NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `absensi`
---
-ALTER TABLE `absensi`
-  ADD PRIMARY KEY (`id_absensi`),
-  ADD KEY `absensi_user` (`user_id`);
 
 --
 -- Indexes for table `divisi`
@@ -94,12 +73,6 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `absensi`
---
-ALTER TABLE `absensi`
-  MODIFY `id_absensi` int NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `divisi`
 --
 ALTER TABLE `divisi`
@@ -120,12 +93,6 @@ ALTER TABLE `users`
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `absensi`
---
-ALTER TABLE `absensi`
-  ADD CONSTRAINT `absensi_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id_user`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Constraints for table `users`

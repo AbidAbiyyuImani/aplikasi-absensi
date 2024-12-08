@@ -1,26 +1,4 @@
-<?php include 'config/database_connection.php'; if(isset($_SESSION['pengguna'])) {
-  echo "<script>alert('Anda sudah login!');location.href='index.php'</script>";
-}
-if(isset($_POST['login'])) {
-  $username = $_POST['username'];
-  $password = md5($_POST['password']);
-
-  $sqlSelect = "SELECT * FROM users WHERE username = '$username'";
-  $querySelect = mysqli_query($db, $sqlSelect);
-
-  if(mysqli_num_rows($querySelect) > 0) {
-    $result = mysqli_fetch_assoc($querySelect);
-    if($result['password'] === $password) {
-      $_SESSION['pengguna'] = $result;
-      header("Location: index.php");
-    } else {
-      echo "<script>alert('Password yang anda masukan tidak sesuai!')</script>";
-    }
-  } else {
-    echo "<script>alert('Akun tidak ditemukan!')</script>";
-  }
-}
-?>
+<?php include 'config/database_connection.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,6 +7,8 @@ if(isset($_POST['login'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <!-- sweetalert2 -->
+  <link rel="stylesheet" href="plugins/sweetalert2/sweetalert2.all.css">
 </head>
 <body class="hold-transition login-page">
   <div class="container min-vh-100 d-flex justify-content-center align-items-center">
@@ -50,5 +30,53 @@ if(isset($_POST['login'])) {
   </div>
   
   <script src="dist/css/adminlte.min.js"></script>
+  <script src="plugins/sweetalert2/sweetalert2.all.js"></script>
+  <script>
+    import Swal from 'plugins/sweetalert2/sweetalert2.all.js';
+  </script>
 </body>
 </html>
+
+<?php
+if(isset($_SESSION['pengguna'])) {
+  echo "<script>alert('Anda sudah login!');location.href='index.php';</script>";
+}
+
+if(isset($_POST['login'])) {
+  $username = $_POST['username'];
+  $password = md5($_POST['password']);
+
+  $sqlSelect = "SELECT * FROM users WHERE username = '$username'";
+  $querySelect = mysqli_query($db, $sqlSelect);
+
+  if(mysqli_num_rows($querySelect) > 0) {
+    $result = mysqli_fetch_assoc($querySelect);
+    if($result['password'] === $password) {
+      $_SESSION['pengguna'] = $result;
+      header("Location: index.php");
+    } else {
+      // echo "<script>alert('Password yang anda masukan tidak sesuai!');</script>";
+      echo '
+      <script>
+        Swal.fire({
+          title: "Password yang anda masukan salah!",
+          text: "Silahkan masukan password yang sesuai",
+          icon: "error"
+        });
+      </script>
+      ';
+    }
+  } else {
+    // echo "<script>alert('Akun tidak berhasil ditemukan!');</script>";
+    echo '
+    <script>
+      Swal.fire({
+        title: "Akun tidak ditemukan!",
+        text: "Silahkan register terlebih dahulu",
+        icon: "error"
+      });
+    </script>
+    ';
+  }
+}
+?>

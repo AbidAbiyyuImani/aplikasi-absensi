@@ -35,4 +35,45 @@ function upload($source, $allowed, $destination) {
   return $namaFile;
 }
 
+// get total data
+function getTotal($table) {
+  global $db;
+  return mysqli_num_rows(mysqli_query($db, "SELECT * FROM $table"));
+}
+
+// get date time now
+function getDateTimeNow() {
+  date_default_timezone_set('Asia/Jakarta');
+  $dateNow = date('D-d-F-Y');
+  $timeNow = date('H:i');
+  $days = [
+    'Sun' => 'Minggu',
+    'Mon' => 'Senin',
+    'Tue' => 'Selasa',
+    'Wed' => 'Rabu',
+    'Thu' => 'Kamis',
+    'Fri' => 'Jumat',
+    'Sat' => 'Sabtu'
+  ];
+  $months = [
+    'January' => 'Januari',
+    'February' => 'Februari',
+    'March' => 'Maret',
+    'April' => 'April',
+    'May' => 'Mei',
+    'June' => 'Juni',
+    'July' => 'Juli',
+    'August' => 'Agustus',
+    'September' => 'September',
+    'October' => 'Oktober',
+    'November' => 'November',
+    'December' => 'Desember'
+  ];
+  $exp = explode('-', $dateNow);
+  $hari = $exp[0]; $month = $exp[2];
+  $month = strtr($month, $months); $hari = strtr($hari, $days);
+  $hari .= ', '. $exp[1] . ' ' . $month . ' ' . $exp[3] . ' ' . $timeNow;
+  return $hari;
+}
+
 ?>
