@@ -22,6 +22,7 @@ if(isset($_POST['register'])) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Register</title>
+  <!-- AdminLTE App -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
 </head>
 <body class="hold-transition register-page">
@@ -55,16 +56,21 @@ if(isset($_POST['register'])) {
     </div>  
   </div>
 
-<!-- jQuery -->
-<script src="plugins/jquery/jquery.min.js"></script>
-<!-- adminLTE App -->
-<script src="dist/css/adminlte.min.js"></script>
-<!-- bs-custom-file-input -->
-<script src="plugins/bs-custom-file-input/bs-custom-file-input.js"></script>
-<script>
-$(function () {
-  bsCustomFileInput.init();
-});
-</script>
+  <!-- JQuery -->
+  <script src="plugins/jquery/jquery.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="dist/css/adminlte.min.js"></script>
+  <!-- bs-custom-file-input -->
+  <script src="plugins/bs-custom-file-input/bs-custom-file-input.js"></script>
+  <script>
+  $(function () {
+    bsCustomFileInput.init();
+  });
+  </script>
+  <script>
+    if(window.history.replaceState) {
+      window.history.replaceState(null, null, window.location.href);
+    }
+  </script>
 </body>
 </html>
