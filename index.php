@@ -290,7 +290,7 @@ switch ($level) {
             <a id="absenDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Absen</a>
             <ul aria-labelledby="absenDropdown" class="dropdown-menu border-0 shadow">
               <li><a href="?page=" class="dropdown-item">Cuti</a></li>
-              <li><a href="?page=" class="dropdown-item">Izin Sakit</a></li>
+              <li><a href="?page=" class="dropdown-item">Izin Sakit Cuy</a></li>
             </ul>
           </li>
         </ul>
