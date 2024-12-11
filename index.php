@@ -29,11 +29,6 @@ switch ($level) {
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed">
 <div class="wrapper">
 
-  <!-- Preloader -->
-  <!-- <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-  </div> -->
-
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
@@ -272,8 +267,8 @@ switch ($level) {
   <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
     <div class="container">
       <a href="index.php" class="navbar-brand">
-        <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-medium d-none d-md-inline">AdminLTE 3</span>
+        <!-- <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
+        <span class="brand-text font-weight-medium d-none d-md-inline">Absensi</span>
       </a>
 
       <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -289,8 +284,9 @@ switch ($level) {
           <li class="nav-item dropdown">
             <a id="absenDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Absen</a>
             <ul aria-labelledby="absenDropdown" class="dropdown-menu border-0 shadow">
-              <li><a href="?page=" class="dropdown-item">Cuti</a></li>
-              <li><a href="?page=" class="dropdown-item">Izin Sakit Cuy</a></li>
+              <li><a href="?page=histori" class="dropdown-item">Histori</a></li>
+              <li><a href="?page=cuti" class="dropdown-item">Cuti</a></li>
+              <li><a href="?page=izin" class="dropdown-item">Izin Sakit</a></li>
             </ul>
           </li>
         </ul>
@@ -335,7 +331,7 @@ switch ($level) {
   <footer class="main-footer">
     <!-- To the right -->
     <div class="float-right d-none d-sm-inline">
-      Anything you want
+      <b>Login as</b> <?= $level ?>
     </div>
     <!-- Default to the left -->
     <strong>Copyright &copy; 2024 <a href="#">Abid Abiyyu Imani</a>.</strong> All rights reserved.
@@ -343,7 +339,7 @@ switch ($level) {
 </div>
 <!-- ./wrapper -->
 
-  <!-- REQUIRED SCRIPTS -->
+   <!-- REQUIRED SCRIPTS -->
 
   <!-- jQuery -->
   <script src="plugins/jquery/jquery.min.js"></script>
@@ -365,6 +361,28 @@ switch ($level) {
   $(function () {
     bsCustomFileInput.init();
   });
+  </script>
+  <!-- DataTables  & Plugins -->
+  <script src="plugins/datatables/jquery.dataTables.min.js"></script></script>
+  <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+  <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script></script>
+  <script>
+    $(function () {
+      $(".table-data").dataTable({
+        "paging": true,
+        "lengthChange": true,
+        "searching": true,
+        "ordering": false,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+      });
+    });
+  </script>
+  <script>
+    if(window.history.replaceState) {
+      window.history.replaceState(null, null, window.location.href);
+    }
   </script>
 </body>
 </html>
