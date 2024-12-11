@@ -1,4 +1,7 @@
-<?php include 'config/functions.php'; ?>
+<?php include 'config/functions.php';
+// redirect user (admin only)
+if ($_SESSION['pengguna']['level'] === 'User') { echo "<script>alert('Hanya admin yang dapat mengakses');location.href='index.php';</script>"; };
+?>
 <?php $namaHalaman = "Karyawan"; $linkHalaman = "Data Karyawan"; include 'components/breadcrumb.php';?>
 <div class="row">
   <div class="col-12">

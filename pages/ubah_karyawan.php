@@ -1,4 +1,7 @@
 <?php include 'config/functions.php'; $level = $_SESSION['pengguna']['level'];
+// redirect user (admin only)
+if ($_SESSION['pengguna']['level'] === 'User') { echo "<script>alert('Hanya admin yang dapat mengakses');location.href='index.php';</script>"; };
+
 $idUser = $_GET['id'];
 $queryUser = querySQL("SELECT * FROM users WHERE id_user = $idUser");
 $dataUser = mysqli_fetch_assoc($queryUser);
@@ -23,7 +26,7 @@ if(isset($_POST['ubah_karyawan'])) {
       
         $queryUpdate = querySQL("UPDATE users SET nama_lengkap = '$namaLengkap', username = '$username', email = '$email', divisi_id = '$divisi', jam_id = '$jamKerja' WHERE id_user = $idUser");
         if($queryUpdate) {
-          echo "<script>alert('Ubah Data Karyawan Berhasil'); location.href='?page=data_karyawan';</script>";
+          echo "<script>alert('Ubah Data Karyawan Berhasil');location.href='?page=data_karyawan';</script>";
         } else {
           echo "<script>alert('Ubah Data Karyawan Gagal');</script>";
         }
@@ -39,7 +42,7 @@ if(isset($_POST['ubah_karyawan'])) {
       
         $queryUpdate = querySQL("UPDATE users SET divisi_id = '$divisi', jam_id = '$jamKerja' WHERE id_user = $idUser");
         if($queryUpdate) {
-          echo "<script>alert('Ubah Data Karyawan Berhasil'); location.href='?page=data_karyawan';</script>";
+          echo "<script>alert('Ubah Data Karyawan Berhasil');location.href='?page=data_karyawan';</script>";
         } else {
           echo "<script>alert('Ubah Data Karyawan Gagal');</script>";
         }
@@ -58,15 +61,15 @@ if(isset($_POST['ubah_karyawan'])) {
         <form method="post">
           <div class="form-group">
             <label for="namaLengkap">Nama Lengkap</label>
-            <input type="text" name="namaLengkap" id="namaLengkap" value="<?= $dataUser['nama_lengkap']; ?>" <?= ($level === "Admin") ? 'readonly' : '' ?> class="form-control">
+            <input type="text" name="namaLengkap" id="namaLengkap" required value="<?= $dataUser['nama_lengkap']; ?>" <?= ($level === "Admin") ? 'readonly' : '' ?> class="form-control">
           </div>
           <div class="form-group">
             <label for="username">Username</label>
-            <input type="text" name="username" id="username" value="<?= $dataUser['username']; ?>" <?= ($level === "Admin") ? 'readonly' : '' ?> class="form-control">
+            <input type="text" name="username" id="username" required value="<?= $dataUser['username']; ?>" <?= ($level === "Admin") ? 'readonly' : '' ?> class="form-control">
           </div>
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="text" name="email" id="email" value="<?= $dataUser['email']; ?>" <?= ($level === "Admin") ? 'readonly' : '' ?> class="form-control">
+            <input type="text" name="email" id="email" required value="<?= $dataUser['email']; ?>" <?= ($level === "Admin") ? 'readonly' : '' ?> class="form-control">
           </div>
           <div class="form-group">
             <label for="divisi">Divisi</label>

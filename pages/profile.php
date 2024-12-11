@@ -18,14 +18,14 @@ if (isset($_POST['UbahUser'])) {
     if($divisi == null && $jamKerja == null) {
       $queryUpdate = querySQL("UPDATE users SET nama_lengkap = '$namaLengkap', username = '$username', email = '$email', foto = '$foto' WHERE id_user = $idUser");
       if($queryUpdate) {
-        echo "<script>alert('Ubah Profile Berhasil'); location.href='logout.php'</script>";
+        echo "<script>alert('Ubah Profile Berhasil');location.href='logout.php'</script>";
       } else {
         echo "<script>alert('Ubah Profile Gagal');location.href='?page=profile';</script>";
       }
     } else {
       $queryUpdate = querySQL("UPDATE users SET nama_lengkap = '$namaLengkap', username = '$username', email = '$email', divisi_id = '$divisi', jam_id = '$jamKerja', foto = '$foto' WHERE id_user = $idUser");
       if($queryUpdate) {
-        echo "<script>alert('Ubah Profile Berhasil'); location.href='logout.php'</script>";
+        echo "<script>alert('Ubah Profile Berhasil');location.href='logout.php'</script>";
       } else {
         echo "<script>alert('Ubah Profile Gagal');location.href='?page=profile';</script>";
       }

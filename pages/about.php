@@ -1,4 +1,5 @@
 <?php $namaHalaman = "About"; $linkHalaman = "About Page"; include 'components/breadcrumb.php'; ?>
+
 <div class="row">
   <div class="col-12">
     <div class="card">

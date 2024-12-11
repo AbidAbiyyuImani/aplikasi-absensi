@@ -1,4 +1,7 @@
 <?php include 'config/functions.php';
+// redirect user (admin only)
+if ($_SESSION['pengguna']['level'] === 'User') { echo "<script>alert('Hanya admin yang dapat mengakses');location.href='index.php';</script>"; };
+
 if(isset($_POST['tambahJamKerja'])) {
   try {
     $jamMasuk = $_POST['jamMasuk'];
@@ -6,7 +9,7 @@ if(isset($_POST['tambahJamKerja'])) {
   
     $queryInsert = querySQL("INSERT INTO jam_kerja(jam_masuk, jam_keluar) VALUES('$jamMasuk', '$jamKeluar')");
     if($queryInsert) {
-      echo "<script>alert('Tambah Jam Kerja Berhasil'); location.href='?page=data_jam';</script>";
+      echo "<script>alert('Tambah Jam Kerja Berhasil');location.href='?page=data_jam';</script>";
     } else {
       echo "<script>alert('Tambah Jam Kerja Gagal');</script>";
     }

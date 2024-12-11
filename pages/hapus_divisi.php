@@ -1,4 +1,7 @@
 <?php include 'config/functions.php';
+// redirect user (admin only)
+if ($_SESSION['pengguna']['level'] === 'User') { echo "<script>alert('Hanya admin yang dapat mengakses');location.href='index.php';</script>"; };
+
 $idDivisi = $_GET['id'];
 try {
   $queryDelete = querySQL("DELETE FROM divisi WHERE id_divisi = $idDivisi");
