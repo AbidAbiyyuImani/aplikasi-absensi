@@ -2,7 +2,7 @@
 
 <div class="row">
   <div class="col-12">
-    <div class="card">
+    <div class="card card-outline card-info">
       <div class="card-body">
         <h3 class="mb-2">Aplikasi Absensi Karyawan Berbasis Website</h3>
         <p>
