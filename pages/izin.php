@@ -21,16 +21,16 @@
                 $queryIzin = querySQL("SELECT * FROM absensi_sakit LEFT JOIN users ON absensi_sakit.user_id = users.id_user");
                 while ($dataIzin = mysqli_fetch_assoc($queryIzin)) {
               ?>
-              <tr>
-                <td><?= $i++ ?></td>
-                <td><?= $dataIzin['nama_lengkap'] ?></td>
-                <td><?= $dataIzin['tanggal_permohonan'] ?></td>
-                <td><?= $dataIzin['status_permohonan'] ?></td>
-                <td>
-                  <a href="?page=detail_izin&id=<?= $dataIzin['id_sakit'] ?>" class="btn btn-info">Detail</a>
-                </td>
-              </tr>
-            <?php } ?>
+                <tr>
+                  <td><?= $i++ ?></td>
+                  <td><?= $dataIzin['nama_lengkap'] ?></td>
+                  <td><?= $dataIzin['tanggal_permohonan'] ?></td>
+                  <td><?= $dataIzin['status_permohonan'] ?></td>
+                  <td>
+                    <a href="?page=detail_izin&id=<?= $dataIzin['id_sakit'] ?>" class="btn btn-info">Detail</a>
+                  </td>
+                </tr>
+              <?php } ?>
             </tbody>
           </table>
         </div>

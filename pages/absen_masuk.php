@@ -1,4 +1,7 @@
-<?php include 'config/functions.php';
+<?php include 'config/functions.php'; $userId = $_SESSION['pengguna']['id_user'];
+$now = date('Y-m-d');
+$queryAbsensiNow = querySQL("SELECT jam_masuk, tanggal_absensi FROM absensi WHERE user_id = '$userId' AND tanggal_absensi = '$now'");
+$dataAbsensi = mysqli_fetch_assoc($queryAbsensiNow);
 
 if(isset($_POST['absen_masuk'])) {
   try {
@@ -33,11 +36,18 @@ if(isset($_POST['absen_masuk'])) {
               <label for="foto" class="custom-file-label">Foto Absen</label>
             </div>
           </div>
+          <?php if (isset($dataAbsensi['jam_masuk'])) { ?>
+            <div class="alert alert-success">Absen masuk telah dilakukan pada : <?= $dataAbsensi['jam_masuk'] ?></div>
+          <?php } ?>
       </div>
       <div class="card-footer">
         <a href="index.php" class="btn btn-secondary">Kembali</a>
-        <button type="submit" name="absen_masuk" class="btn btn-primary float-right">Absen Masuk</button>
-      </form>
+        <?php if (mysqli_num_rows($queryAbsensiNow) > 0) { ?>
+          <button type="submit" name="absen_masuk" disabled class="btn btn-primary float-right">Absen Masuk</button>
+        <?php } else { ?>
+          <button type="submit" name="absen_masuk" onclick="return confirm('Setelah melanjutkan, anda hanya bisa melakukan absen keluar')" class="btn btn-primary float-right">Absen Masuk</button>
+        <?php } ?>
+        </form>
       </div>
     </div>
   </div>

@@ -29,8 +29,8 @@
                   <td><?= $dataCuti['tanggal_permohonan'] ?></td>
                   <td><?= $dataCuti['status_permohonan'] ?></td>
                   <td>
-                  <a href="?page=detail_cuti&id=<?= $dataCuti['id_cuti'] ?>" class="btn btn-info">Detail</a>
-                </td>
+                    <a href="?page=detail_cuti&id=<?= $dataCuti['id_cuti'] ?>" class="btn btn-info">Detail</a>
+                  </td>
                 </tr>
               <?php } ?>
             </tbody>

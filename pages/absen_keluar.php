@@ -1,8 +1,6 @@
-<?php include 'config/functions.php';
-
-$userId = $_SESSION['pengguna']['id_user'];
-$queryAbsensi = querySQL("SELECT * FROM absensi WHERE user_id = '$userId' AND jam_keluar IS NULL");
-$dataAbsensi = mysqli_fetch_assoc($queryAbsensi);
+<?php include 'config/functions.php'; $userId = $_SESSION['pengguna']['id_user'];
+$queryAbsensi = querySQL("SELECT jam_masuk, jam_keluar FROM absensi WHERE user_id = '$userId'");
+$dataJamKerja = mysqli_fetch_assoc($queryAbsensi);
 
 if(isset($_POST['absen_keluar'])) {
   try {
@@ -28,7 +26,6 @@ if(isset($_POST['absen_keluar'])) {
     <h3 class="mb-3">Absen Keluar</h3>
     <div class="card">
       <div class="card-body">
-        <h5 class="mb-3">Absen Masuk : <?= ($dataAbsensi !== null) ? $dataAbsensi['jam_masuk'] : 'Absen Masuk Terlebih Dahulu' ?></h5>
         <form method="post" enctype="multipart/form-data">
           <div class="form-group">
             <label for="foto">Foto Absen</label>
@@ -37,10 +34,17 @@ if(isset($_POST['absen_keluar'])) {
               <label for="foto" class="custom-file-label">Foto Absen</label>
             </div>
           </div>
+          <?php if (isset($dataJamKerja['jam_keluar'])) { ?>
+            <div class="alert alert-success">Absen keluar telah dilakukan pada : <?= $dataJamKerja['jam_keluar'] ?></div>
+          <?php } ?>
       </div>
       <div class="card-footer">
         <a href="index.php" class="btn btn-secondary">Kembali</a>
-        <button type="submit" name="absen_keluar" class="btn btn-primary float-right">Absen Keluar</button>
+        <?php if (isset($dataJamKerja['jam_keluar'])) { ?>
+          <button type="submit" name="absen_keluar" disabled class="btn btn-primary float-right">Absen Keluar</button>
+        <?php } else { ?>
+          <button type="submit" name="absen_keluar" class="btn btn-primary float-right">Absen Keluar</button>
+        <?php } ?>
       </form>
       </div>
     </div>

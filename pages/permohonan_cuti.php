@@ -1,4 +1,6 @@
-<?php include 'config/functions.php';
+<?php include 'config/functions.php'; $userId = $_SESSION['pengguna']['id_user'];
+$now = date('Y-m-d');
+$queryCuti = querySQL("SELECT tanggal_permohonan FROM absensi_cuti WHERE user_id = '$userId' AND tanggal_permohonan = '$now'");
 
 if(isset($_POST['permohonan_cuti'])) {
   try {
@@ -29,10 +31,17 @@ if(isset($_POST['permohonan_cuti'])) {
             <label for="keterangan">Keterangan Cuti</label>
             <textarea name="keterangan" id="keterangan" class="form-control" rows="3" placeholder="Keterangan Cuti" required></textarea>
           </div>
+          <?php if (mysqli_num_rows($queryCuti) > 0) { ?>
+            <div class="alert alert-warning">Anda sudah mengirimkan permohonan cuti pada hari ini</div>
+          <?php } ?>
       </div>
       <div class="card-footer">
         <a href="index.php" class="btn btn-secondary">Kembali</a>
-        <button type="submit" name="permohonan_cuti" onclick="return confirm('Kirim Permohonan Cuti?')" class="btn btn-primary float-right">Absen Cuti</button>
+        <?php if (mysqli_num_rows($queryCuti) > 0) { ?>
+          <button type="submit" name="permohonan_cuti" disabled class="btn btn-primary float-right">Ajukan Cuti</button>
+        <?php } else { ?>
+          <button type="submit" name="permohonan_cuti" onclick="return confirm('Kirim Permohonan Cuti?')" class="btn btn-primary float-right">Ajukan Cuti</button>
+        <?php } ?>
       </form>
       </div>
     </div>

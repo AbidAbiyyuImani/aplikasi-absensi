@@ -287,11 +287,11 @@ switch ($level) {
             <a href="index.php" class="nav-link">Home</a>
           </li>
           <li class="nav-item dropdown">
-            <a id="absenDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Absen</a>
+            <a id="absenDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Absensi</a>
             <ul aria-labelledby="absenDropdown" class="dropdown-menu border-0 shadow">
               <li><a href="?page=cuti" class="dropdown-item">Cuti</a></li>
               <li><a href="?page=izin" class="dropdown-item">Izin Sakit</a></li>
-              <li><a href="?page=histori" class="dropdown-item">Histori Absen</a></li>
+              <li><a href="?page=histori" class="dropdown-item">Histori Absensi</a></li>
             </ul>
           </li>
         </ul>

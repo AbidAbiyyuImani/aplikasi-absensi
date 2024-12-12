@@ -13,7 +13,37 @@ CREATE TABLE `absensi` (
   `user_id` int NOT NULL,
   `jam_masuk` time NOT NULL,
   `jam_keluar` time DEFAULT NULL,
+  `foto_absen` text NOT NULL,
+  `foto_absen_keluar` text,
   `tanggal_absensi` date NOT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `absensi_cuti`
+--
+
+CREATE TABLE `absensi_cuti` (
+  `id_cuti` int NOT NULL,
+  `user_id` int NOT NULL,
+  `keterangan` text NOT NULL,
+  `tanggal_permohonan` date NOT NULL,
+  `status_permohonan` enum('Menunggu Persetujuan','Disetujui','Ditolak') DEFAULT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `absensi_sakit`
+--
+
+CREATE TABLE `absensi_sakit` (
+  `id_sakit` int NOT NULL,
+  `user_id` int NOT NULL,
+  `surat_sakit` text NOT NULL,
+  `tanggal_permohonan` date NOT NULL,
+  `status_permohonan` enum('Menunggu Persetujuan','Disetujui','Ditolak') NOT NULL
 );
 
 -- --------------------------------------------------------
@@ -50,7 +80,7 @@ CREATE TABLE `users` (
   `nama_lengkap` text NOT NULL,
   `username` text NOT NULL,
   `email` text NOT NULL,
-  `level` enum('Super Admin','Admin','User') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `level` enum('Super Admin','Admin','User') NOT NULL,
   `divisi_id` int DEFAULT NULL,
   `jam_id` int DEFAULT NULL,
   `foto` text NOT NULL,
@@ -70,6 +100,20 @@ ALTER TABLE `absensi`
   ADD KEY `absensi_user` (`user_id`);
 
 --
+-- Indexes for table `absensi_cuti`
+--
+ALTER TABLE `absensi_cuti`
+  ADD PRIMARY KEY (`id_cuti`),
+  ADD KEY `absensi_cuti_user` (`user_id`);
+
+--
+-- Indexes for table `absensi_sakit`
+--
+ALTER TABLE `absensi_sakit`
+  ADD PRIMARY KEY (`id_sakit`),
+  ADD KEY `absensi_sakit_user` (`user_id`);
+
+--
 -- Indexes for table `divisi`
 --
 ALTER TABLE `divisi`
@@ -87,8 +131,8 @@ ALTER TABLE `jam_kerja`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id_user`),
-  ADD KEY `user_jam` (`jam_id`),
-  ADD KEY `user_divisi` (`divisi_id`);
+  ADD KEY `user_divisi` (`divisi_id`),
+  ADD KEY `user_jam` (`jam_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -99,6 +143,18 @@ ALTER TABLE `users`
 --
 ALTER TABLE `absensi`
   MODIFY `id_absensi` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `absensi_cuti`
+--
+ALTER TABLE `absensi_cuti`
+  MODIFY `id_cuti` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `absensi_sakit`
+--
+ALTER TABLE `absensi_sakit`
+  MODIFY `id_sakit` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `divisi`
@@ -126,12 +182,24 @@ ALTER TABLE `users`
 -- Constraints for table `absensi`
 --
 ALTER TABLE `absensi`
-  ADD CONSTRAINT `absensi_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id_user`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `absensi_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id_user`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Constraints for table `absensi_cuti`
+--
+ALTER TABLE `absensi_cuti`
+  ADD CONSTRAINT `absensi_cuti_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id_user`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Constraints for table `absensi_sakit`
+--
+ALTER TABLE `absensi_sakit`
+  ADD CONSTRAINT `absensi_sakit_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id_user`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Constraints for table `users`
 --
 ALTER TABLE `users`
-  ADD CONSTRAINT `user_divisi` FOREIGN KEY (`divisi_id`) REFERENCES `divisi` (`id_divisi`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `user_jam` FOREIGN KEY (`jam_id`) REFERENCES `jam_kerja` (`id_jam`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`divisi_id`) REFERENCES `divisi` (`id_divisi`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `users_ibfk_2` FOREIGN KEY (`jam_id`) REFERENCES `jam_kerja` (`id_jam`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 COMMIT;
