@@ -9,13 +9,12 @@ if(isset($_POST['absen_sakit'])) {
 
     $queryAbsensi = querySQL("INSERT INTO absensi_sakit (user_id, tanggal_permohonan, surat_sakit, status_permohonan) VALUES ('$userId', '$tanggal', '$suratSakit', '$statusPermohonan')");
     if($queryAbsensi) {
-      echo "<script>alert('Absen Sakit Berhasil');location.href='index.php';</script>";
+      echo "<script>alert('Permohonan Sakit Berhasil Terkirim');location.href='index.php';</script>";
     } else {
-      echo "<script>alert('Absen Sakit Gagal');</script>";
+      echo "<script>alert('Permohonan Sakit Gagal Terkirim');</script>";
     }
-
   } catch (Exception $e) {
-    echo "<script>alert('Absen Sakit Gagal');</script>";
+    echo "<script>alert('Permohonan Sakit Gagal Terkirim');</script>";
   }
 }
 
@@ -35,7 +34,7 @@ if(isset($_POST['absen_sakit'])) {
             </div>
           </div>
           <a href="index.php" class="btn btn-secondary">Kembali</a>
-          <button type="submit" name="absen_sakit" class="btn btn-primary float-right">Absen Sakit</button>
+          <button type="submit" name="absen_sakit" onclick="return confirm('Kirim Permohonan Izin Sakit?')" class="btn btn-primary float-right">Absen Sakit</button>
         </form>
       </div>
     </div>

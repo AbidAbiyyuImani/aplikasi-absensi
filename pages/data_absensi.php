@@ -16,6 +16,7 @@ if ($_SESSION['pengguna']['level'] === 'User') { echo "<script>alert('Hanya admi
                 <th>Tanggal</th>
                 <th>Jam Masuk</th>
                 <th>Jam Keluar</th>
+                <th>Detail</th>
               </tr>
             </thead>
             <tbody>
@@ -30,6 +31,9 @@ if ($_SESSION['pengguna']['level'] === 'User') { echo "<script>alert('Hanya admi
                   <td><?= $dataAbsensi['tanggal_absensi'] ?></td>
                   <td><?= $dataAbsensi['jam_masuk'] ?></td>
                   <td><?= $dataAbsensi['jam_keluar'] ?></td>
+                  <td>
+                    <a href="?page=detail_absensi&id=<?= $dataAbsensi['id_absensi'] ?>" class="btn btn-info">Detail</a>
+                  </td>
                 </tr>
               <?php } ?>
             </tbody>

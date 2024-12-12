@@ -11,10 +11,10 @@ if(isset($_POST['permohonan_cuti'])) {
     if($queryAbsensi) {
       echo "<script>alert('Permohonan Cuti Berhasil Terkirim');location.href='index.php';</script>";
     } else {
-      echo "<script>alert('Permohonan Cuti Gagal');</script>";
+      echo "<script>alert('Permohonan Cuti Gagal Terkirim');</script>";
     }
   } catch (Exception $e) {
-    echo "<script>alert('Permohonan Cuti Gagal');</script>";
+    echo "<script>alert('Permohonan Cuti Gagal Terkirim');</script>";
   }
 }
 ?>
