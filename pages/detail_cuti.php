@@ -3,6 +3,7 @@ $idCuti = $_GET['id'];
 $queryCuti = querySQL("SELECT * FROM absensi_cuti LEFT JOIN users ON absensi_cuti.user_id = users.id_user WHERE id_cuti = '$idCuti'");
 $dataCuti = mysqli_fetch_assoc($queryCuti);
 ?>
+
 <div class="row">
   <div class="col-12">
     <div class="card">

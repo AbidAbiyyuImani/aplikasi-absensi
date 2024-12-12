@@ -226,7 +226,7 @@ switch ($level) {
   <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script></script>
   <script>
     $(function () {
-      $(".table").dataTable({
+      $(".table-data").dataTable({
         "paging": true,
         "lengthChange": true,
         "searching": true,
