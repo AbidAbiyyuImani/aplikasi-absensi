@@ -3,7 +3,7 @@
 if ($_SESSION['pengguna']['level'] === 'User') { echo "<script>alert('Hanya admin yang dapat mengakses');location.href='index.php';</script>"; };
 
 $idJam = $_GET['id'];
-$queryJamKerja = querySQL("SELECT * FROM jam_kerja WHERE id_jam = $idJam");
+$queryJamKerja = querySQL("SELECT * FROM jam_kerja WHERE id_jam = '$idJam'");
 $dataJamKerja = mysqli_fetch_assoc($queryJamKerja);
 
 if(isset($_POST['ubah_jam_kerja'])) {
@@ -11,7 +11,7 @@ if(isset($_POST['ubah_jam_kerja'])) {
     $jamMasuk = $_POST['jamMasuk'];
     $jamKeluar = $_POST['jamKeluar'];
   
-    $queryUpdate = querySQL("UPDATE jam_kerja SET jam_masuk = '$jamMasuk', jam_keluar = '$jamKeluar' WHERE id_jam = $idJam");
+    $queryUpdate = querySQL("UPDATE jam_kerja SET jam_masuk = '$jamMasuk', jam_keluar = '$jamKeluar' WHERE id_jam = '$idJam'");
     if($queryUpdate) {
       echo "<script>alert('Ubah Jam Kerja Berhasil');location.href='?page=data_jam';</script>";
     } else {
@@ -27,8 +27,8 @@ if(isset($_POST['ubah_jam_kerja'])) {
   <div class="col-12">
     <div class="card">
       <div class="card-body">
+        <h3 class="mb-3">Ubah Jam Kerja</h3>
         <form method="post">
-          <h3 class="mb-3">Ubah Jam Kerja</h3>
           <div class="row">
             <div class="form-group col-12 col-sm-6">
               <label for="jamMasuk" class="form-label">Jam Masuk</label>

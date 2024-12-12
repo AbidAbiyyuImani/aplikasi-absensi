@@ -3,7 +3,7 @@
 if ($_SESSION['pengguna']['level'] === 'User') { echo "<script>alert('Hanya admin yang dapat mengakses');location.href='index.php';</script>"; };
 
 $idUser = $_GET['id'];
-$queryUser = querySQL("SELECT * FROM users WHERE id_user = $idUser");
+$queryUser = querySQL("SELECT * FROM users WHERE id_user = '$idUser'");
 $dataUser = mysqli_fetch_assoc($queryUser);
 
 if(isset($_POST['ubah_karyawan'])) {
@@ -24,7 +24,7 @@ if(isset($_POST['ubah_karyawan'])) {
           $_SESSION['pengguna']['jam_id'] = $jamKerja;
         }
       
-        $queryUpdate = querySQL("UPDATE users SET nama_lengkap = '$namaLengkap', username = '$username', email = '$email', divisi_id = '$divisi', jam_id = '$jamKerja' WHERE id_user = $idUser");
+        $queryUpdate = querySQL("UPDATE users SET nama_lengkap = '$namaLengkap', username = '$username', email = '$email', divisi_id = '$divisi', jam_id = '$jamKerja' WHERE id_user = '$idUser'");
         if($queryUpdate) {
           echo "<script>alert('Ubah Data Karyawan Berhasil');location.href='?page=data_karyawan';</script>";
         } else {
@@ -40,7 +40,7 @@ if(isset($_POST['ubah_karyawan'])) {
           $_SESSION['pengguna']['jam_id'] = $jamKerja;
         }
       
-        $queryUpdate = querySQL("UPDATE users SET divisi_id = '$divisi', jam_id = '$jamKerja' WHERE id_user = $idUser");
+        $queryUpdate = querySQL("UPDATE users SET divisi_id = '$divisi', jam_id = '$jamKerja' WHERE id_user = '$idUser'");
         if($queryUpdate) {
           echo "<script>alert('Ubah Data Karyawan Berhasil');location.href='?page=data_karyawan';</script>";
         } else {
@@ -58,6 +58,7 @@ if(isset($_POST['ubah_karyawan'])) {
   <div class="col-12">
     <div class="card">
       <div class="card-body">
+        <h3 class="mb-3">Ubah Data Karyawan</h3>
         <form method="post">
           <div class="form-group">
             <label for="namaLengkap">Nama Lengkap</label>
@@ -78,9 +79,9 @@ if(isset($_POST['ubah_karyawan'])) {
               <select name="divisi" id="divisi" class="form-control">
                 <option selected disabled>Pilih Divisi</option>
                 <?php
-                $queryDivisi = querySQL("SELECT * FROM divisi");
-                if (mysqli_num_rows($queryDivisi) > 0) {
-                  while ($dataDivisi = mysqli_fetch_assoc($queryDivisi)) {
+                  $queryDivisi = querySQL("SELECT * FROM divisi");
+                  if (mysqli_num_rows($queryDivisi) > 0) {
+                    while ($dataDivisi = mysqli_fetch_assoc($queryDivisi)) {
                 ?>
                   <option value="<?= $dataDivisi['id_divisi']; ?>"><?= $dataDivisi['nama_divisi']; ?></option>
                 <?php } } else { ?>
@@ -92,9 +93,9 @@ if(isset($_POST['ubah_karyawan'])) {
               <select name="divisi" id="divisi" class="form-control">
                 <option selected disabled>Pilih Divisi</option>
                 <?php
-                $queryDivisi = querySQL("SELECT * FROM divisi");
-                if (mysqli_num_rows($queryDivisi) > 0) {
-                  while ($dataDivisi = mysqli_fetch_assoc($queryDivisi)) {
+                  $queryDivisi = querySQL("SELECT * FROM divisi");
+                  if (mysqli_num_rows($queryDivisi) > 0) {
+                    while ($dataDivisi = mysqli_fetch_assoc($queryDivisi)) {
                 ?>
                   <option value="<?= $dataDivisi['id_divisi']; ?>" <?= ($dataUser['divisi_id'] == $dataDivisi['id_divisi']) ? 'selected' : '' ?>><?= $dataDivisi['nama_divisi']; ?></option>
                 <?php } }?>
@@ -108,9 +109,9 @@ if(isset($_POST['ubah_karyawan'])) {
               <select name="jamKerja" id="jamKerja" class="form-control">
                 <option selected disabled>Pilih Jam Masuk</option>
                 <?php 
-                $queryJamKerja = querySQL("SELECT * FROM jam_kerja");
-                if (mysqli_num_rows($queryJamKerja) > 0) {
-                  while ($dataJamKerja = mysqli_fetch_assoc($queryJamKerja)) {
+                  $queryJamKerja = querySQL("SELECT * FROM jam_kerja");
+                  if (mysqli_num_rows($queryJamKerja) > 0) {
+                    while ($dataJamKerja = mysqli_fetch_assoc($queryJamKerja)) {
                 ?>
                   <option value="<?= $dataJamKerja['id_jam']; ?>"><?= $dataJamKerja['jam_masuk']; ?> - <?= $dataJamKerja['jam_keluar']; ?></option>
                 <?php } } else { ?>
@@ -122,9 +123,9 @@ if(isset($_POST['ubah_karyawan'])) {
                <select name="jamKerja" id="jamKerja" class="form-control">
                 <option selected disabled>Pilih Jam Masuk</option>
                 <?php 
-                $queryJamKerja = querySQL("SELECT * FROM jam_kerja");
-                if (mysqli_num_rows($queryJamKerja) > 0) {
-                  while ($dataJamKerja = mysqli_fetch_assoc($queryJamKerja)) {
+                  $queryJamKerja = querySQL("SELECT * FROM jam_kerja");
+                  if (mysqli_num_rows($queryJamKerja) > 0) {
+                    while ($dataJamKerja = mysqli_fetch_assoc($queryJamKerja)) {
                 ?>
                   <option value="<?= $dataJamKerja['id_jam']; ?>" <?= ($dataUser['jam_id'] == $dataJamKerja['id_jam']) ? 'selected' : '' ?>><?= $dataJamKerja['jam_masuk']; ?> - <?= $dataJamKerja['jam_keluar']; ?></option>
                 <?php } } ?>
