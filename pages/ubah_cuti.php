@@ -24,9 +24,9 @@ if(isset($_POST['ubah_cuti'])) {
 
 <div class="row">
   <div class="col-12">
-    <h3 class="mb-3">Absen Cuti</h3>
     <div class="card">
       <div class="card-body">
+        <h3 class="mb-3">Absen Cuti</h3>
         <form method="post" enctype="multipart/form-data">
           <div class="form-group">
             <label for="keterangan">Keterangan Cuti</label>

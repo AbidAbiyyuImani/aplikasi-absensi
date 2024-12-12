@@ -24,9 +24,9 @@ if(isset($_POST['ubah_izin'])) {
 
 <div class="row">
   <div class="col-12">
-    <h3 class="mb-3">Izin Sakit</h3>
     <div class="card">
       <div class="card-body">
+        <h3 class="mb-3">Izin Sakit</h3>
         <form method="post" enctype="multipart/form-data">
           <div class="form-group">
             <select name="statusPermohonan" id="statusPermohonan" class="form-control">
