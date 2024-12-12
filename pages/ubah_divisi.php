@@ -33,7 +33,7 @@ if(isset($_POST['ubah_divisi'])) {
             <input type="text" name="namaDivisi" id="namaDivisi" value="<?= $dataDivisi['nama_divisi']; ?>" required class="form-control">
           </div>
           <a href="?page=data_divisi" class="btn btn-secondary">Kembali</a>
-          <button type="submit" name="ubah_divisi" class="btn btn-warning">Ubah Data Divisi</button>
+          <button type="submit" name="ubah_divisi" class="btn btn-warning float-right">Ubah Data Divisi</button>
         </form>
       </div>
     </div>

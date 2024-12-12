@@ -133,7 +133,7 @@ if(isset($_POST['ubah_karyawan'])) {
             <?php } ?>
           </div>
           <a href="?page=data_karyawan" class="btn btn-secondary">Kembali</a>
-          <button type="submit" name="ubah_karyawan" class="btn btn-warning">Ubah Data Karyawan</button>
+          <button type="submit" name="ubah_karyawan" class="btn btn-warning float-right">Ubah Data Karyawan</button>
         </form>
       </div>
     </div>

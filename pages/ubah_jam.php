@@ -40,7 +40,7 @@ if(isset($_POST['ubah_jam_kerja'])) {
             </div>
           </div>
           <a href="?page=data_jam" class="btn btn-secondary">Kembali</a>
-          <button type="submit" name="ubah_jam_kerja" class="btn btn-warning">Ubah Jam Kerja</button>
+          <button type="submit" name="ubah_jam_kerja" class="btn btn-warning float-right">Ubah Jam Kerja</button>
         </form>
       </div>
     </div>
