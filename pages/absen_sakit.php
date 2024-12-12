@@ -1,5 +1,29 @@
+<?php include 'config/functions.php';
+
+if(isset($_POST['absen_sakit'])) {
+  try {
+    $userId = $_SESSION['pengguna']['id_user'];
+    $tanggal = date('Y-m-d');
+    $suratSakit = upload('foto', ['jpg', 'jpeg', 'png'], 'dist/img/surat/');
+    $statusPermohonan = "Menunggu Persetujuan";
+
+    $queryAbsensi = querySQL("INSERT INTO absensi_sakit (user_id, tanggal_permohonan, surat_sakit, status_permohonan) VALUES ('$userId', '$tanggal', '$suratSakit', '$statusPermohonan')");
+    if($queryAbsensi) {
+      echo "<script>alert('Absen Sakit Berhasil');location.href='index.php';</script>";
+    } else {
+      echo "<script>alert('Absen Sakit Gagal');</script>";
+    }
+
+  } catch (Exception $e) {
+    echo "<script>alert('Absen Sakit Gagal');</script>";
+  }
+}
+
+?>
+
 <div class="row">
   <div class="col-12">
+    <h3 class="mb-3">Absen Sakit</h3>
     <div class="card">
       <div class="card-body">
         <form method="post" enctype="multipart/form-data">
@@ -11,7 +35,7 @@
             </div>
           </div>
           <a href="index.php" class="btn btn-secondary">Kembali</a>
-          <button type="submit" class="btn btn-primary float-right">Absen Sakit</button>
+          <button type="submit" name="absen_sakit" class="btn btn-primary float-right">Absen Sakit</button>
         </form>
       </div>
     </div>

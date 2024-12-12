@@ -116,7 +116,7 @@ switch ($level) {
                 </li>
                 <li class="nav-item">
                   <a href="?page=data_izin" class="nav-link">
-                    <p>Izin</p>
+                    <p>Izin Sakit</p>
                   </a>
                 </li>
                 <li class="nav-item">

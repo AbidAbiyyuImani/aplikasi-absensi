@@ -23,15 +23,14 @@ if ($_SESSION['pengguna']['level'] === 'User') { echo "<script>alert('Hanya admi
               <?php
                 $i = 1;
                 $queryCuti = querySQL("SELECT * FROM absensi_cuti LEFT JOIN users ON absensi_cuti.user_id = users.id_user");
-                if (mysqli_num_rows($queryCuti) > 0) {
-                  while ($dataCuti = mysqli_fetch_assoc($queryCuti)) {
+                while ($dataCuti = mysqli_fetch_assoc($queryCuti)) {
               ?>
                 <tr>
                   <td><?= $i++ ?></td>
                   <td><?= $dataCuti['nama_lengkap'] ?></td>
                   <td><?= $dataCuti['keterangan'] ?></td>
                   <td><?= $dataCuti['tanggal_permohonan'] ?></td>
-                  <td><?= $dataCuti['status_cuti'] ?></td>
+                  <td><?= $dataCuti['status_permohonan'] ?></td>
                   <td>
                     <?php $level = $_SESSION['pengguna']['level'];
                     switch ($level) {
@@ -40,14 +39,17 @@ if ($_SESSION['pengguna']['level'] === 'User') { echo "<script>alert('Hanya admi
                       <a href="?page=ubah_cuti&id=<?= $dataCuti['id_cuti'] ?>" class="btn btn-warning">Ubah</a>
                     <?php break; case "Super Admin": ?>
                       <a href="?page=ubah_cuti&id=<?= $dataCuti['id_cuti'] ?>" class="btn btn-warning">Ubah</a>
-                      <a href="?page=hapus_cuti&id=<?= $dataCuti['id_cuti'] ?>" onclick="return confirm('Apakah anda yakin akan menghapus data cuti ini?');" class="btn btn-danger">Hapus</a>
+                      <a href="?page=hapus_cuti&id=<?= $dataCuti['id_cuti'] ?>" onclick="return confirm('Apakah anda yakin akan menghapus data permohonan cuti ini?');" class="btn btn-danger">Hapus</a>
                     <?php break; }  ?>
                   </td>
                 </tr>
-              <?php } } ?>
+              <?php } ?>
             </tbody>
           </table>
         </div>
+      </div>
+      <div class="card-footer">
+        <a href="index.php" class="btn btn-secondary">Kembali</a>
       </div>
     </div>
   </div>

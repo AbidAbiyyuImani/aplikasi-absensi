@@ -72,21 +72,21 @@ switch ($level) {
             </a>
           </div>
           <div class="col-12 col-sm-6 col-md-3">
-            <a href="?page=absen_cuti">
-              <div class="info-box bg-gradient-info">
-                <span class="info-box-icon"><i class="fas fa-calendar-times"></i></span>
-                <div class="info-box-content">
-                  <span class="info-box-text">Absen Cuti</span>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="col-12 col-sm-6 col-md-3">
             <a href="?page=absen_sakit">
               <div class="info-box bg-gradient-danger">
                 <span class="info-box-icon"><i class="fas fa-procedures"></i></span>
                 <div class="info-box-content">
                   <span class="info-box-text">Absen Sakit</span>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-12 col-sm-6 col-md-3">
+            <a href="?page=permohonan_cuti">
+              <div class="info-box bg-gradient-info">
+                <span class="info-box-icon"><i class="fas fa-calendar-times"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">Permohonan Cuti</span>
                 </div>
               </div>
             </a>

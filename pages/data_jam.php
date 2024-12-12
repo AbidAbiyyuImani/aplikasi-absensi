@@ -21,8 +21,7 @@ if ($_SESSION['pengguna']['level'] === 'User') { echo "<script>alert('Hanya admi
               <?php
                 $i = 1;
                 $queryJamKerja = querySQL("SELECT * FROM jam_kerja");
-                if(mysqli_num_rows($queryJamKerja) > 0) {
-                  while ($dataJamKerja = mysqli_fetch_assoc($queryJamKerja)) {
+                while ($dataJamKerja = mysqli_fetch_assoc($queryJamKerja)) {
               ?>
                 <tr>
                   <td><?= $i++ ?></td>
@@ -33,7 +32,7 @@ if ($_SESSION['pengguna']['level'] === 'User') { echo "<script>alert('Hanya admi
                     <a href="?page=hapus_jam&id=<?= $dataJamKerja['id_jam'] ?>" onclick="return confirm('Apakah anda yakin akan menghapus data jam kerja ini?')" class="btn btn-danger">Hapus</a>
                   </td>
                 </tr>
-              <?php } } ?>
+              <?php } ?>
             </tbody>
           </table>
         </div>

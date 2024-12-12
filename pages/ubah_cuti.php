@@ -8,16 +8,16 @@ $dataCuti = mysqli_fetch_assoc($queryCuti);
 
 if(isset($_POST['ubah_cuti'])) {
   try {
-    $statusCuti = $_POST['statusCuti'];
+    $statusPermohonan = $_POST['statusPermohonan'];
   
-    $queryUpdate = querySQL("UPDATE absensi_cuti SET status_cuti = '$statusCuti' WHERE id_cuti = $idCuti");
+    $queryUpdate = querySQL("UPDATE absensi_cuti SET status_permohonan = '$statusPermohonan' WHERE id_cuti = $idCuti");
     if($queryUpdate) {
-      echo "<script>alert('Ubah Data Cuti Berhasil');location.href='?page=data_cuti';</script>";
+      echo "<script>alert('Ubah Data Permohonan Cuti Berhasil');location.href='?page=data_cuti';</script>";
     } else {
-      echo "<script>alert('Ubah Data Cuti Gagal');</script>";
+      echo "<script>alert('Ubah Data Permohonan Cuti Gagal');</script>";
     }
   } catch (Exception $e) {
-    echo "<script>alert('Ubah Data Cuti Gagal');</script>";
+    echo "<script>alert('Ubah Data Permohonan Cuti Gagal');</script>";
   }
 }
 ?>
@@ -33,11 +33,11 @@ if(isset($_POST['ubah_cuti'])) {
             <textarea name="keterangan" id="keterangan" rows="3" placeholder="Keterangan Cuti" required readonly class="form-control"><?= $dataCuti['keterangan'] ?></textarea>
           </div>
           <div class="form-group">
-            <select name="statusCuti" id="StatusCuti" class="form-control">
-              <?php $statusCuti = ['Menunggu Persetujuan', 'Disetujui', 'Ditolak'];
-              foreach($statusCuti as $status) {
+            <select name="statusPermohonan" id="statusPermohonan" class="form-control">
+              <?php $statusPermohonan = ['Menunggu Persetujuan', 'Disetujui', 'Ditolak'];
+              foreach($statusPermohonan as $status) {
               ?>
-                <option value="<?= $status ?>" <?= $dataCuti['status_cuti'] === $status ? 'selected' : '' ?>><?= $status ?></option>
+                <option value="<?= $status ?>" <?= $dataCuti['status_permohonan'] === $status ? 'selected' : '' ?>><?= $status ?></option>
               <?php } ?>
             </select>
           </div>

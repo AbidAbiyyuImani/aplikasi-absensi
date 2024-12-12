@@ -24,8 +24,7 @@ if ($_SESSION['pengguna']['level'] === 'User') { echo "<script>alert('Hanya admi
               <?php
                 $i = 1;
                 $queryUsers = querySQL("SELECT * FROM users LEFT JOIN divisi ON users.divisi_id = divisi.id_divisi LEFT JOIN jam_kerja ON users.jam_id = jam_kerja.id_jam");
-                if(mysqli_num_rows($queryUsers) > 0) {
-                  while ($dataUsers = mysqli_fetch_assoc($queryUsers)) {
+                while ($dataUsers = mysqli_fetch_assoc($queryUsers)) {
               ?>
                 <tr>
                   <td><?= $i++ ?></td>
@@ -46,7 +45,7 @@ if ($_SESSION['pengguna']['level'] === 'User') { echo "<script>alert('Hanya admi
                     <?php break; } ?>
                   </td>
                 </tr>
-              <?php } } ?>
+              <?php } ?>
             </tbody>
           </table>
         </div>

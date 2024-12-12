@@ -20,8 +20,7 @@ if ($_SESSION['pengguna']['level'] === 'User') { echo "<script>alert('Hanya admi
               <?php
                 $i = 1;
                 $queryDivisi = querySQL("SELECT * FROM divisi");
-                if(mysqli_num_rows($queryDivisi) > 0) {
-                  while ($dataDivisi = mysqli_fetch_assoc($queryDivisi)) {
+                while ($dataDivisi = mysqli_fetch_assoc($queryDivisi)) {
               ?>
                 <tr>
                   <td><?= $i++ ?></td>
@@ -31,7 +30,7 @@ if ($_SESSION['pengguna']['level'] === 'User') { echo "<script>alert('Hanya admi
                     <a href="?page=hapus_divisi&id=<?= $dataDivisi['id_divisi'] ?>" onclick="return confirm('Apakah anda yakin akan menghapus data divisi ini?')" class="btn btn-danger">Hapus</a>
                   </td>
                 </tr>
-              <?php } } ?>
+              <?php } ?>
             </tbody>
           </table>
         </div>

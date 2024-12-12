@@ -22,8 +22,7 @@ if ($_SESSION['pengguna']['level'] === 'User') { echo "<script>alert('Hanya admi
               <?php 
                 $i = 1;
                 $queryAbsensi = querySQL("SELECT * FROM absensi LEFT JOIN users ON absensi.user_id = users.id_user");
-                if(mysqli_num_rows($queryAbsensi) > 0) {
-                  while ($dataAbsensi = mysqli_fetch_assoc($queryAbsensi)) {
+                while ($dataAbsensi = mysqli_fetch_assoc($queryAbsensi)) {
               ?>
                 <tr>
                   <td><?= $i++ ?></td>
@@ -32,7 +31,7 @@ if ($_SESSION['pengguna']['level'] === 'User') { echo "<script>alert('Hanya admi
                   <td><?= $dataAbsensi['jam_masuk'] ?></td>
                   <td><?= $dataAbsensi['jam_keluar'] ?></td>
                 </tr>
-              <?php  } } ?>
+              <?php } ?>
             </tbody>
           </table>
         </div>
