@@ -43,46 +43,55 @@ switch ($level) {
 </div>
 
 <?php break; case "User": ?>
-<?php
-$idDivisi = $_SESSION['pengguna']['divisi_id'];
-$idJamKerja = $_SESSION['pengguna']['jam_id'];
-
-$queryDivisi = querySQL("SELECT * FROM divisi WHERE id_divisi = '$idDivisi'");
-$queryJamKerja = querySQL("SELECT * FROM jam_kerja WHERE id_jam = '$idJamKerja'");
-
-$dataDivisi = mysqli_fetch_assoc($queryDivisi);
-$dataJamKerja = mysqli_fetch_assoc($queryJamKerja);
-?>
+  
 <div class="row">
   <div class="col-12">
     <div class="card">
       <div class="card-body">
         <h3 class="mb-3"><?= getDateTimeNow(); ?></h3>
-        <div class="table-responsive mb-2">
-          <table class="table table-bordered text-nowrap">
-            <tbody>
-              <tr>
-                <td>Nama</td>
-                <td>:</td>
-                <td><?= $_SESSION['pengguna']['nama_lengkap'] ?></td>
-              </tr>
-              <tr>
-                <td>Divisi</td>
-                <td>:</td>
-                <td><?= $dataDivisi['nama_divisi'] ?></td>
-              </tr>
-              <tr>
-                <td>Jam Kerja</td>
-                <td>:</td>
-                <td><?= $dataJamKerja['jam_masuk'] . ' - ' . $dataJamKerja['jam_keluar'] ?></td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="row">
+
+          <div class="col-12 col-sm-6 col-md-3">
+            <a href="?page=absen_masuk">
+              <div class="info-box bg-gradient-success">
+                <span class="info-box-icon"><i class="fas fa-sign-in-alt"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">Absen Masuk</span>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-12 col-sm-6 col-md-3">
+            <a href="?page=absen_keluar">
+              <div class="info-box bg-gradient-warning">
+                <span class="info-box-icon"><i class="fas fa-sign-out-alt"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">Absen Keluar</span>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-12 col-sm-6 col-md-3">
+            <a href="?page=absen_cuti">
+              <div class="info-box bg-gradient-info">
+                <span class="info-box-icon"><i class="fas fa-calendar-times"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">Absen Cuti</span>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-12 col-sm-6 col-md-3">
+            <a href="?page=absen_sakit">
+              <div class="info-box bg-gradient-danger">
+                <span class="info-box-icon"><i class="fas fa-procedures"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">Absen Sakit</span>
+                </div>
+              </div>
+            </a>
+          </div>
         </div>
-        <a href="?page=absen_masuk" class="btn bg-gradient-success mb-2 d-inline-block col-12">Absen Masuk</a>
-        <a href="?page=absen_keluar" class="btn bg-gradient-warning mb-2 d-inline-block col-12">Absen Keluar</a>
-        <a href="?page=absen_cuti" class="btn bg-gradient-secondary mb-2 d-inline-block col-12">Absen Cuti</a>
-        <a href="?page=absen_sakit" class="btn bg-gradient-danger mb-2 d-inline-block col-12">Absen Sakit</a>
       </div>
     </div>
   </div>

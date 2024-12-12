@@ -25,14 +25,14 @@ if ($_SESSION['pengguna']['level'] === 'User') { echo "<script>alert('Hanya admi
                 $i = 1;
                 $queryUsers = querySQL("SELECT * FROM users LEFT JOIN divisi ON users.divisi_id = divisi.id_divisi LEFT JOIN jam_kerja ON users.jam_id = jam_kerja.id_jam");
                 if(mysqli_num_rows($queryUsers) > 0) {
-                while ($dataUsers = mysqli_fetch_assoc($queryUsers)) {
+                  while ($dataUsers = mysqli_fetch_assoc($queryUsers)) {
               ?>
                 <tr>
                   <td><?= $i++ ?></td>
                   <td><?= $dataUsers['nama_lengkap'] ?></td>
                   <td><?= $dataUsers['username'] ?></td>
                   <td><?= $dataUsers['email'] ?></td>
-                  <td><?= $dataUsers['nama_divisi'] ?></td>
+                  <td><?= ($dataUsers['nama_divisi']) ? $dataUsers['nama_divisi'] : '-' ?></td>
                   <td><?= $dataUsers['jam_masuk'] ?> - <?= $dataUsers['jam_keluar'] ?></td>
                   <td>
                     <?php $level = $_SESSION['pengguna']['level'];
@@ -42,7 +42,7 @@ if ($_SESSION['pengguna']['level'] === 'User') { echo "<script>alert('Hanya admi
                       <a href="?page=ubah_karyawan&id=<?= $dataUsers['id_user'] ?>" class="btn btn-warning">Ubah</a>
                     <?php break; case "Super Admin": ?>
                       <a href="?page=ubah_karyawan&id=<?= $dataUsers['id_user'] ?>" class="btn btn-warning">Ubah</a>
-                      <a href="?page=hapus_karyawan&id=<?= $dataUsers['id_user']; ?>" onclick="return confirm('Apakah anda yakin akan menghapus data karyawan ini?');" class="btn btn-danger">Hapus</a>
+                      <a href="?page=hapus_karyawan&id=<?= $dataUsers['id_user']; ?>" onclick="return confirm('Apakah anda yakin akan menghapus data karyawan ini?')" class="btn btn-danger">Hapus</a>
                     <?php break; } ?>
                   </td>
                 </tr>

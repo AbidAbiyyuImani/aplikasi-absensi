@@ -1,0 +1,52 @@
+<?php include 'config/functions.php';
+// redirect user (admin only)
+if ($_SESSION['pengguna']['level'] === 'User') { echo "<script>alert('Hanya admin yang dapat mengakses');location.href='index.php';</script>"; };
+
+$idCuti = $_GET['id'];
+$queryCuti = querySQL("SELECT * FROM absensi_cuti WHERE id_cuti = $idCuti");
+$dataCuti = mysqli_fetch_assoc($queryCuti);
+
+if(isset($_POST['ubah_cuti'])) {
+  try {
+    $statusCuti = $_POST['statusCuti'];
+  
+    $queryUpdate = querySQL("UPDATE absensi_cuti SET status_cuti = '$statusCuti' WHERE id_cuti = $idCuti");
+    if($queryUpdate) {
+      echo "<script>alert('Ubah Data Cuti Berhasil');location.href='?page=data_cuti';</script>";
+    } else {
+      echo "<script>alert('Ubah Data Cuti Gagal');</script>";
+    }
+  } catch (Exception $e) {
+    echo "<script>alert('Ubah Data Cuti Gagal');</script>";
+  }
+}
+?>
+
+<div class="row">
+  <div class="col-12">
+    <h3 class="mb-3">Absen Cuti</h3>
+    <div class="card">
+      <div class="card-body">
+        <form method="post" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="keterangan">Keterangan Cuti</label>
+            <textarea name="keterangan" id="keterangan" rows="3" placeholder="Keterangan Cuti" required readonly class="form-control"><?= $dataCuti['keterangan'] ?></textarea>
+          </div>
+          <div class="form-group">
+            <select name="statusCuti" id="StatusCuti" class="form-control">
+              <?php $statusCuti = ['Menunggu Persetujuan', 'Disetujui', 'Ditolak'];
+              foreach($statusCuti as $status) {
+              ?>
+                <option value="<?= $status ?>" <?= $dataCuti['status_cuti'] === $status ? 'selected' : '' ?>><?= $status ?></option>
+              <?php } ?>
+            </select>
+          </div>
+      </div>
+      <div class="card-footer">
+        <a href="?page=data_cuti" class="btn btn-secondary">Kembali</a>
+        <button type="submit" name="ubah_cuti" class="btn btn-warning float-right">Ubah Data Cuti</button>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>

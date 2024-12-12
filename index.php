@@ -1,4 +1,4 @@
-<?php include 'config/database_connection.php'; if(!isset($_SESSION['pengguna'])) {
+<?php date_default_timezone_set('Asia/Jakarta'); include 'config/database_connection.php'; if(!isset($_SESSION['pengguna'])) {
   echo "<script>alert('Login terlebih dahulu');location.href='login.php';</script>";
 }
 $level = $_SESSION['pengguna']['level'];
@@ -110,13 +110,18 @@ switch ($level) {
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="?page=data_cuti" class="nav-link">
-                    <p>Cuti</p>
+                  <a href="?page=data_absensi" class="nav-link">
+                    <p>Absensi</p>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="?page=data_izin" class="nav-link">
                     <p>Izin</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="?page=data_cuti" class="nav-link">
+                    <p>Cuti</p>
                   </a>
                 </li>
               </ul>
@@ -284,9 +289,9 @@ switch ($level) {
           <li class="nav-item dropdown">
             <a id="absenDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Absen</a>
             <ul aria-labelledby="absenDropdown" class="dropdown-menu border-0 shadow">
-              <li><a href="?page=histori" class="dropdown-item">Histori</a></li>
               <li><a href="?page=cuti" class="dropdown-item">Cuti</a></li>
               <li><a href="?page=izin" class="dropdown-item">Izin Sakit</a></li>
+              <li><a href="?page=histori" class="dropdown-item">Histori Absen</a></li>
             </ul>
           </li>
         </ul>

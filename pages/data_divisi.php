@@ -21,7 +21,7 @@ if ($_SESSION['pengguna']['level'] === 'User') { echo "<script>alert('Hanya admi
                 $i = 1;
                 $queryDivisi = querySQL("SELECT * FROM divisi");
                 if(mysqli_num_rows($queryDivisi) > 0) {
-                while ($dataDivisi = mysqli_fetch_assoc($queryDivisi)) {
+                  while ($dataDivisi = mysqli_fetch_assoc($queryDivisi)) {
               ?>
                 <tr>
                   <td><?= $i++ ?></td>

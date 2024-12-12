@@ -1,22 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Host: localhost:3306
--- Generation Time: Dec 11, 2024 at 11:26 PM
--- Server version: 8.0.30
--- PHP Version: 8.3.14
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
 --
 -- Database: `absensi_karyawan`
 --
@@ -33,14 +14,7 @@ CREATE TABLE `absensi` (
   `jam_masuk` time NOT NULL,
   `jam_keluar` time DEFAULT NULL,
   `tanggal_absensi` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `absensi`
---
-
-INSERT INTO `absensi` (`id_absensi`, `user_id`, `jam_masuk`, `jam_keluar`, `tanggal_absensi`) VALUES
-(2, 2, '07:00:00', '16:08:03', '2024-12-12');
+);
 
 -- --------------------------------------------------------
 
@@ -51,15 +25,7 @@ INSERT INTO `absensi` (`id_absensi`, `user_id`, `jam_masuk`, `jam_keluar`, `tang
 CREATE TABLE `divisi` (
   `id_divisi` int NOT NULL,
   `nama_divisi` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `divisi`
---
-
-INSERT INTO `divisi` (`id_divisi`, `nama_divisi`) VALUES
-(1, 'A'),
-(6, 'B');
+);
 
 -- --------------------------------------------------------
 
@@ -71,14 +37,7 @@ CREATE TABLE `jam_kerja` (
   `id_jam` int NOT NULL,
   `jam_masuk` time NOT NULL,
   `jam_keluar` time NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `jam_kerja`
---
-
-INSERT INTO `jam_kerja` (`id_jam`, `jam_masuk`, `jam_keluar`) VALUES
-(1, '07:00:00', '15:00:00');
+);
 
 -- --------------------------------------------------------
 
@@ -97,15 +56,7 @@ CREATE TABLE `users` (
   `foto` text NOT NULL,
   `password` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id_user`, `nama_lengkap`, `username`, `email`, `level`, `divisi_id`, `jam_id`, `foto`, `password`, `created_at`) VALUES
-(1, 'Abid Abiyyu Imani', 'abid', 'abid.abiyyu490@smk.belajar.id', 'Super Admin', NULL, NULL, '6759a4f40a3d2.jpg', '202cb962ac59075b964b07152d234b70', '2024-12-11 14:43:00'),
-(2, 'Fariz Fathin Imani', 'fariz', 'fariz12klo@gmail.com', 'User', 6, 1, '6759a624ba3d8.jpg', '202cb962ac59075b964b07152d234b70', '2024-12-11 14:48:04');
+);
 
 --
 -- Indexes for dumped tables
@@ -147,25 +98,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `absensi`
 --
 ALTER TABLE `absensi`
-  MODIFY `id_absensi` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_absensi` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `divisi`
 --
 ALTER TABLE `divisi`
-  MODIFY `id_divisi` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_divisi` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `jam_kerja`
 --
 ALTER TABLE `jam_kerja`
-  MODIFY `id_jam` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_jam` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_user` int NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -184,7 +135,3 @@ ALTER TABLE `users`
   ADD CONSTRAINT `user_divisi` FOREIGN KEY (`divisi_id`) REFERENCES `divisi` (`id_divisi`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `user_jam` FOREIGN KEY (`jam_id`) REFERENCES `jam_kerja` (`id_jam`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
