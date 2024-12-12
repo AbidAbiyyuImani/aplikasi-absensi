@@ -24,7 +24,7 @@ if(isset($_POST['ubah_divisi'])) {
 
 <div class="row">
   <div class="col-12">
-    <div class="card">
+    <div class="card card-outline card-warning">
       <div class="card-body">
         <h3 class="mb-3">Ubah Nama Divisi</h3>
         <form method="post">

@@ -24,7 +24,7 @@ if(isset($_POST['ubah_cuti'])) {
 
 <div class="row">
   <div class="col-12">
-    <div class="card">
+    <div class="card card-outline card-warning">
       <div class="card-body">
         <h3 class="mb-3">Absen Cuti</h3>
         <form method="post" enctype="multipart/form-data">
@@ -44,7 +44,7 @@ if(isset($_POST['ubah_cuti'])) {
       </div>
       <div class="card-footer">
         <a href="?page=data_cuti" class="btn btn-secondary">Kembali</a>
-        <button type="submit" name="ubah_cuti" class="btn btn-warning float-right">Ubah Data Cuti</button>
+        <button type="submit" name="ubah_cuti" class="btn btn-warning float-right">Ubah Status</button>
       </form>
       </div>
     </div>
