@@ -6,7 +6,7 @@ if (mysqli_num_rows($querySA) < 1 || mysqli_num_rows($querySA) == 0) {
   echo "<script>alert('Anda sudah login!');location.href='index.php';</script>";
 }
 
-if(isset($_POST['login'])) {
+if (isset($_POST['login'])) {
   try {
     $username = $_POST['username'];
     $password = md5($_POST['password']);

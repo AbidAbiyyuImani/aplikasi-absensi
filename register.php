@@ -4,6 +4,9 @@ if (!isset($_GET['trid'])) {
   if (mysqli_num_rows($querySA) == 1 || mysqli_num_rows($querySA) !== 0) {
     echo "<script>alert('Halaman register tidak dapat diakses!');location.href='login.php';</script>";
   }
+} else if ($_SESSION['pengguna']['level'] == 'User') {
+  echo "<script>alert('Hanya admin yang dapat mengakses!');location.href='index.php';</script>";
+
 }
 
 if (isset($_POST['register'])) {

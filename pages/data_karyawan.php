@@ -1,7 +1,7 @@
 <?php include 'config/functions.php';
 // redirect user (admin only)
 if ($_SESSION['pengguna']['level'] === 'User') { echo "<script>alert('Hanya admin yang dapat mengakses');location.href='index.php';</script>"; };
-?>
+$level = $_SESSION['pengguna']['level']; ?>
 <?php $namaHalaman = "Karyawan"; $linkHalaman = "Data Karyawan"; include 'components/breadcrumb.php';?>
 <div class="row">
   <div class="col-12">
@@ -17,13 +17,18 @@ if ($_SESSION['pengguna']['level'] === 'User') { echo "<script>alert('Hanya admi
                 <th>Email</th>
                 <th>Divisi</th>
                 <th>Jam Kerja</th>
+                <th>Level</th>
                 <th>Aksi</th>
               </tr>
             </thead>
             <tbody>
               <?php
                 $i = 1;
-                $queryUsers = querySQL("SELECT * FROM users LEFT JOIN divisi ON users.divisi_id = divisi.id_divisi LEFT JOIN jam_kerja ON users.jam_id = jam_kerja.id_jam");
+                if ($level == "Super Admin") {
+                  $queryUsers = querySQL("SELECT * FROM users LEFT JOIN divisi ON users.divisi_id = divisi.id_divisi LEFT JOIN jam_kerja ON users.jam_id = jam_kerja.id_jam WHERE level != 'Super Admin'");
+                } else {
+                  $queryUsers = querySQL("SELECT * FROM users LEFT JOIN divisi ON users.divisi_id = divisi.id_divisi LEFT JOIN jam_kerja ON users.jam_id = jam_kerja.id_jam WHERE level = 'User'");
+                }
                 while ($dataUsers = mysqli_fetch_assoc($queryUsers)) {
               ?>
                 <tr>
@@ -33,8 +38,9 @@ if ($_SESSION['pengguna']['level'] === 'User') { echo "<script>alert('Hanya admi
                   <td><?= $dataUsers['email'] ?></td>
                   <td><?= ($dataUsers['nama_divisi']) ? $dataUsers['nama_divisi'] : '-' ?></td>
                   <td><?= $dataUsers['jam_masuk'] ?> - <?= $dataUsers['jam_keluar'] ?></td>
+                  <td><?= $dataUsers['level'] ?></td>
                   <td>
-                    <?php $level = $_SESSION['pengguna']['level'];
+                    <?php
                     switch ($level) {
                       case "Admin":
                     ?>
@@ -52,7 +58,7 @@ if ($_SESSION['pengguna']['level'] === 'User') { echo "<script>alert('Hanya admi
       </div>
       <div class="card-footer">
         <a href="index.php" class="btn btn-secondary">Kembali</a>
-        <a href="register.php?trid=<?= md5('Super Admin') ?>" class="btn btn-primary float-right">Tambahkan Admin</a>
+        <a href="register.php?trid=<?= md5('SAA') ?>" class="btn btn-primary float-right">Tambahkan Pengguna</a>
       </div>
     </div>
   </div>
