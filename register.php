@@ -1,17 +1,29 @@
 <?php include 'config/database_connection.php'; include 'config/functions.php';
-if(isset($_POST['register'])) {
-  $namaLengkap = $_POST['namaLengkap'];
-  $username = $_POST['username'];
-  $email = $_POST['email'];
-  $level = 'User';
-  $foto = upload('foto', ['jpg', 'jpeg', 'png'], 'dist/img/avatar/');
-  $password = md5($_POST['password']);
+if (!isset($_GET['trid'])) {
+  $querySA = querySQL("SELECT level FROM users WHERE level = 'Super Admin'");
+  if (mysqli_num_rows($querySA) == 1 || mysqli_num_rows($querySA) !== 0) {
+    echo "<script>alert('Halaman register tidak dapat diakses!');location.href='login.php';</script>";
+  }
+}
 
-  $queryInsert = querySQL("INSERT INTO users (nama_lengkap, username, email, level, foto, password) VALUES ('$namaLengkap', '$username', '$email', '$level', '$foto', '$password')");
-  if($queryInsert) {
-    echo "<script>alert('Berhasil register!');location.href='login.php'</script>";
-  } else {
-    echo "<script>alert('Gagal register!')</script>";
+if (isset($_POST['register'])) {
+  try {
+    $namaLengkap = $_POST['namaLengkap'];
+    $username = $_POST['username'];
+    $level = $_POST['level'];
+    $password = md5($_POST['password']);
+  
+    $queryInsert = querySQL("INSERT INTO users (nama_lengkap, username, level, password) VALUES ('$namaLengkap', '$username','$level', '$password')");
+    if ($queryInsert) {
+      if (isset($_GET['trid'])) {
+        echo "<script>alert('Berhasil menambahkan akun!');location.href='index.php?page=data_karyawan'</script>";
+      }
+      echo "<script>alert('Berhasil mendaftarkan akun!');location.href='login.php'</script>";
+    } else {
+      echo "<script>alert('Gagal menambahkan akun!')</script>";
+    }
+  } catch (Exception $e) {
+    echo "<script>alert('Tidak dapat login!');</script>";
   }
 }
 ?>
@@ -22,6 +34,9 @@ if(isset($_POST['register'])) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Register</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- AdminLTE App -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
 </head>
@@ -37,29 +52,38 @@ if(isset($_POST['register'])) {
           <div class="form-group">
             <input type="text" name="username" id="username" placeholder="Username" required class="form-control">
           </div>
-          <div class="form-group">
-            <input type="email" name="email" id="email" placeholder="Email" required class="form-control">
-          </div>
-          <div class="form-group">
-            <div class="custom-file">
-              <input type="file" name="foto" id="foto" required class="custom-file-input">
-              <label for="foto" class="custom-file-label">Foto Profil</label>
+          <?php if (isset($_GET['trid']) == md5('Super Admin')) { ?>
+            <div class="form-group">
+              <select name="level" id="level" name="level" class="form-control">
+                <option selected disabled>Pilih level</option>
+                <?php
+                  $level = ['Admin', 'User'];
+                  foreach ($level as $l) {
+                ?>
+                  <option value="<?= $l ?>"><?= $l ?></option>
+                <?php } ?>
+              </select>
             </div>
-          </div>
+          <?php } else { ?>
+            <input type="hidden" name="level" value="Super Admin">
+          <?php } ?>
           <div class="form-group">
             <input type="password" name="password" placeholder="Password" required id="password" class="form-control">
           </div>
           <button type="submit" name="register" class="btn btn-primary mb-2">Register</button>
-          <a href="login.php" class="d-block">Sudah mempunyai akun? login sekarang!</a>
         </form>
       </div>
     </div>  
   </div>
 
-  <!-- JQuery -->
+  <!-- REQUIRED SCRIPTS -->
+
+  <!-- jQuery -->
   <script src="plugins/jquery/jquery.min.js"></script>
   <!-- AdminLTE App -->
   <script src="dist/css/adminlte.min.js"></script>
+  <!-- Bootstrap 4 -->
+  <script src="plugins/bootstrap/js/bootstrap.bundle.js"></script>
   <!-- bs-custom-file-input -->
   <script src="plugins/bs-custom-file-input/bs-custom-file-input.js"></script>
   <script>

@@ -48,7 +48,11 @@ switch ($level) {
     <ul class="navbar-nav ml-auto">
       <li class="nav-item  dropdown user-menu">
         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-          <img style="object-fit: cover;" src="dist/img/avatar/<?= $_SESSION['pengguna']['foto'] ?>" class="user-image img-circle elevation-2" alt="User Image">
+          <?php if ($_SESSION['pengguna']['foto'] == "") { ?>
+            <img style="object-fit: cover;" src="dist/img/boxed-bg.jpg" class="user-image img-circle elevation-2" alt="User Image">
+          <?php } else { ?>
+            <img style="object-fit: cover;" src="dist/img/avatar/<?= $_SESSION['pengguna']['foto'] ?>" class="user-image img-circle elevation-2" alt="User Image">
+          <?php } ?>
           <span class="d-none d-md-inline"><?= $_SESSION['pengguna']['nama_lengkap'] ?></span>
         </a>
         <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
@@ -301,7 +305,11 @@ switch ($level) {
       <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
         <li class="nav-item  dropdown user-menu">
           <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-            <img style="object-fit: cover;" src="dist/img/avatar/<?= $_SESSION['pengguna']['foto'] ?>" class="user-image img-circle elevation-2" alt="User Image">
+            <?php if ($_SESSION['pengguna']['foto'] == "") { ?>
+              <img style="object-fit: cover;" src="dist/img/boxed-bg.jpg" class="user-image img-circle elevation-2" alt="User Image">
+            <?php } else { ?>
+              <img style="object-fit: cover;" src="dist/img/avatar/<?= $_SESSION['pengguna']['foto'] ?>" class="user-image img-circle elevation-2" alt="User Image">
+            <?php } ?>
             <span class="d-none d-md-inline"><?= $_SESSION['pengguna']['nama_lengkap'] ?></span>
           </a>
           <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
@@ -344,7 +352,7 @@ switch ($level) {
 </div>
 <!-- ./wrapper -->
 
-   <!-- REQUIRED SCRIPTS -->
+  <!-- REQUIRED SCRIPTS -->
 
   <!-- jQuery -->
   <script src="plugins/jquery/jquery.min.js"></script>

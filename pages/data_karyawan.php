@@ -52,7 +52,7 @@ if ($_SESSION['pengguna']['level'] === 'User') { echo "<script>alert('Hanya admi
       </div>
       <div class="card-footer">
         <a href="index.php" class="btn btn-secondary">Kembali</a>
-        <a href="register.php" class="btn btn-primary float-right">Tambahkan Admin</a>
+        <a href="register.php?trid=<?= md5('Super Admin') ?>" class="btn btn-primary float-right">Tambahkan Admin</a>
       </div>
     </div>
   </div>

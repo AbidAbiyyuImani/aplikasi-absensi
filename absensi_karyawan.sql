@@ -78,12 +78,12 @@ CREATE TABLE `jam_kerja` (
 CREATE TABLE `users` (
   `id_user` int NOT NULL,
   `nama_lengkap` text NOT NULL,
-  `username` text NOT NULL,
-  `email` text DEFAULT NULL,
+  `username` varchar(255) NOT NULL,
+  `email` text,
   `level` enum('Super Admin','Admin','User') NOT NULL,
   `divisi_id` int DEFAULT NULL,
   `jam_id` int DEFAULT NULL,
-  `foto` text DEFAULT NULL,
+  `foto` text,
   `password` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
@@ -131,6 +131,7 @@ ALTER TABLE `jam_kerja`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id_user`),
+  ADD UNIQUE KEY `unique_username` (`username`),
   ADD KEY `user_divisi` (`divisi_id`),
   ADD KEY `user_jam` (`jam_id`);
 

@@ -43,7 +43,11 @@ if (isset($_POST['UbahUser'])) {
         <div class="row">
           <div class="col-12 col-sm-2">
             <h3 class="mb-3 text-center">Profile</h3>
-            <img style="object-fit: cover;" src="dist/img/avatar/<?= $_SESSION['pengguna']['foto']; ?>" class="img-circle elevation-2 d-flex mx-auto mb-3" width="100px" height="100px" alt="<?= $_SESSION['pengguna']['nama_lengkap']; ?>">
+            <?php if ($_SESSION['pengguna']['foto'] == "") { ?>
+              <img style="object-fit: cover;" src="dist/img/boxed-bg.jpg" class="img-circle elevation-2 d-flex mx-auto mb-3" width="100px" height="100px" alt="<?= $_SESSION['pengguna']['nama_lengkap']; ?>">
+            <?php } else { ?>
+                <img style="object-fit: cover;" src="dist/img/avatar/<?= $_SESSION['pengguna']['foto']; ?>" class="img-circle elevation-2 d-flex mx-auto mb-3" width="100px" height="100px" alt="<?= $_SESSION['pengguna']['nama_lengkap']; ?>">
+            <?php } ?>
           </div>
           <form method="post" enctype="multipart/form-data" class="col-12 col-sm-10">
             <div class="form-group">
@@ -61,7 +65,6 @@ if (isset($_POST['UbahUser'])) {
             <div class="form-group">
               <label for="divisi" class="form-label">Divisi</label>
               <select name="divisi" id="divisi" disabled class="form-control">
-                <option selected disabled>Pilih Divisi</option>
                 <?php 
                 if($_SESSION['pengguna']['divisi_id'] != null) {
                 $queryDivisi = querySQL("SELECT * FROM divisi");
