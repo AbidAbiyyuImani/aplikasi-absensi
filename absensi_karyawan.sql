@@ -79,11 +79,11 @@ CREATE TABLE `users` (
   `id_user` int NOT NULL,
   `nama_lengkap` text NOT NULL,
   `username` varchar(255) NOT NULL,
-  `email` text,
+  `email` text DEFAULT NULL,
   `level` enum('Super Admin','Admin','User') NOT NULL,
   `divisi_id` int DEFAULT NULL,
   `jam_id` int DEFAULT NULL,
-  `foto` text,
+  `foto` text DEFAULT NULL,
   `password` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
