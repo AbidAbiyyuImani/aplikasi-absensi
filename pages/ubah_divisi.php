@@ -6,18 +6,18 @@ $idDivisi = $_GET['id'];
 $queryDivisi = querySQL("SELECT * FROM divisi WHERE id_divisi = '$idDivisi'");
 $dataDivisi = mysqli_fetch_assoc($queryDivisi);
 
-if(isset($_POST['ubah_divisi'])) {
+if (isset($_POST['ubah_divisi'])) {
   try {
     $namaDivisi = $_POST['namaDivisi'];
     
     $queryUpdate = querySQL("UPDATE divisi SET nama_divisi = '$namaDivisi' WHERE id_divisi = '$idDivisi'");
-    if($queryUpdate) {
+    if ($queryUpdate) {
       echo "<script>alert('Ubah Data Divisi Berhasil');location.href='?page=data_divisi';</script>";
     } else {
       echo "<script>alert('Ubah Data Divisi Gagal');</script>";
     }
   } catch (Exception $e) {
-    echo "<script>alert('Nama Divisi Sudah Terdaftar');location.href='?page=data_divisi';</script>";
+    echo "<script>alert('Nama divisi sudah terdaftar');location.href='?page=data_divisi';</script>";
   }
 }
 ?>

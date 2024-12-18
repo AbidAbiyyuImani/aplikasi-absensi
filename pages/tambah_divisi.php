@@ -2,18 +2,18 @@
 // redirect user (admin only)
 if ($_SESSION['pengguna']['level'] === 'User') { echo "<script>alert('Hanya admin yang dapat mengakses');location.href='index.php';</script>"; };
 
-if(isset($_POST['tambahDivisi'])) {
+if (isset($_POST['tambahDivisi'])) {
   try {
     $namaDivisi = $_POST['namaDivisi'];
     
     $queryInsert = querySQL("INSERT INTO divisi (nama_divisi) VALUES ('$namaDivisi')");
-    if($queryInsert) {
+    if ($queryInsert) {
       echo "<script>alert('Berhasil Menambahkan Divisi');location.href='?page=data_divisi';</script>";
     } else {
       echo "<script>alert('Gagal Menambahkan Divisi');</script>";
     }
   } catch (Exception $e) {
-    echo "<script>alert('Nama Divisi Sudah Terdaftar');location.href='?page=tambah_divisi';</script>";
+    echo "<script>alert('Nama divisi sudah terdaftar);location.href='?page=tambah_divisi';</script>";
   }
 }
 ?>
