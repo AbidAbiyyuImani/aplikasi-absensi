@@ -1,6 +1,6 @@
 <?php include 'config/functions.php'; $level = $_SESSION['pengguna']['level']; $idKaryawan = $_SESSION['pengguna']['id_user'];
 // redirect user (admin only)
-if ($_SESSION['pengguna']['level'] === 'User') { echo "<script>alert('Hanya admin yang dapat mengakses');location.href='index.php';</script>"; };
+if ($_SESSION['pengguna']['level'] === 'Karyawan') { echo "<script>alert('Hanya admin yang dapat mengakses');location.href='index.php';</script>"; };
 ?>
 <?php $namaHalaman = "Karyawan"; $linkHalaman = "Data Karyawan"; include 'components/breadcrumb.php';?>
 <div class="row">
@@ -48,7 +48,7 @@ if ($_SESSION['pengguna']['level'] === 'User') { echo "<script>alert('Hanya admi
       </div>
       <div class="card-footer">
         <a href="index.php" class="btn btn-secondary">Kembali</a>
-        <a href="register.php" class="btn btn-primary float-right">Tambahkan Pengguna</a>
+        <a href="register.php" class="btn btn-primary float-right">Tambahkan Karyawan</a>
       </div>
     </div>
   </div>

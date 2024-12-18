@@ -1,6 +1,6 @@
 <?php include 'config/functions.php'; $level = $_SESSION['pengguna']['level'];
 // redirect user (admin only)
-if ($_SESSION['pengguna']['level'] === 'User') { echo "<script>alert('Hanya admin yang dapat mengakses');location.href='index.php';</script>"; };
+if ($_SESSION['pengguna']['level'] === 'Karyawan') { echo "<script>alert('Hanya admin yang dapat mengakses');location.href='index.php';</script>"; };
 
 $idKaryawan = $_GET['id'];
 $queryKaryawan = querySQL("SELECT * FROM users WHERE id_user = '$idKaryawan'");

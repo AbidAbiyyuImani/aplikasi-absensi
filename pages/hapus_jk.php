@@ -1,6 +1,6 @@
 <?php include 'config/functions.php';
 // redirect user (admin only)
-if ($_SESSION['pengguna']['level'] === 'User') { echo "<script>alert('Hanya admin yang dapat mengakses');location.href='index.php';</script>"; };
+if ($_SESSION['pengguna']['level'] === 'Karyawan') { echo "<script>alert('Hanya admin yang dapat mengakses');location.href='index.php';</script>"; };
 
 $idJK = $_GET['id'];
 try {
