@@ -5,16 +5,16 @@ if ($_SESSION['pengguna']['level'] === 'User') { echo "<script>alert('Hanya admi
 if(isset($_POST['tambahJamKerja'])) {
   try {
     $jamMasuk = $_POST['jamMasuk'];
-    $jamKeluar = $_POST['jamKeluar'];
+    $jamPulang = $_POST['jamPulang'];
   
-    $queryInsert = querySQL("INSERT INTO jam_kerja(jam_masuk, jam_keluar) VALUES('$jamMasuk', '$jamKeluar')");
+    $queryInsert = querySQL("INSERT INTO jam_kerja(jam_masuk, jam_pulang) VALUES('$jamMasuk', '$jamPulang')");
     if($queryInsert) {
-      echo "<script>alert('Tambah Jam Kerja Berhasil');location.href='?page=data_jam';</script>";
+      echo "<script>alert('Tambah Jam Kerja Berhasil');location.href='?page=data_jk';</script>";
     } else {
       echo "<script>alert('Tambah Jam Kerja Gagal');</script>";
     }
   } catch (Exception $e) {
-    echo "<script>alert('Tambah Jam Kerja Gagal');location.href='?page=data_jam';</script>";
+    echo "<script>alert('Tidak dapat menambahkan jam kerja');location.href='?page=data_jk';</script>";
   }
 }
 ?>
@@ -32,10 +32,10 @@ if(isset($_POST['tambahJamKerja'])) {
             </div>
             <div class="form-group col-12 col-sm-6">
               <label for="jamMasuk" class="form-label">Jam Keluar</label>
-              <input type="time" name="jamKeluar" id="jamKeluar" required class="form-control">
+              <input type="time" name="jamPulang" id="jamPulang" required class="form-control">
             </div>
           </div>
-          <a href="?page=data_jam" class="btn btn-secondary">Kembali</a>
+          <a href="?page=data_jk" class="btn btn-secondary">Kembali</a>
           <button type="submit" name="tambahJamKerja" class="btn btn-primary">Tambah Jam Kerja</button>
         </form>
       </div>

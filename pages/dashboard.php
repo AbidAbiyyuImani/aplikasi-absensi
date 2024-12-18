@@ -1,8 +1,7 @@
 <?php include 'config/functions.php'; $level = $_SESSION['pengguna']['level'];
-switch ($level) {
-  case "Super Admin": ?>
-<?php case "Admin": ?>
+switch ($level) { case "Admin": ?>
 
+<!-- Dashboard Admin -->
 <div class="row">
   <div class="col-12">
     <h3 class="mb-3"><?= getDateTimeNow(); ?></h3>
@@ -42,8 +41,9 @@ switch ($level) {
   </div>
 </div>
 
-<?php break; case "User": ?>
-  
+<?php break; case "Karyawan": ?>
+
+<!-- Dashboard Karyawan -->
 <div class="row">
   <div class="col-12">
     <div class="card">

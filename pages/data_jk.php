@@ -26,10 +26,10 @@ if ($_SESSION['pengguna']['level'] === 'User') { echo "<script>alert('Hanya admi
                 <tr>
                   <td><?= $i++ ?></td>
                   <td><?= $dataJamKerja['jam_masuk'] ?></td>
-                  <td><?= $dataJamKerja['jam_keluar'] ?></td>
+                  <td><?= $dataJamKerja['jam_pulang'] ?></td>
                   <td>
-                    <a href="?page=ubah_jam&id=<?= $dataJamKerja['id_jam'] ?>" class="btn btn-warning">Ubah</a>
-                    <a href="?page=hapus_jam&id=<?= $dataJamKerja['id_jam'] ?>" onclick="return confirm('Apakah anda yakin akan menghapus data jam kerja ini?')" class="btn btn-danger">Hapus</a>
+                    <a href="?page=ubah_jk&id=<?= $dataJamKerja['id_jk'] ?>" class="btn btn-warning">Ubah</a>
+                    <a href="?page=hapus_jk&id=<?= $dataJamKerja['id_jk'] ?>" onclick="return confirm('Apakah anda yakin akan menghapus data jam kerja ini?')" class="btn btn-danger">Hapus</a>
                   </td>
                 </tr>
               <?php } ?>
@@ -39,7 +39,7 @@ if ($_SESSION['pengguna']['level'] === 'User') { echo "<script>alert('Hanya admi
       </div>
       <div class="card-footer">
         <a href="index.php" class="btn btn-secondary">Kembali</a>
-        <a href="?page=tambah_jam" class="btn btn-primary float-right">Tambah</a>
+        <a href="?page=tambah_jk" class="btn btn-primary float-right">Tambah</a>
       </div>
     </div>
   </div>

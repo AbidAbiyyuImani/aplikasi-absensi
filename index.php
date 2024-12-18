@@ -2,10 +2,9 @@
   echo "<script>alert('Login terlebih dahulu');location.href='login.php';</script>";
 }
 $level = $_SESSION['pengguna']['level'];
-switch ($level) {
-  case "Admin":
-?>
-<!-- Tampilan halaman Super Admin dan Admin -->
+switch ($level) { case "Admin": ?>
+
+<!-- Tampilan halaman Admin -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,11 +46,7 @@ switch ($level) {
     <ul class="navbar-nav ml-auto">
       <li class="nav-item  dropdown user-menu">
         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-          <?php if ($_SESSION['pengguna']['foto'] == "") { ?>
-            <img style="object-fit: cover;" src="dist/img/boxed-bg.jpg" class="user-image img-circle elevation-2" alt="User Image">
-          <?php } else { ?>
-            <img style="object-fit: cover;" src="dist/img/avatar/<?= $_SESSION['pengguna']['foto'] ?>" class="user-image img-circle elevation-2" alt="User Image">
-          <?php } ?>
+          <img style="object-fit: cover;" src="dist/img/avatar/<?= $_SESSION['pengguna']['foto'] ?>" class="user-image img-circle elevation-2" alt="User Image">
           <span class="d-none d-md-inline"><?= $_SESSION['pengguna']['nama_lengkap'] ?></span>
         </a>
         <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
@@ -81,83 +76,71 @@ switch ($level) {
               <p>Dashboard</p>
             </a>
           </li>
-          <?php switch ($level) {
-            case "admin":
-          ?>
-            <li class="nav-item">
-              <a href="?page=data_karyawan" class="nav-link">
-                <i class="nav-icon fas fa-users"></i>
-                <p>Karyawan</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="?page=data_divisi" class="nav-link">
-                <i class="nav-icon fas fa-user"></i>
-                <p>Divisi</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="?page=data_jam" class="nav-link">
-                <i class="nav-icon fas fa-clock"></i>
-                <p>Jam Kerja</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link">
-                <i class="nav-icon fas fa-address-book"></i>
-                <p>
-                  Manajemen Absensi
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="?page=data_absensi" class="nav-link">
-                    <p>Absensi</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="?page=data_izin" class="nav-link">
-                    <p>Izin Sakit</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="?page=data_cuti" class="nav-link">
-                    <p>Cuti</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link">
-                <i class="nav-icon fas fa-book"></i>
-                <p>
-                  Laporan
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-                
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="?page=data_absensi" class="nav-link">
-                    <p>Laporan Absensi</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="?page=data_absensi_sakit" class="nav-link">
-                    <p>Laporan Bukti Sakit</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-          <?php break; case "karyawan": ?>
-            <li class="nav-item">
-              <a href="?page=absensi" class="nav-link">
-                <i class="nav-icon fas fa-book"></i>
-                <p>Absensi</p>
-              </a>
-            </li>
-          <?php } ?>
+          <li class="nav-item">
+            <a href="?page=data_jk" class="nav-link">
+              <i class="nav-icon fas fa-clock"></i>
+              <p>Atur Jam Kerja</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="?page=data_divisi" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+              <p>Divisi</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="?page=data_karyawan" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p>Karyawan</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">
+              <i class="nav-icon fas fa-address-book"></i>
+              <p>
+                Manajemen Absensi
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="?page=data_absensi" class="nav-link">
+                  <p>Absensi</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="?page=data_izin" class="nav-link">
+                  <p>Izin</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="?page=data_cuti" class="nav-link">
+                  <p>Cuti</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                Laporan
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="?page=data_absensi" class="nav-link">
+                  <p>Laporan Absensi</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="?page=data_absensi_sakit" class="nav-link">
+                  <p>Laporan Bukti Sakit</p>
+                </a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -184,7 +167,7 @@ switch ($level) {
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2024 <a href="#">Abid Abiyyu Imani</a>.</strong>
+    <strong>Copyright &copy; 2024 <a href="#">Name</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
       <b>Login as</b> <?= $level ?>
@@ -246,7 +229,9 @@ switch ($level) {
   </script>
 </body>
 </html>
+<!-- --- -->
 <?php break; case "Karyawan": ?>
+
 <!-- Tampilan halaman karyawan -->
 <!DOCTYPE html>
 <html lang="en">
@@ -303,11 +288,7 @@ switch ($level) {
       <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
         <li class="nav-item  dropdown user-menu">
           <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-            <?php if ($_SESSION['pengguna']['foto'] == "") { ?>
-              <img style="object-fit: cover;" src="dist/img/boxed-bg.jpg" class="user-image img-circle elevation-2" alt="User Image">
-            <?php } else { ?>
-              <img style="object-fit: cover;" src="dist/img/avatar/<?= $_SESSION['pengguna']['foto'] ?>" class="user-image img-circle elevation-2" alt="User Image">
-            <?php } ?>
+            <img style="object-fit: cover;" src="dist/img/avatar/<?= $_SESSION['pengguna']['foto'] ?>" class="user-image img-circle elevation-2" alt="User Image">
             <span class="d-none d-md-inline"><?= $_SESSION['pengguna']['nama_lengkap'] ?></span>
           </a>
           <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
@@ -345,7 +326,7 @@ switch ($level) {
       <b>Login as</b> <?= $level ?>
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2024 <a href="#">Abid Abiyyu Imani</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2024 <a href="#">Name</a>.</strong> All rights reserved.
   </footer>
 </div>
 <!-- ./wrapper -->
