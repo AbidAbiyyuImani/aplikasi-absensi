@@ -3,7 +3,6 @@
 }
 $level = $_SESSION['pengguna']['level'];
 switch ($level) {
-  case "Super Admin":
   case "Admin":
 ?>
 <!-- Tampilan halaman Super Admin dan Admin -->
@@ -83,8 +82,7 @@ switch ($level) {
             </a>
           </li>
           <?php switch ($level) {
-            case "Super Admin":
-              case "Admin":
+            case "admin":
           ?>
             <li class="nav-item">
               <a href="?page=data_karyawan" class="nav-link">
@@ -152,7 +150,7 @@ switch ($level) {
                 </li>
               </ul>
             </li>
-          <?php break; case "User": ?>
+          <?php break; case "karyawan": ?>
             <li class="nav-item">
               <a href="?page=absensi" class="nav-link">
                 <i class="nav-icon fas fa-book"></i>
@@ -248,8 +246,8 @@ switch ($level) {
   </script>
 </body>
 </html>
-<?php break; case "User": ?>
-<!-- Tampilan halaman user -->
+<?php break; case "Karyawan": ?>
+<!-- Tampilan halaman karyawan -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
