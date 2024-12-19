@@ -5,7 +5,7 @@ if ($_SESSION['pengguna']['level'] === 'Karyawan') { echo "<script>alert('Hanya 
 <?php $namaHalaman = "Karyawan"; $linkHalaman = "Data Karyawan"; include 'components/breadcrumb.php';?>
 <div class="row">
   <div class="col-12">
-    <div class="card card-outline card-primary">
+    <div class="card card-outline card-info">
       <div class="card-body">
         <div class="table-responsive">
           <table class="table table-bordered text-nowrap table-data">
