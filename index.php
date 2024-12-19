@@ -50,7 +50,7 @@ switch ($level) { case "Admin": ?>
           <span class="d-none d-md-inline"><?= $_SESSION['pengguna']['nama_lengkap'] ?></span>
         </a>
         <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <li class="nav-item"><a href="?page=profile" class="nav-link">Profile</a></li>
+          <li class="nav-item"><a href="?page=profile" class="nav-link">Ubah Profil</a></li>
           <li class="nav-item"><a href="logout.php" class="nav-link">Logout</a></li>
         </ul>
       </li>
@@ -103,11 +103,6 @@ switch ($level) { case "Admin": ?>
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="?page=data_absensi" class="nav-link">
-                  <p>Absensi</p>
-                </a>
-              </li>
               <li class="nav-item">
                 <a href="?page=data_izin" class="nav-link">
                   <p>Izin</p>
@@ -211,7 +206,7 @@ switch ($level) { case "Admin": ?>
   <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script></script>
   <script>
     $(function () {
-      $(".table-data").dataTable({
+      $("#table-data").dataTable({
         "paging": true,
         "lengthChange": true,
         "searching": true,
@@ -292,7 +287,7 @@ switch ($level) { case "Admin": ?>
             <span class="d-none d-md-inline"><?= $_SESSION['pengguna']['nama_lengkap'] ?></span>
           </a>
           <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-            <li class="nav-item"><a href="?page=profile" class="nav-link">Profile</a></li>
+            <li class="nav-item"><a href="?page=profile" class="nav-link">Ubah Profil</a></li>
             <li class="nav-item"><a href="logout.php" class="nav-link">Logout</a></li>
           </ul>
         </li>

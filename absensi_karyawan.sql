@@ -8,15 +8,15 @@
 -- Table structure for table `absensi`
 --
 
--- CREATE TABLE `absensi` (
---   `id_absensi` int NOT NULL,
---   `user_id` int NOT NULL,
---   `jam_masuk` time NOT NULL,
---   `jam_keluar` time DEFAULT NULL,
---   `foto_absen` text NOT NULL,
---   `foto_absen_keluar` text,
---   `tanggal_absensi` date NOT NULL
--- );
+CREATE TABLE `absensi` (
+  `id_absensi` int NOT NULL,
+  `user_id` int NOT NULL,
+  `jam_masuk` time NOT NULL,
+  `jam_keluar` time DEFAULT NULL,
+  `foto_absen` text NOT NULL,
+  `foto_absen_keluar` text,
+  `tanggal_absensi` date NOT NULL
+);
 
 -- --------------------------------------------------------
 
@@ -95,9 +95,9 @@ CREATE TABLE `users` (
 --
 -- Indexes for table `absensi`
 --
--- ALTER TABLE `absensi`
---   ADD PRIMARY KEY (`id_absensi`),
---   ADD KEY `absensi_user` (`user_id`);
+ALTER TABLE `absensi`
+  ADD PRIMARY KEY (`id_absensi`),
+  ADD KEY `absensi_user` (`user_id`);
 
 --
 -- Indexes for table `absensi_cuti`
@@ -142,8 +142,8 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT for table `absensi`
 --
--- ALTER TABLE `absensi`
---   MODIFY `id_absensi` int NOT NULL AUTO_INCREMENT;
+ALTER TABLE `absensi`
+  MODIFY `id_absensi` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `absensi_cuti`
@@ -182,8 +182,8 @@ ALTER TABLE `users`
 --
 -- Constraints for table `absensi`
 --
--- ALTER TABLE `absensi`
---   ADD CONSTRAINT `absensi_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id_user`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `absensi`
+  ADD CONSTRAINT `absensi_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id_user`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Constraints for table `absensi_cuti`

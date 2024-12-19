@@ -24,7 +24,7 @@ if(isset($_POST['absen_keluar'])) {
 <div class="row">
   <div class="col-12">
     <h3 class="mb-3">Absen Keluar</h3>
-    <div class="card">
+    <div class="card card-outline card-primary">
       <div class="card-body">
         <form method="post" enctype="multipart/form-data">
           <div class="form-group">
@@ -37,6 +37,7 @@ if(isset($_POST['absen_keluar'])) {
           <?php if (isset($dataJamKerja['jam_keluar'])) { ?>
             <div class="alert alert-success">Absen keluar telah dilakukan pada : <?= $dataJamKerja['jam_keluar'] ?></div>
           <?php } ?>
+          <div class="alert alert-warning">Pastikan memori anda tidak penuh!</div>
       </div>
       <div class="card-footer">
         <a href="index.php" class="btn btn-secondary">Kembali</a>

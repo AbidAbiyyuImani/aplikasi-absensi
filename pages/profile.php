@@ -99,10 +99,10 @@ if (isset($_POST['UbahUser'])) {
                 <label for="foto" class="custom-file-label"><?= $_SESSION['pengguna']['foto']; ?></label>
               </div>
             </div>
-            <button type="button" onclick="ubahUser()" href="?page=ubah_profile" class="ubahProfile btn btn-warning">Ubah Profile</button>
-            <a href="index.php" class="kembaliKeDashboard btn btn-secondary float-right">Kembali</a>
-            <a href="?page=profile" class="kembaliKeProfile btn btn-secondary float-right d-none">Kembali</a>
-            <button type="submit" name="UbahUser" class="simpahProfile btn btn-primary d-none">Simpan</button>
+            <button type="button" onclick="ubahUser()" href="?page=ubah_profile" class="ubahProfile btn btn-warning float-right">Ubah Profile</button>
+            <a href="index.php" class="kembaliKeDashboard btn btn-secondary">Kembali</a>
+            <a href="?page=profile" class="kembaliKeProfile btn btn-secondary d-none">Kembali</a>
+            <button type="submit" name="UbahUser" class="simpahProfile btn btn-primary float-right d-none">Simpan</button>
           </form>
         </div>
       </div>

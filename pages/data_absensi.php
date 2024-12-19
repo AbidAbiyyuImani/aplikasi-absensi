@@ -8,7 +8,7 @@ if ($_SESSION['pengguna']['level'] === 'User') { echo "<script>alert('Hanya admi
     <div class="card card-outline card-primary">
       <div class="card-body">
         <div class="table-responsive">
-          <table class="table table-bordered text-nowrap table-data">
+          <table id="table-data" class="table table-bordered text-nowrap table-data">
             <thead>
               <tr>
                 <th>No</th>

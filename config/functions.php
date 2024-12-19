@@ -26,7 +26,7 @@ function upload($source, $allowed, $destination) {
     return false;
   }
 
-  $namaFile = uniqid();
+  $namaFile = time();
   $namaFile .= '.';
   $namaFile .= $ekstensi;
 
