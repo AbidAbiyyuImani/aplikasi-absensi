@@ -7,12 +7,12 @@ switch ($level) { case "Admin": ?>
     <h3 class="mb-3"><?= getDateTimeNow(); ?></h3>
   </div>
   <div class="col-12 col-sm-6 col-md-4">
-    <a href="?page=data_karyawan">
+    <a href="?page=data_jk">
       <div class="info-box bg-gradient-info">
-        <span class="info-box-icon"><i class="fas fa-users"></i></span>
+        <span class="info-box-icon"><i class="fas fa-clock"></i></span>
         <div class="info-box-content">
-          <span class="info-box-text">Karyawan</span>
-          <span class="info-box-number"><?= getTotal("users"); ?></span>
+          <span class="info-box-text">Jam Kerja</span>
+          <span class="info-box-number"><?= getTotal("jam_kerja") ?></span>
         </div>
       </div>
     </a>
@@ -29,12 +29,12 @@ switch ($level) { case "Admin": ?>
     </a>
   </div>
   <div class="col-12 col-sm-6 col-md-4">
-    <a href="?page=data_jam">
+    <a href="?page=data_karyawan">
       <div class="info-box bg-gradient-info">
-        <span class="info-box-icon"><i class="fas fa-clock"></i></span>
+        <span class="info-box-icon"><i class="fas fa-users"></i></span>
         <div class="info-box-content">
-          <span class="info-box-text">Jam Kerja</span>
-          <span class="info-box-number"><?= getTotal("jam_kerja") ?></span>
+          <span class="info-box-text">Karyawan</span>
+          <span class="info-box-number"><?= getTotal("users"); ?></span>
         </div>
       </div>
     </a>
