@@ -21,12 +21,11 @@ if (isset($_POST['ubah_divisi'])) {
   }
 }
 ?>
-
+<?php $namaHalaman = "Ubah Divisi"; $linkHalaman = "Ubah Data Divisi"; include 'components/breadcrumb.php';?>
 <div class="row">
   <div class="col-12">
     <div class="card card-outline card-warning">
       <div class="card-body">
-        <h3 class="mb-3">Ubah Nama Divisi</h3>
         <form method="post">
           <div class="form-group">
             <label for="namaDivisi">Nama Divisi</label>

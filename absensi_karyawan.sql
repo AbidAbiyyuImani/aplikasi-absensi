@@ -8,15 +8,15 @@
 -- Table structure for table `absensi`
 --
 
-CREATE TABLE `absensi` (
-  `id_absensi` int NOT NULL,
-  `user_id` int NOT NULL,
-  `jam_masuk` time NOT NULL,
-  `jam_keluar` time DEFAULT NULL,
-  `foto_absen` text NOT NULL,
-  `foto_absen_keluar` text,
-  `tanggal_absensi` date NOT NULL
-);
+-- CREATE TABLE `absensi` (
+--   `id_absensi` int NOT NULL,
+--   `user_id` int NOT NULL,
+--   `jam_masuk` time NOT NULL,
+--   `jam_keluar` time DEFAULT NULL,
+--   `foto_absen` text NOT NULL,
+--   `foto_absen_keluar` text,
+--   `tanggal_absensi` date NOT NULL
+-- );
 
 -- --------------------------------------------------------
 
@@ -24,13 +24,13 @@ CREATE TABLE `absensi` (
 -- Table structure for table `absensi_cuti`
 --
 
-CREATE TABLE `absensi_cuti` (
-  `id_absensi_cuti` int NOT NULL,
-  `user_id` int NOT NULL,
-  `keterangan` text NOT NULL,
-  `tanggal_permohonan` date NOT NULL,
-  `status_permohonan` enum('Menunggu','Diterima','Ditolak') DEFAULT NULL
-);
+-- CREATE TABLE `absensi_cuti` (
+--   `id_absensi_cuti` int NOT NULL,
+--   `user_id` int NOT NULL,
+--   `keterangan` text NOT NULL,
+--   `tanggal_permohonan` date NOT NULL,
+--   `status_permohonan` enum('Menunggu','Diterima','Ditolak') DEFAULT NULL
+-- );
 
 -- --------------------------------------------------------
 
@@ -38,13 +38,13 @@ CREATE TABLE `absensi_cuti` (
 -- Table structure for table `absensi_sakit`
 --
 
-CREATE TABLE `absensi_sakit` (
-  `id_absensi_sakit` int NOT NULL,
-  `user_id` int NOT NULL,
-  `surat_sakit` text NOT NULL,
-  `tanggal_permohonan` date NOT NULL,
-  `status_permohonan` enum('Menunggu','Diterima','Ditolak') NOT NULL
-);
+-- CREATE TABLE `absensi_sakit` (
+--   `id_absensi_sakit` int NOT NULL,
+--   `user_id` int NOT NULL,
+--   `surat_sakit` text NOT NULL,
+--   `tanggal_permohonan` date NOT NULL,
+--   `status_permohonan` enum('Menunggu','Diterima','Ditolak') NOT NULL
+-- );
 
 -- --------------------------------------------------------
 
@@ -95,23 +95,23 @@ CREATE TABLE `users` (
 --
 -- Indexes for table `absensi`
 --
-ALTER TABLE `absensi`
-  ADD PRIMARY KEY (`id_absensi`),
-  ADD KEY `absensi_user` (`user_id`);
+-- ALTER TABLE `absensi`
+--   ADD PRIMARY KEY (`id_absensi`),
+--   ADD KEY `absensi_user` (`user_id`);
 
 --
 -- Indexes for table `absensi_cuti`
 --
-ALTER TABLE `absensi_cuti`
-  ADD PRIMARY KEY (`id_absensi_cuti`),
-  ADD KEY `absensi_cuti_user` (`user_id`);
+-- ALTER TABLE `absensi_cuti`
+--   ADD PRIMARY KEY (`id_absensi_cuti`),
+--   ADD KEY `absensi_cuti_user` (`user_id`);
 
 --
 -- Indexes for table `absensi_sakit`
 --
-ALTER TABLE `absensi_sakit`
-  ADD PRIMARY KEY (`id_absensi_sakit`),
-  ADD KEY `absensi_sakit_user` (`user_id`);
+-- ALTER TABLE `absensi_sakit`
+--   ADD PRIMARY KEY (`id_absensi_sakit`),
+--   ADD KEY `absensi_sakit_user` (`user_id`);
 
 --
 -- Indexes for table `divisi`
@@ -142,20 +142,20 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT for table `absensi`
 --
-ALTER TABLE `absensi`
-  MODIFY `id_absensi` int NOT NULL AUTO_INCREMENT;
+-- ALTER TABLE `absensi`
+--   MODIFY `id_absensi` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `absensi_cuti`
 --
-ALTER TABLE `absensi_cuti`
-  MODIFY `id_absensi_cuti` int NOT NULL AUTO_INCREMENT;
+-- ALTER TABLE `absensi_cuti`
+--   MODIFY `id_absensi_cuti` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `absensi_sakit`
 --
-ALTER TABLE `absensi_sakit`
-  MODIFY `id_absensi_sakit` int NOT NULL AUTO_INCREMENT;
+-- ALTER TABLE `absensi_sakit`
+--   MODIFY `id_absensi_sakit` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `divisi`
@@ -182,20 +182,20 @@ ALTER TABLE `users`
 --
 -- Constraints for table `absensi`
 --
-ALTER TABLE `absensi`
-  ADD CONSTRAINT `absensi_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id_user`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+-- ALTER TABLE `absensi`
+--   ADD CONSTRAINT `absensi_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id_user`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Constraints for table `absensi_cuti`
 --
-ALTER TABLE `absensi_cuti`
-  ADD CONSTRAINT `absensi_cuti_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id_user`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+-- ALTER TABLE `absensi_cuti`
+--   ADD CONSTRAINT `absensi_cuti_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id_user`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Constraints for table `absensi_sakit`
 --
-ALTER TABLE `absensi_sakit`
-  ADD CONSTRAINT `absensi_sakit_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id_user`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+-- ALTER TABLE `absensi_sakit`
+--   ADD CONSTRAINT `absensi_sakit_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id_user`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Constraints for table `users`

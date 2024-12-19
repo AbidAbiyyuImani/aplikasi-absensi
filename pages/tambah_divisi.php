@@ -17,10 +17,10 @@ if (isset($_POST['tambahDivisi'])) {
   }
 }
 ?>
-
+<?php $namaHalaman = "Tambah Divisi"; $linkHalaman = "Tambah Data Divisi"; include 'components/breadcrumb.php';?>
 <div class="row">
   <div class="col-12">
-    <div class="card">
+    <div class="card card-outline card-primary">
       <div class="card-body">
         <form method="post">
           <div class="form-group">

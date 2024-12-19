@@ -18,10 +18,10 @@ if(isset($_POST['tambahJamKerja'])) {
   }
 }
 ?>
-
+<?php $namaHalaman = "Tambah Jam Kerja"; $linkHalaman = "Tambah Data Jam Kerja"; include 'components/breadcrumb.php';?>
 <div class="row">
   <div class="col-12">
-    <div class="card">
+    <div class="card card-outline card-primary">
       <div class="card-body">
         <form method="post">
           <h3 class="mb-3">Tambah Jam Kerja</h3>
