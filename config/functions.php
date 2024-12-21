@@ -41,42 +41,10 @@ function getTotal($table) {
   return mysqli_num_rows(mysqli_query($db, "SELECT * FROM $table"));
 }
 
-// get date time now
-function getDateTimeNow() {
+// get date now
+function dateToFullDate() {
   date_default_timezone_set('Asia/Jakarta');
-  $dateNow = date('D-d-F-Y');
-  $timeNow = date('H:i');
-  $days = [
-    'Sun' => 'Minggu',
-    'Mon' => 'Senin',
-    'Tue' => 'Selasa',
-    'Wed' => 'Rabu',
-    'Thu' => 'Kamis',
-    'Fri' => 'Jumat',
-    'Sat' => 'Sabtu'
-  ];
-  $months = [
-    'January' => 'Januari',
-    'February' => 'Februari',
-    'March' => 'Maret',
-    'April' => 'April',
-    'May' => 'Mei',
-    'June' => 'Juni',
-    'July' => 'Juli',
-    'August' => 'Agustus',
-    'September' => 'September',
-    'October' => 'Oktober',
-    'November' => 'November',
-    'December' => 'Desember'
-  ];
-  $exp = explode('-', $dateNow);
-  $hari = $exp[0]; $month = $exp[2];
-  $month = strtr($month, $months); $hari = strtr($hari, $days);
-  $hari .= ', '. $exp[1] . ' ' . $month . ' ' . $exp[3] . ' ' . $timeNow;
-  return $hari;
-}
-
-function dateToFullDate($date) {
+  $date = date('D-d-F-Y');
   $format = explode('-', $date);
   $month = [
     '01' => 'Januari',
@@ -92,8 +60,18 @@ function dateToFullDate($date) {
     '11' => 'November',
     '12' => 'Desember'
   ];
-  $month = strtr($format[1], $month);
-  return $format[2] . ' ' . $month . ' ' . $format[0];
+  $days = [
+    'Sun' => 'Minggu',
+    'Mon' => 'Senin',
+    'Tue' => 'Selasa',
+    'Wed' => 'Rabu',
+    'Thu' => 'Kamis',
+    'Fri' => 'Jumat',
+    'Sat' => 'Sabtu'
+  ];
+  $format[0] = strtr($format[0], $days);
+  $format[2] = strtr($format[2], $month);
+  return $format[0] . ', ' . $format[1] . ' ' . $format[2] . ' ' . $format[3];
 }
 
 ?>

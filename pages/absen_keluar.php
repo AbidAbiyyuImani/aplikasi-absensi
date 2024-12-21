@@ -1,6 +1,7 @@
 <?php include 'config/functions.php'; $userId = $_SESSION['pengguna']['id_user'];
-$queryAbsensi = querySQL("SELECT jam_masuk, jam_keluar FROM absensi WHERE user_id = '$userId'");
-$dataJamKerja = mysqli_fetch_assoc($queryAbsensi);
+$now = date('Y-m-d');
+$queryAbsensiNow = querySQL("SELECT jam_masuk, tanggal_absensi FROM absensi WHERE user_id = '$userId' AND tanggal_absensi = '$now'");
+$dataAbsensi = mysqli_fetch_assoc($queryAbsensiNow);
 
 if(isset($_POST['absen_keluar'])) {
   try {
@@ -34,8 +35,8 @@ if(isset($_POST['absen_keluar'])) {
               <label for="foto" class="custom-file-label">Foto Absen</label>
             </div>
           </div>
-          <?php if (isset($dataJamKerja['jam_keluar'])) { ?>
-            <div class="alert alert-success">Absen keluar telah dilakukan pada : <?= $dataJamKerja['jam_keluar'] ?></div>
+          <?php if (isset($dataAbsensi['jam_masuk'])) { ?>
+            <div class="alert alert-success">Absen masuk telah dilakukan pada : <?= $dataAbsensi['jam_masuk'] ?></div>
           <?php } ?>
           <div class="alert alert-warning">Pastikan memori anda tidak penuh!</div>
       </div>

@@ -1,5 +1,4 @@
 <?php include 'config/database_connection.php'; include 'config/functions.php'; ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,6 +47,8 @@
   <script src="plugins/sweetalert2/sweetalert2.all.min.js"></script>
   <!-- Bootstrap 4 -->
   <script src="plugins/bootstrap/js/bootstrap.bundle.js"></script>
+  <!-- Functions -->
+  <script src="config/functions.js"></script>
   <script>
     if(window.history.replaceState) {
       window.history.replaceState(null, null, window.location.href);
@@ -55,16 +56,8 @@
   </script>
 </body>
 </html>
-<?php
-if (isset($_SESSION['pengguna'])) {
-  echo '<script>
-          Swal.fire({
-            title:"Anda sudah login!", 
-            icon: "error"
-          }).then(function () {
-            window.location.href="index.php";
-          });
-        </script>';
+<?php if (isset($_SESSION['pengguna'])) {
+  echo "<script>popUp(false, 'index.php', 'Anda sudah login', 'Mengalihkan ke halaman utama...', 'error');</script>";
 }
 
 if (isset($_POST['login'])) {
@@ -77,17 +70,7 @@ if (isset($_POST['login'])) {
       $result = mysqli_fetch_assoc($querySelect);
       if ($result['password'] === $password) {
         $_SESSION['pengguna'] = $result;
-        echo '<script>
-                Swal.fire({
-                  title:"Berhasil login",
-                  text: "Mengalihkan ke halaman utama...", 
-                  icon: "success",
-                  timer: 2000,
-                  showConfirmButton: false
-                }).then(function () {
-                  window.location.href="index.php";
-                });
-              </script>';
+        echo "<script>popUp(false, 'index.php', 'Berhasil login', 'Mengalihkan ke halaman utama...', 'success')</script>";
       } else {
         echo "<script>toastr.warning('Password yang anda masukan tidak sesuai!');</script>";
       }

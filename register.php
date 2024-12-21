@@ -79,6 +79,8 @@ if (isset($_SESSION['pengguna'])) {
   <script src="plugins/sweetalert2/sweetalert2.all.min.js"></script>
   <!-- Bootstrap 4 -->
   <script src="plugins/bootstrap/js/bootstrap.bundle.js"></script>
+  <!-- Functions -->
+  <script src="config/functions.js"></script>
   <!-- bs-custom-file-input -->
   <script src="plugins/bs-custom-file-input/bs-custom-file-input.js"></script>
   <script>
@@ -109,18 +111,7 @@ if (isset($_POST['register'])) {
 
     $queryInsert = querySQL("INSERT INTO users (nama_lengkap, username, email, level, foto, password) VALUES ('$namaLengkap', '$username', '$email', '$level', '$foto', '$password')");
     if ($queryInsert) {
-      echo '<script>
-              Swal.fire({
-                title:"Berhasil register",
-                text: "Mengalihkan ke halaman login...",
-                icon: "success",
-                backdrop: true,
-                timer: 2000,
-                showConfirmButton: false
-              }).then(function () {
-                window.location.href="login.php";
-              });
-            </script>';
+      echo "<script>popUp(false, 'login.php', 'Berhasil register', 'Mengalihkan ke halaman login...', 'success')</script>";
     } else {
       echo "<script>toastr.error('Gagal register!')</script>";
     }

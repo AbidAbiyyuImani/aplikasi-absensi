@@ -1,2 +1,3 @@
-Login
-Register
+name: latest changes
+Login: link to config/functions.js
+Register: link to config/functions.js

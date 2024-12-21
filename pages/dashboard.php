@@ -4,7 +4,7 @@ switch ($level) { case "Admin": ?>
 <!-- Dashboard Admin -->
 <div class="row">
   <div class="col-12">
-    <h3 class="mb-3"><?= getDateTimeNow(); ?></h3>
+    <h3 class="mb-3"><?= dateToFullDate(); ?></h3>
   </div>
   <div class="col-12 col-sm-6 col-md-4">
     <a href="?page=data_jk">
@@ -42,21 +42,22 @@ switch ($level) { case "Admin": ?>
 </div>
 
 <?php break; case "Karyawan": ?>
-
+<?php $idUser = $_SESSION['pengguna']['id_user']; $date = date('Y-m-d');
+$cekAbsensi = querySQL("SELECT * FROM absensi WHERE user_id = '$idUser' AND tanggal_absensi = '$date'");
+?>
 <!-- Dashboard Karyawan -->
 <div class="row">
   <div class="col-12">
     <div class="card">
       <div class="card-body">
-        <h3 class="mb-3"><?= getDateTimeNow(); ?></h3>
+        <div class="alert alert-secondary"><?= dateToFullDate(); ?></div>
         <div class="row">
-
           <div class="col-12 col-sm-6 col-md-3">
-            <a href="?page=absen_masuk">
+            <a href="<?= (mysqli_num_rows($cekAbsensi) !== 0) ? '?page=absen_keluar' : '?page=absen_masuk' ?>">
               <div class="info-box bg-gradient-success">
-                <span class="info-box-icon"><i class="fas fa-sign-in-alt"></i></span>
+                <span class="info-box-icon"><i class="fas fa-calendar-check"></i></span>
                 <div class="info-box-content">
-                  <span class="info-box-text">Absen Masuk</span>
+                  <span class="info-box-text">Absen</span>
                 </div>
               </div>
             </a>
@@ -64,9 +65,9 @@ switch ($level) { case "Admin": ?>
           <div class="col-12 col-sm-6 col-md-3">
             <a href="?page=absen_keluar">
               <div class="info-box bg-gradient-warning">
-                <span class="info-box-icon"><i class="fas fa-sign-out-alt"></i></span>
+                <span class="info-box-icon"><i class="fas fa-calendar-day"></i></span>
                 <div class="info-box-content">
-                  <span class="info-box-text">Absen Keluar</span>
+                  <span class="info-box-text">Izin</span>
                 </div>
               </div>
             </a>
@@ -74,9 +75,9 @@ switch ($level) { case "Admin": ?>
           <div class="col-12 col-sm-6 col-md-3">
             <a href="?page=absen_sakit">
               <div class="info-box bg-gradient-danger">
-                <span class="info-box-icon"><i class="fas fa-procedures"></i></span>
+                <span class="info-box-icon"><i class="fas fa-calendar-times"></i></span>
                 <div class="info-box-content">
-                  <span class="info-box-text">Absen Sakit</span>
+                  <span class="info-box-text">Sakit</span>
                 </div>
               </div>
             </a>
@@ -84,9 +85,9 @@ switch ($level) { case "Admin": ?>
           <div class="col-12 col-sm-6 col-md-3">
             <a href="?page=permohonan_cuti">
               <div class="info-box bg-gradient-info">
-                <span class="info-box-icon"><i class="fas fa-calendar-times"></i></span>
+                <span class="info-box-icon"><i class="fas fa-calendar-week"></i></span>
                 <div class="info-box-content">
-                  <span class="info-box-text">Permohonan Cuti</span>
+                  <span class="info-box-text">Cuti</span>
                 </div>
               </div>
             </a>

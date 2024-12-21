@@ -243,6 +243,16 @@ switch ($level) { case "Admin": ?>
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Toastr -->
+  <link rel="stylesheet" href="plugins/toastr/toastr.min.css">
+  <!-- Sweetalert2 -->
+  <link rel="stylesheet" href="plugins/sweetalert2/sweetalert2.css">
+  <!-- Toastr -->
+  <script src="plugins/toastr/toastr.min.js"></script>
+  <script src="plugins/toastr/toastr-options.js"></script>
+  <!-- Sweetalert2 -->
+  <script src="plugins/sweetalert2/sweetalert2.all.min.js"></script>
+  <script src="config/functions.js"></script>
   <!-- DataTables -->
   <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
@@ -271,8 +281,9 @@ switch ($level) { case "Admin": ?>
           <li class="nav-item dropdown">
             <a id="absenDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Absensi</a>
             <ul aria-labelledby="absenDropdown" class="dropdown-menu border-0 shadow">
+              <li><a href="?page=izin" class="dropdown-item">Izin</a></li>
+              <li><a href="?page=sakit" class="dropdown-item">Sakit</a></li>
               <li><a href="?page=cuti" class="dropdown-item">Cuti</a></li>
-              <li><a href="?page=izin" class="dropdown-item">Izin Sakit</a></li>
               <li><a href="?page=histori" class="dropdown-item">Histori Absensi</a></li>
             </ul>
           </li>

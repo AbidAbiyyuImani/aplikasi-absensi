@@ -2,26 +2,7 @@
 $now = date('Y-m-d');
 $queryAbsensiNow = querySQL("SELECT jam_masuk, tanggal_absensi FROM absensi WHERE user_id = '$userId' AND tanggal_absensi = '$now'");
 $dataAbsensi = mysqli_fetch_assoc($queryAbsensiNow);
-
-if(isset($_POST['absen_masuk'])) {
-  try {
-    $userId = $_SESSION['pengguna']['id_user'];
-    $jamMasuk = date('H:i:s');
-    $tanggal = date('Y-m-d');
-    $fotoAbsen = upload('foto', ['jpg', 'jpeg', 'png'], 'dist/img/absensi/');
-  
-    $queryAbsensi = querySQL("INSERT INTO absensi (user_id, jam_masuk, tanggal_absensi, foto_absen) VALUES ('$userId', '$jamMasuk', '$tanggal', '$fotoAbsen')");
-    if($queryAbsensi) {
-      echo "<script>alert('Absen Masuk Berhasil');location.href='index.php';</script>";
-    } else {
-      echo "<script>alert('Absen Masuk Gagal');</script>";
-    }
-  } catch (Exception $e) {
-    echo "<script>alert('Absen Masuk Gagal');</script>";
-  }
-}
 ?>
-
 <div class="row">
   <div class="col-12">
     <h3 class="mb-3">Absen Masuk</h3>
@@ -35,9 +16,6 @@ if(isset($_POST['absen_masuk'])) {
               <label for="foto" class="custom-file-label">Foto Absen</label>
             </div>
           </div>
-          <?php if (isset($dataAbsensi['jam_masuk'])) { ?>
-            <div class="alert alert-success">Absen masuk telah dilakukan pada : <?= $dataAbsensi['jam_masuk'] ?></div>
-          <?php } ?>
           <div class="alert alert-warning">Pastikan memori anda tidak penuh!</div>
       </div>
       <div class="card-footer">
@@ -52,3 +30,22 @@ if(isset($_POST['absen_masuk'])) {
     </div>
   </div>
 </div>
+<?php 
+if(isset($_POST['absen_masuk'])) {
+  try {
+    $userId = $_SESSION['pengguna']['id_user'];
+    $jamMasuk = date('H:i:s');
+    $tanggal = date('Y-m-d');
+    $fotoAbsen = upload('foto', ['jpg', 'jpeg', 'png'], 'dist/img/absensi/');
+  
+    $queryAbsensi = querySQL("INSERT INTO absensi (user_id, jam_masuk, tanggal_absensi, foto_absen) VALUES ('$userId', '$jamMasuk', '$tanggal', '$fotoAbsen')");
+    if($queryAbsensi) {
+      echo "<script>popUp('Absen berhasil!', null, 'success', 2000, 'pop', 'index.php');</script>";
+    } else {
+      echo "<script>alert('Absen Masuk Gagal');</script>";
+    }
+  } catch (Exception $e) {
+    echo "<script>alert('Absen Masuk Gagal');</script>";
+  }
+}
+?>
