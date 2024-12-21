@@ -1,38 +1,8 @@
 <?php include 'config/database_connection.php'; include 'config/functions.php';
-
 if (isset($_SESSION['pengguna'])) {
   $level = $_SESSION['pengguna']['level'];
 }
-
-if (isset($_POST['register'])) {
-  try {
-    $namaLengkap = $_POST['namaLengkap'];
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    if (isset($level)) {
-      $level = $_POST['level'];
-    } else {
-      $level = 'Karyawan';
-    }
-    $foto = upload('foto', ['jpg', 'jpeg', 'png'], 'dist/img/avatar/');
-    $password = md5($_POST['password']);
-
-    $queryInsert = querySQL("INSERT INTO users (nama_lengkap, username, email, level, foto, password) VALUES ('$namaLengkap', '$username', '$email', '$level', '$foto', '$password')");
-    if ($queryInsert) {
-      if (isset($_SESSION['pengguna'])) {
-        echo "<script>alert('Berhasil register!');location.href='index.php?page=data_karyawan'</script>";
-      } else {
-        echo "<script>alert('Berhasil register!');location.href='login.php'</script>";
-      }
-    } else {
-      echo "<script>alert('Gagal register!')</script>";
-    }
-  } catch (Exception $e) {
-    echo "<script>alert('Tidak dapat register!')</script>";
-  }
-}
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,11 +14,15 @@ if (isset($_POST['register'])) {
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- AdminLTE App -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <!-- Toastr -->
+  <link rel="stylesheet" href="plugins/toastr/toastr.min.css">
+  <!-- Sweeralert2 -->
+  <link rel="stylesheet" href="plugins/sweetalert2/sweetalert2.min.css">
 </head>
 <body class="hold-transition register-page">
-  <div class="register-box">
+  <div class="register-box min-vh-100 d-flex justify-content-center align-items-center">
     <div class="card">
-      <div class="card-body">
+      <div class="card-body register-card-body">
         <form method="post" enctype="multipart/form-data">
           <h3 class="text-center mb-3">Register</h3>
           <div class="form-group">
@@ -98,6 +72,11 @@ if (isset($_POST['register'])) {
   <script src="plugins/jquery/jquery.min.js"></script>
   <!-- AdminLTE App -->
   <script src="dist/js/adminlte.min.js"></script>
+  <!-- Toastr -->
+  <script src="plugins/toastr/toastr.min.js"></script>
+  <script src="plugins/toastr/toastr-options.js"></script>
+  <!-- Sweetalert2 -->
+  <script src="plugins/sweetalert2/sweetalert2.all.min.js"></script>
   <!-- Bootstrap 4 -->
   <script src="plugins/bootstrap/js/bootstrap.bundle.js"></script>
   <!-- bs-custom-file-input -->
@@ -114,3 +93,39 @@ if (isset($_POST['register'])) {
   </script>
 </body>
 </html>
+<?php 
+if (isset($_POST['register'])) {
+  try {
+    $namaLengkap = $_POST['namaLengkap'];
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    if (isset($level)) {
+      $level = $_POST['level'];
+    } else {
+      $level = 'Karyawan';
+    }
+    $foto = upload('foto', ['jpg', 'jpeg', 'png'], 'dist/img/avatar/');
+    $password = md5($_POST['password']);
+
+    $queryInsert = querySQL("INSERT INTO users (nama_lengkap, username, email, level, foto, password) VALUES ('$namaLengkap', '$username', '$email', '$level', '$foto', '$password')");
+    if ($queryInsert) {
+      echo '<script>
+              Swal.fire({
+                title:"Berhasil register",
+                text: "Mengalihkan ke halaman login...",
+                icon: "success",
+                backdrop: true,
+                timer: 2000,
+                showConfirmButton: false
+              }).then(function () {
+                window.location.href="login.php";
+              });
+            </script>';
+    } else {
+      echo "<script>toastr.error('Gagal register!')</script>";
+    }
+  } catch (Exception $e) {
+    echo "<script>toastr.error('Tidak dapat register!')</script>";
+  }
+}
+?>
