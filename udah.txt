@@ -7,11 +7,14 @@ Data, Tampah, Ubah, Hapus Jam Kerja: mengubah alert dan mengamankan akses
 ---
 
 Ketentuan lain:
+
 Icon:
 1. Success: digunakan ketika berhasil
 2. Error: digunakan ketika gagal
 3. Warning: digunakan pada block catch pada try and catch
 4. Info: digunakan untuk alert biasa
+
 Lainya:
 Halaman data = akses, confirm delete
 Halaman tambah, ubah, hapus = akses, alert
+---
