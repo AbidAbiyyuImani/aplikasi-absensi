@@ -1,21 +1,22 @@
 <?php include 'config/functions.php';
 // mengalihkan karyawan ke halaman utama
-if ($_SESSION['pengguna']['level'] === 'Karyawan') { echo "<script>popUp(false, 'index.php', 'Hanya admin yang dapat mengakses', 'Mengalihkan ke halaman utama...', 'error', 3000);</script>"; }
-
-if (isset($_POST['tambahDivisi'])) {
-  try {
-    $namaDivisi = $_POST['namaDivisi'];
-    
-    $queryInsert = querySQL("INSERT INTO divisi (nama_divisi) VALUES ('$namaDivisi')");
-    if ($queryInsert) {
-      echo "<script>popUp(false, '?page=data_divisi', 'Berhasil menambahkan divisi', 'Mengalihkan ke halaman data divisi...', 'success');</script>";
-    } else {
-      echo "<script>popUp(false, '?page=data_divisi', 'Gagal menambahkan divisi', 'Mengalihkan ke halaman data divisi...', 'error');</script>";
+if ($_SESSION['pengguna']['level'] === 'Karyawan') {
+  echo "<script>alertPopUp('index.php', 'error', 'Gagal', 'Anda tidak memiliki akses ke halaman ini.');</script>";
+} else {
+  if (isset($_POST['tambahDivisi'])) {
+    try {
+      $namaDivisi = $_POST['namaDivisi'];
+      
+      $queryInsert = querySQL("INSERT INTO divisi (nama_divisi) VALUES ('$namaDivisi')");
+      if ($queryInsert) {
+        echo "<script>alertPopUp('?page=data_divisi', 'success', 'Berhasil menambahkan divisi', 'Mengalihkan ke halaman data divisi...');</script>";
+      } else {
+        echo "<script>alertPopUp(null, 'error', 'Gagal menambahkan divisi', null);</script>";
+      }
+    } catch (Exception $e) {
+      echo "<script>alertPopUp(null, 'warning', 'Nama divisi sudah terdaftar', 'Masukan nama divisi yang berbeda!');</script>";
     }
-  } catch (Exception $e) {
-    echo "<script>popUp(false, '?page=tambah_divisi', 'Nama divisi sudah terdaftar', 'Mengalihkan ke halaman tambah divisi...', 'error');</script>";
   }
-}
 ?>
 <?php $namaHalaman = "Tambah Divisi"; $linkHalaman = "Tambah Data Divisi"; include 'components/breadcrumb.php';?>
 <div class="row">
@@ -34,3 +35,4 @@ if (isset($_POST['tambahDivisi'])) {
     </div>
   </div>
 </div>
+<?php } ?>

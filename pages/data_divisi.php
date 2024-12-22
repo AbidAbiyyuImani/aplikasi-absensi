@@ -1,6 +1,8 @@
 <?php include 'config/functions.php';
-// redirect user (admin only)
-if ($_SESSION['pengguna']['level'] === 'Karyawan') { echo "<script>alert('Hanya admin yang dapat mengakses');location.href='index.php';</script>"; };
+// mengalihkan karyawan ke halaman utama
+if ($_SESSION['pengguna']['level'] === 'Karyawan') {
+  echo "<script>alertPopUp('index.php', 'error', 'Gagal', 'Anda tidak memiliki akses ke halaman ini.');</script>";
+} else {
 ?>
 <?php $namaHalaman = "Divisi"; $linkHalaman = "Data Divisi"; include 'components/breadcrumb.php';?>
 <div class="row">
@@ -27,7 +29,7 @@ if ($_SESSION['pengguna']['level'] === 'Karyawan') { echo "<script>alert('Hanya 
                   <td><?= $dataDivisi['nama_divisi'] ?></td>
                   <td>
                     <a href="?page=ubah_divisi&id=<?= $dataDivisi['id_divisi'] ?>" class="btn btn-warning">Ubah</a>
-                    <a href="?page=hapus_divisi&id=<?= $dataDivisi['id_divisi'] ?>" onclick="return confirm('Apakah anda yakin akan menghapus data divisi ini?')" class="btn btn-danger">Hapus</a>
+                    <a onclick="return confirmPopUp('warning', 'Hapus Divisi', 'Apakah anda yakin ingin menghapus divisi ini?', 'Yakin', 'Tidak', '?page=hapus_divisi&id=<?= $dataDivisi['id_divisi'] ?>', '?page=data_divisi');" class="btn btn-danger">Hapus</a>
                   </td>
                 </tr>
               <?php } ?>
@@ -42,3 +44,4 @@ if ($_SESSION['pengguna']['level'] === 'Karyawan') { echo "<script>alert('Hanya 
     </div>
   </div>
 </div>
+<?php } ?>

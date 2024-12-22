@@ -57,7 +57,7 @@
 </body>
 </html>
 <?php if (isset($_SESSION['pengguna'])) {
-  echo "<script>popUp(false, 'index.php', 'Anda sudah login', 'Mengalihkan ke halaman utama...', 'error');</script>";
+  echo "<script>alertPopUp('index.php', 'error', 'Anda sudah login', 'Mengalihkan ke halaman utama...');</script>";
 }
 
 if (isset($_POST['login'])) {
@@ -70,7 +70,7 @@ if (isset($_POST['login'])) {
       $result = mysqli_fetch_assoc($querySelect);
       if ($result['password'] === $password) {
         $_SESSION['pengguna'] = $result;
-        echo "<script>popUp(false, 'index.php', 'Berhasil login', 'Mengalihkan ke halaman utama...', 'success')</script>";
+        echo "<script>alertPopUp('index.php', 'success', 'Berhasil login', 'Mengalihkan ke halaman utama...');</script>";
       } else {
         echo "<script>toastr.warning('Password yang anda masukan tidak sesuai!');</script>";
       }

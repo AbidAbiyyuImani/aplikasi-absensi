@@ -1,27 +1,29 @@
 <?php include 'config/functions.php';
-// redirect user (admin only)
-if ($_SESSION['pengguna']['level'] === 'Karyawan') { echo "<script>alert('Hanya admin yang dapat mengakses');location.href='index.php';</script>"; };
+// mengalihkan karyawan ke halaman utama
+if ($_SESSION['pengguna']['level'] === 'Karyawan') {
+  echo "<script>alertPopUp('index.php', 'error', 'Gagal', 'Anda tidak memiliki akses ke halaman ini.');</script>";
+} else {
+  if (isset($_GET['id'])) {
+    $idDivisi = $_GET['id'];
+    $queryDivisi = querySQL("SELECT * FROM divisi WHERE id_divisi = '$idDivisi'");
+    $dataDivisi = mysqli_fetch_assoc($queryDivisi);
 
-$idDivisi = $_GET['id'];
-$queryDivisi = querySQL("SELECT * FROM divisi WHERE id_divisi = '$idDivisi'");
-$dataDivisi = mysqli_fetch_assoc($queryDivisi);
+    if (isset($_POST['ubah_divisi'])) {
+      try {
+        $namaDivisi = $_POST['namaDivisi'];
 
-if (isset($_POST['ubah_divisi'])) {
-  try {
-    $namaDivisi = $_POST['namaDivisi'];
-    
-    $queryUpdate = querySQL("UPDATE divisi SET nama_divisi = '$namaDivisi' WHERE id_divisi = '$idDivisi'");
-    if ($queryUpdate) {
-      echo "<script>alert('Ubah Data Divisi Berhasil');location.href='?page=data_divisi';</script>";
-    } else {
-      echo "<script>alert('Ubah Data Divisi Gagal');</script>";
+        $queryUpdate = querySQL("UPDATE divisi SET nama_divisi = '$namaDivisi' WHERE id_divisi = '$idDivisi'");
+        if ($queryUpdate) {
+          echo "<script>alertPopUp('?page=data_divisi', 'success', 'Berhasil menghubah data divisi', 'Mengalihkan ke halaman data divisi...');</script>";
+        } else {
+          echo "<script>alertPopUp(null, 'error', 'Gagal menghubah data divisi', null);</script>";
+        }
+      } catch (Exception $e) {
+        echo "<script>alertPopUp(null, 'warning', 'Nama divisi sudah terdaftar', null);</script>";
+      }
     }
-  } catch (Exception $e) {
-    echo "<script>alert('Nama divisi sudah terdaftar');location.href='?page=data_divisi';</script>";
-  }
-}
 ?>
-<?php $namaHalaman = "Ubah Divisi"; $linkHalaman = "Ubah Data Divisi"; include 'components/breadcrumb.php';?>
+<?php $namaHalaman = "Ubah Divisi"; $linkHalaman = "Ubah Data Divisi"; include 'components/breadcrumb.php'; ?>
 <div class="row">
   <div class="col-12">
     <div class="card card-outline card-warning">
@@ -38,3 +40,8 @@ if (isset($_POST['ubah_divisi'])) {
     </div>
   </div>
 </div>
+<?php } else { ?>
+  <script>
+    alertPopUp('?page=data_divisi', 'error', 'Tidak ada data divisi yang dipilih', 'Mengalihkan ke halaman data divisi...');
+  </script>
+<?php } } ?>

@@ -1,5 +1,14 @@
 name: latest changes
-Login: link to config/functions.js
-Register: link to config/functions.js
-Tambah Divisi: changes alert
-Tambah Jam Kerja: changes alert
+index: change position of javascript source
+Login: changes alert
+Register: changes alert
+Data, Tambah, Ubah, Hapus Divisi: changes alert and add level validation
+
+---
+
+Ketentuan lain:
+Icon
+1. Success: digunakan ketika berhasil
+2. Error: digunakan ketika gagal
+3. Warning: digunakan pada block catch pada try and catch
+4. Info: digunakan untuk alert biasa

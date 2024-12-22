@@ -1,55 +1,46 @@
-function popUp(cancelButton = false, href = null, title, text, icon, timer = 2000, rdHref = null, confirmText = null, cancelText = null) {
-  if (cancelButton == false) {
-    if (href !== null) {
-      Swal.fire({
-        title: title,
-        text: text,
-        icon: icon,
-        timer: timer,
-        showConfirmButton: cancelButton,
-      }).then(function () {
-        window.location.href = href;
-      });
-    } else {
-      Swal.fire({
-        title: title,
-        text: text,
-        icon: icon,
-        timer: timer,
-        showConfirmButton: cancelButton,
-      });
-    }
-  } else if (cancelButton == true && href == null) {
+function alertPopUp(href=null, icon, title, text, timer = 3000) {
+  if (href !== null) {
     Swal.fire({
+      icon: icon,
       title: title,
       text: text,
-      icon: icon,
-      showConfirmButton: cancelButton,
+      timer: timer,
+      showConfirmButton: false
     }).then((result) => {
-      if (result.isConfirmed) {
-        window.location.href = 'index.php';
-      }
+      window.location.href = href;
     });
   } else {
     Swal.fire({
+      icon: icon,
       title: title,
       text: text,
-      icon: icon,
-      showCancelButton: cancelButton,
-      confirmButtonText: confirmText,
-      cancelButtonText: cancelText
-    }).then((result) => {
-      if (result.isConfirmed) {
-        window.location.href = href;
-      } else {
-        if (backHref !== null) {
-          window.location.href = backHref;
-        } else {
-          window.location.href = 'index.php';
-        }
-      }
+      timer: timer,
+      showConfirmButton: false
     });
   }
 }
-// popUp(false, null, 'title', 'text', 'success');
-// popUp(true, '?page=absen_masuk', 'title', 'redirecting to absen masuk', 'success', 5000, null);
+// echo "<script>alertPopUp('href', 'icon', 'title', 'text', 'timer');</script>";
+// mengalihkan user ke halaman utama
+// echo "<script>alertPopUp('index.php', 'error', 'Gagal', 'Anda tidak memiliki akses ke halaman ini.');</script>";
+
+function confirmPopUp(icon, title, text, confirmText, cancelText, href, rdHref = null) {
+  Swal.fire({
+    title: title,
+    text: text,
+    icon: icon,
+    showCancelButton: true,
+    confirmButtonText: confirmText,
+    cancelButtonText: cancelText
+  }).then((result) => {
+    if (result.isConfirmed) {
+      window.location.href = href;
+    } else {
+      if (rdHref !== null) {
+        window.location.href = rdHref;
+      } else {
+        window.location.href = 'index.php';
+      }
+    }
+  });
+}
+// echo "<script>confirmPopUp('icon', 'title', 'text', 'confirmText', 'cancelText', 'href', 'rdHref');</script>";

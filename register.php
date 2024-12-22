@@ -111,7 +111,7 @@ if (isset($_POST['register'])) {
 
     $queryInsert = querySQL("INSERT INTO users (nama_lengkap, username, email, level, foto, password) VALUES ('$namaLengkap', '$username', '$email', '$level', '$foto', '$password')");
     if ($queryInsert) {
-      echo "<script>popUp(false, 'login.php', 'Berhasil register', 'Mengalihkan ke halaman login...', 'success')</script>";
+      echo "<script>alertPopUp('login.php', 'success', 'Berhasil register', 'Menglihkan ke halaman login...');</script>";
     } else {
       echo "<script>toastr.error('Gagal register!')</script>";
     }
