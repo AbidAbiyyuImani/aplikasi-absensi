@@ -52,10 +52,10 @@ CREATE TABLE `absensi` (
 -- Table structure for table `divisi`
 --
 
-CREATE TABLE `divisi` (
-  `id_divisi` int NOT NULL,
-  `nama_divisi` varchar(255) NOT NULL
-);
+-- CREATE TABLE `divisi` (
+--   `id_divisi` int NOT NULL,
+--   `nama_divisi` varchar(255) NOT NULL
+-- );
 
 -- --------------------------------------------------------
 
@@ -116,9 +116,9 @@ ALTER TABLE `absensi`
 --
 -- Indexes for table `divisi`
 --
-ALTER TABLE `divisi`
-  ADD PRIMARY KEY (`id_divisi`),
-  ADD UNIQUE KEY `unique_nama_divisi` (`nama_divisi`);
+-- ALTER TABLE `divisi`
+--   ADD PRIMARY KEY (`id_divisi`),
+--   ADD UNIQUE KEY `unique_nama_divisi` (`nama_divisi`);
 
 --
 -- Indexes for table `jam_kerja`
@@ -132,7 +132,7 @@ ALTER TABLE `jam_kerja`
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id_user`),
   ADD UNIQUE KEY `unique_username` (`username`),
-  ADD KEY `user_divisi` (`divisi_id`),
+  -- ADD KEY `user_divisi` (`divisi_id`),
   ADD KEY `user_jk` (`jk_id`);
 
 --
@@ -160,8 +160,8 @@ ALTER TABLE `absensi`
 --
 -- AUTO_INCREMENT for table `divisi`
 --
-ALTER TABLE `divisi`
-  MODIFY `id_divisi` int NOT NULL AUTO_INCREMENT;
+-- ALTER TABLE `divisi`
+--   MODIFY `id_divisi` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `jam_kerja`
@@ -201,6 +201,6 @@ ALTER TABLE `absensi`
 -- Constraints for table `users`
 --
 ALTER TABLE `users`
-  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`divisi_id`) REFERENCES `divisi` (`id_divisi`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  -- ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`divisi_id`) REFERENCES `divisi` (`id_divisi`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `users_ibfk_2` FOREIGN KEY (`jk_id`) REFERENCES `jam_kerja` (`id_jk`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 COMMIT;

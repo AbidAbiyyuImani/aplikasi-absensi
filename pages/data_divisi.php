@@ -21,7 +21,7 @@ if ($_SESSION['pengguna']['level'] === 'Karyawan') {
             <tbody>
               <?php
                 $i = 1;
-                $queryDivisi = querySQL("SELECT * FROM divisi");
+                $queryDivisi = querySQL("SELECT * FROM divisi ORDER BY id_divisi ASC");
                 while ($dataDivisi = mysqli_fetch_assoc($queryDivisi)) {
               ?>
                 <tr>
