@@ -1,8 +1,10 @@
 <?php include 'config/functions.php'; $level = $_SESSION['pengguna']['level']; $idKaryawan = $_SESSION['pengguna']['id_user'];
-// redirect user (admin only)
-if ($_SESSION['pengguna']['level'] === 'Karyawan') { echo "<script>alert('Hanya admin yang dapat mengakses');location.href='index.php';</script>"; };
+// mengalihkan karyawan ke halaman utama
+if ($_SESSION['pengguna']['level'] === 'Karyawan') {
+  echo "<script>alertPopUp('index.php', 'error', 'Gagal', 'Anda tidak memiliki akses ke halaman ini.');</script>";
+} else {
 ?>
-<?php $namaHalaman = "Karyawan"; $linkHalaman = "Data Karyawan"; include 'components/breadcrumb.php';?>
+<?php $namaHalaman = "Karyawan"; $linkHalaman = "Data Karyawan"; include 'components/breadcrumb.php'; ?>
 <div class="row">
   <div class="col-12">
     <div class="card card-outline card-info">
@@ -23,22 +25,25 @@ if ($_SESSION['pengguna']['level'] === 'Karyawan') { echo "<script>alert('Hanya 
             </thead>
             <tbody>
               <?php
-                $i = 1;
-                
-                $queryUsers = querySQL("SELECT * FROM users LEFT JOIN divisi ON users.divisi_id = divisi.id_divisi LEFT JOIN jam_kerja ON users.jk_id = jam_kerja.id_jk");
-                while ($dataUsers = mysqli_fetch_assoc($queryUsers)) {
-              ?>
+              $i = 1;
+              $queryUsers = querySQL("SELECT * FROM users LEFT JOIN divisi ON users.divisi_id = divisi.id_divisi LEFT JOIN jam_kerja ON users.jk_id = jam_kerja.id_jk");
+              while ($dataUser = mysqli_fetch_assoc($queryUsers)) {
+                ?>
                 <tr>
                   <td><?= $i++ ?></td>
-                  <td><?= $dataUsers['nama_lengkap'] ?></td>
-                  <td><?= $dataUsers['username'] ?></td>
-                  <td><?= $dataUsers['email'] ?></td>
-                  <td><?= ($dataUsers['nama_divisi']) ? $dataUsers['nama_divisi'] : '-' ?></td>
-                  <td><?= $dataUsers['jam_masuk'] ?> - <?= $dataUsers['jam_pulang'] ?></td>
-                  <td><?= $dataUsers['level'] ?></td>
+                  <td><?= $dataUser['nama_lengkap'] ?></td>
+                  <td><?= $dataUser['username'] ?></td>
+                  <td><?= $dataUser['email'] ?></td>
+                  <td><?= ($dataUser['nama_divisi']) ? $dataUser['nama_divisi'] : '-' ?></td>
+                  <td><?= $dataUser['jam_masuk'] ?> - <?= $dataUser['jam_pulang'] ?></td>
+                  <td><?= $dataUser['level'] ?></td>
                   <td>
-                    <a href="?page=ubah_karyawan&id=<?= $dataUsers['id_user'] ?>" class="btn btn-warning">Ubah</a>
-                    <a href="?page=hapus_karyawan&id=<?= $dataUsers['id_user']; ?>" onclick="return confirm('Apakah anda yakin akan menghapus data karyawan ini?')" class="btn btn-danger">Hapus</a>
+                    <a href="?page=ubah_karyawan&id=<?= $dataUser['id_user'] ?>" class="btn btn-warning">Ubah</a>
+                    <?php if ($dataUser['id_user'] == $_SESSION['pengguna']['id_user']) { ?>
+                      <button disabled class="btn btn-success">Aktif</button>
+                    <?php } else { ?>
+                      <button onclick="return confirmPopUp('warning', 'Hapus Karyawan', 'Apakah anda yakin ingin menghapus data karyawan ini?', 'Yakin', 'Tidak', '?page=hapus_karyawan&id=<?= $dataUser['id_user'] ?>', '?page=data_karyawan');" class="btn btn-danger">Hapus</button>
+                    <?php } ?>
                   </td>
                 </tr>
               <?php } ?>
@@ -53,3 +58,4 @@ if ($_SESSION['pengguna']['level'] === 'Karyawan') { echo "<script>alert('Hanya 
     </div>
   </div>
 </div>
+<?php } ?>

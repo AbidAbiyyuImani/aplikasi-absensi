@@ -8,12 +8,12 @@ if ($_SESSION['pengguna']['level'] === 'Karyawan') {
       $idDivisi = $_GET['id'];
       $queryDelete = querySQL("DELETE FROM divisi WHERE id_divisi = $idDivisi");
       if ($queryDelete) {
-        echo "<script>alertPopUp('?page=data_divisi', 'success', 'Berhasil menghapus divisi', 'Mengalihkan ke halaman data divisi...');</script>";
+        echo "<script>alertPopUp('?page=data_divisi', 'success', 'Berhasil menghapus data divisi', 'Mengalihkan ke halaman data divisi...');</script>";
       } else {
-        echo "<script>alertPopUp('?page=data_divisi', 'error', 'Gagal menghapus divisi', 'Mengalihkan ke halaman data divisi...');</script>";
+        echo "<script>alertPopUp('?page=data_divisi', 'error', 'Gagal menghapus data divisi', 'Mengalihkan ke halaman data divisi...');</script>";
       }
     } catch (Exception $e) {
-      echo "<script>alertPopUp('?page=data_divisi', 'warning', 'Tidak dapat menghapus divisi', 'Mengalihkan ke halaman data divisi...');</script>";
+      echo "<script>alertPopUp('?page=data_divisi', 'warning', 'Tidak dapat menghapus data divisi', 'Mengalihkan ke halaman data divisi...');</script>";
     }
   } else {
     echo "<script>alertPopUp('?page=data_divisi', 'error', 'Tidak ada data divisi yang dipilih', 'Mengalihkan ke halaman data divisi...');</script>";

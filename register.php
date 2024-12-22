@@ -111,12 +111,16 @@ if (isset($_POST['register'])) {
 
     $queryInsert = querySQL("INSERT INTO users (nama_lengkap, username, email, level, foto, password) VALUES ('$namaLengkap', '$username', '$email', '$level', '$foto', '$password')");
     if ($queryInsert) {
-      echo "<script>alertPopUp('login.php', 'success', 'Berhasil register', 'Menglihkan ke halaman login...');</script>";
+      if ($_SESSION['pengguna']['level'] === 'Admin') {
+        echo "<script>alertPopUp('index.php?page=data_karyawan', 'success', 'Berhasil register', 'Mengalihkan ke halaman data karyawan...');</script>";
+      } else {
+        echo "<script>alertPopUp('login.php', 'success', 'Berhasil register', 'Mengalihkan ke halaman login...');</script>";
+      }
     } else {
-      echo "<script>toastr.error('Gagal register!')</script>";
+      echo "<script>toastr.error('Gagal register!');</script>";
     }
   } catch (Exception $e) {
-    echo "<script>toastr.error('Tidak dapat register!')</script>";
+    echo "<script>alertPopUp(null, 'warning', 'Username sudah terdaftar', 'Login untuk masuk ke aplikasi');</script>";
   }
 }
 ?>

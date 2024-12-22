@@ -1,9 +1,10 @@
 name: latest changes
 index: mengganti posisi sumber javascript untuk alert (dari dalam body ke tag head)
-Login: mengubah alert
-Register: mengubah alert
-Data, Tambah, Ubah, Hapus Divisi: mengubah alert dan mengamankan akses
-Data, Tampah, Ubah, Hapus Jam Kerja: mengubah alert dan mengamankan akses
+Login: mengubah alert (aman)
+Register: mengubah alert (aman)
+Data, Tambah, Ubah, Hapus Divisi: mengubah alert dan mengamankan akses (check)
+Data, Tampah, Ubah, Hapus Jam Kerja: mengubah alert dan mengamankan akses (check)
+Data, Register, Ubah, Hapus Karyawan: mengubah alert dan mengamankan akses (check)
 ---
 
 Ketentuan lain:
@@ -18,3 +19,27 @@ Lainya:
 Halaman data = akses, confirm delete
 Halaman tambah, ubah, hapus = akses, alert
 ---
+
+Route:
+default:
+http://localhost:8081/aplikasi-absensi/register.php
+http://localhost:8081/aplikasi-absensi/login.php
+http://localhost:8081/aplikasi-absensi/index.php
+
+divisi:
+http://localhost:8081/aplikasi-absensi/index.php?page=data_divisi
+http://localhost:8081/aplikasi-absensi/index.php?page=tambah_divisi
+http://localhost:8081/aplikasi-absensi/index.php?page=ubah_divisi&id=
+http://localhost:8081/aplikasi-absensi/index.php?page=hapus_divisi&id=
+
+jam kerja:
+http://localhost:8081/aplikasi-absensi/index.php?page=data_jk
+http://localhost:8081/aplikasi-absensi/index.php?page=tambah_jk
+http://localhost:8081/aplikasi-absensi/index.php?page=ubah_jk&id=
+http://localhost:8081/aplikasi-absensi/index.php?page=hapus_jk&id=
+
+karyawan:
+http://localhost:8081/aplikasi-absensi/index.php?page=data_karyawan
+http://localhost:8081/aplikasi-absensi/register.php
+http://localhost:8081/aplikasi-absensi/index.php?page=ubah_karyawan&id=
+http://localhost:8081/aplikasi-absensi/index.php?page=hapus_karyawan&id=

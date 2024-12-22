@@ -16,10 +16,10 @@ if ($_SESSION['pengguna']['level'] === 'Karyawan') {
         if ($queryUpdate) {
           echo "<script>alertPopUp('?page=data_divisi', 'success', 'Berhasil menghubah data divisi', 'Mengalihkan ke halaman data divisi...');</script>";
         } else {
-          echo "<script>alertPopUp(null, 'error', 'Gagal menghubah data divisi', null);</script>";
+          echo "<script>alertPopUp(null, 'error', 'Gagal menghubah data divisi');</script>";
         }
       } catch (Exception $e) {
-        echo "<script>alertPopUp(null, 'warning', 'Nama divisi sudah terdaftar', null);</script>";
+        echo "<script>alertPopUp(null, 'warning', 'Nama divisi sudah terdaftar');</script>";
       }
     }
 ?>

@@ -31,7 +31,7 @@ if ($_SESSION['pengguna']['level'] === 'Karyawan') {
                   <td><?= $dataJamKerja['jam_pulang'] ?></td>
                   <td>
                     <a href="?page=ubah_jk&id=<?= $dataJamKerja['id_jk'] ?>" class="btn btn-warning">Ubah</a>
-                    <a onclick="return confirmPopUp('warning', 'Hapus Jam Kerja', 'Apakah anda yakin ingin menghapus jam kerja ini?', 'Yakin', 'Tidak', '?page=hapus_jk&id=<?= $dataJamKerja['id_jk'] ?>', '?page=data_jk');" class="btn btn-danger">Hapus</a>
+                    <button onclick="return confirmPopUp('warning', 'Hapus Jam Kerja', 'Apakah anda yakin ingin menghapus data jam kerja ini?', 'Yakin', 'Tidak', '?page=hapus_jk&id=<?= $dataJamKerja['id_jk'] ?>', '?page=data_jk');" class="btn btn-danger">Hapus</button>
                   </td>
                 </tr>
               <?php } ?>

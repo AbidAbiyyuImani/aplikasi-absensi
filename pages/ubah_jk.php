@@ -17,7 +17,7 @@ if ($_SESSION['pengguna']['level'] === 'Karyawan') {
         if ($queryUpdate) {
           echo "<script>alertPopUp('?page=data_jk', 'success', 'Berhasil menghubah data jam kerja', 'Mengalihkan ke halaman data jam kerja...');</script>";
         } else {
-          echo "<script>alertPopUp('?page=data_jk', 'error', 'Gagal menghubah data jam kerja', 'Mengalihkan ke halaman data jam kerja...');</script>";
+          echo "<script>alertPopUp(null, 'error', 'Gagal menghubah data jam kerja');</script>";
         }
       } catch (Exception $e) {
         echo "<script>alertPopUp('?page=data_jk', 'warning', 'Tidak dapat menghubah data jam kerja', 'Mengalihkan ke halaman data jam kerja...');</script>";

@@ -9,9 +9,9 @@ if ($_SESSION['pengguna']['level'] === 'Karyawan') {
       
       $queryInsert = querySQL("INSERT INTO divisi (nama_divisi) VALUES ('$namaDivisi')");
       if ($queryInsert) {
-        echo "<script>alertPopUp('?page=data_divisi', 'success', 'Berhasil menambahkan divisi', 'Mengalihkan ke halaman data divisi...');</script>";
+        echo "<script>alertPopUp('?page=data_divisi', 'success', 'Berhasil menambahkan data divisi', 'Mengalihkan ke halaman data divisi...');</script>";
       } else {
-        echo "<script>alertPopUp(null, 'error', 'Gagal menambahkan divisi', null);</script>";
+        echo "<script>alertPopUp(null, 'error', 'Gagal menambahkan data divisi');</script>";
       }
     } catch (Exception $e) {
       echo "<script>alertPopUp(null, 'warning', 'Nama divisi sudah terdaftar', 'Masukan nama divisi yang berbeda!');</script>";
