@@ -1,6 +1,6 @@
 <?php include 'config/functions.php';
-// redirect user (admin only)
-if ($_SESSION['pengguna']['level'] === 'Karyawan') { echo "<script>alert('Hanya admin yang dapat mengakses');location.href='index.php';</script>"; };
+// mengalihkan karyawan ke halaman utama
+if ($_SESSION['pengguna']['level'] === 'Karyawan') { echo "<script>popUp(false, 'index.php', 'Hanya admin yang dapat mengakses', 'Mengalihkan ke halaman utama...', 'error', 3000);</script>"; }
 
 if (isset($_POST['tambahDivisi'])) {
   try {
@@ -8,12 +8,12 @@ if (isset($_POST['tambahDivisi'])) {
     
     $queryInsert = querySQL("INSERT INTO divisi (nama_divisi) VALUES ('$namaDivisi')");
     if ($queryInsert) {
-      echo "<script>alert('Berhasil Menambahkan Divisi');location.href='?page=data_divisi';</script>";
+      echo "<script>popUp(false, '?page=data_divisi', 'Berhasil menambahkan divisi', 'Mengalihkan ke halaman data divisi...', 'success');</script>";
     } else {
-      echo "<script>alert('Gagal Menambahkan Divisi');</script>";
+      echo "<script>popUp(false, '?page=data_divisi', 'Gagal menambahkan divisi', 'Mengalihkan ke halaman data divisi...', 'error');</script>";
     }
   } catch (Exception $e) {
-    echo "<script>alert('Nama divisi sudah terdaftar);location.href='?page=tambah_divisi';</script>";
+    echo "<script>popUp(false, '?page=tambah_divisi', 'Nama divisi sudah terdaftar', 'Mengalihkan ke halaman tambah divisi...', 'error');</script>";
   }
 }
 ?>

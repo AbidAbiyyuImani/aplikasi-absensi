@@ -20,6 +20,20 @@ switch ($level) { case "Admin": ?>
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Toastr -->
+  <link rel="stylesheet" href="plugins/toastr/toastr.min.css">
+  <!-- Sweetalert2 -->
+  <link rel="stylesheet" href="plugins/sweetalert2/sweetalert2.css">
+
+  <!-- !JAVASCRIPT! -->
+  <!-- Toastr -->
+  <script src="plugins/toastr/toastr.min.js"></script>
+  <script src="plugins/toastr/toastr-options.js"></script>
+  <!-- Sweetalert2 -->
+  <script src="plugins/sweetalert2/sweetalert2.all.min.js"></script>
+  <script src="config/functions.js"></script>
+  <!-- !JAVASCRIPT! -->
+
   <!-- DataTables -->
   <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
@@ -247,12 +261,16 @@ switch ($level) { case "Admin": ?>
   <link rel="stylesheet" href="plugins/toastr/toastr.min.css">
   <!-- Sweetalert2 -->
   <link rel="stylesheet" href="plugins/sweetalert2/sweetalert2.css">
+  
+  <!-- !JAVASCRIPT! -->
   <!-- Toastr -->
   <script src="plugins/toastr/toastr.min.js"></script>
   <script src="plugins/toastr/toastr-options.js"></script>
   <!-- Sweetalert2 -->
   <script src="plugins/sweetalert2/sweetalert2.all.min.js"></script>
   <script src="config/functions.js"></script>
+  <!-- !JAVASCRIPT! -->
+
   <!-- DataTables -->
   <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">

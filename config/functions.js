@@ -51,5 +51,5 @@ function popUp(cancelButton = false, href = null, title, text, icon, timer = 200
     });
   }
 }
-// popUp(false, null, 'title', 'text', 'success', 5000, null);
+// popUp(false, null, 'title', 'text', 'success');
 // popUp(true, '?page=absen_masuk', 'title', 'redirecting to absen masuk', 'success', 5000, null);

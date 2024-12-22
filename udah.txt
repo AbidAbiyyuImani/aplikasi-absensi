@@ -1,3 +1,5 @@
 name: latest changes
 Login: link to config/functions.js
 Register: link to config/functions.js
+Tambah Divisi: changes alert
+Tambah Jam Kerja: changes alert

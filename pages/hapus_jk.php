@@ -6,11 +6,11 @@ $idJK = $_GET['id'];
 try {
   $queryDelete = querySQL("DELETE FROM jam_kerja WHERE id_jk = $idJK");
   if($queryDelete) {
-    echo "<script>alert('Hapus Data Jam Berhasil'); location.href='?page=data_jk';</script>";
+    echo "<script>popUp(false, '?page=data_jk', 'Berhasil menghapus jam kerja', 'Mengalihkan ke halaman data jam kerja...', 'error');</script>";
   } else {
-    echo "<script>alert('Hapus Data Jam Gagal');</script>";
+    echo "<script>popUp(false, '?page=data_jk', 'Gagal menghapus jam kerja', 'Mengalihkan ke halaman data jam kerja...', 'error');</script>";
   }
 } catch (Exception $e) {
-  echo "<script>alert('Tidak dapat menghapus jam kerja');location.href='?page=data_jk';</script>";
+  echo "<script>popUp(false, '?page=data_jk', 'Tidak dapat menghapus jam kerja', 'Mengalihkan ke halaman data jam kerja...', 'error');</script>";
 }
 ?>

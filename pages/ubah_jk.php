@@ -13,12 +13,12 @@ if(isset($_POST['ubah_jam_kerja'])) {
   
     $queryUpdate = querySQL("UPDATE jam_kerja SET jam_masuk = '$jamMasuk', jam_pulang = '$jamPulang' WHERE id_jk = '$idJK'");
     if($queryUpdate) {
-      echo "<script>alert('Ubah Jam Kerja Berhasil');location.href='?page=data_jk';</script>";
+      echo "<script>popUp(false, '?page=data_jk', 'Berhasil mengubah jam kerja', 'Mengalihkan ke halaman data jam kerja...', 'success');</script>";
     } else {
-      echo "<script>alert('Ubah Jam Kerja Gagal');</script>";
+      echo "<script>popUp(false, '?page=data_jk', 'Gagal mengubah jam kerja', 'Mengalihkan ke halaman data jam kerja...', 'error');</script>";
     }
   } catch (Exception $e) {
-    echo "<script>alert('Tidak dapat mengubah jam kerja');location.href='?page=data_jk';</script>";
+    echo "<script>popUp(false, '?page=data_jk', 'Tidak dapat mengubah jam kerja', 'Mengalihkan ke halaman data jam kerja...', 'error');</script>";
   }
 }
 ?>

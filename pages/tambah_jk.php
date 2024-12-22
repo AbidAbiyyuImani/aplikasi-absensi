@@ -1,6 +1,6 @@
 <?php include 'config/functions.php';
-// redirect user (admin only)
-if ($_SESSION['pengguna']['level'] === 'Karyawan') { echo "<script>alert('Hanya admin yang dapat mengakses');location.href='index.php';</script>"; };
+// mengalihkan karyawan ke halaman utama
+if ($_SESSION['pengguna']['level'] === 'Karyawan') { echo "<script>popUp(false, 'index.php', 'Hanya admin yang dapat mengakses', 'Mengalihkan ke halaman utama...', 'error', 3000);</script>"; }
 
 if(isset($_POST['tambahJamKerja'])) {
   try {
@@ -9,12 +9,12 @@ if(isset($_POST['tambahJamKerja'])) {
   
     $queryInsert = querySQL("INSERT INTO jam_kerja(jam_masuk, jam_pulang) VALUES('$jamMasuk', '$jamPulang')");
     if($queryInsert) {
-      echo "<script>alert('Tambah Jam Kerja Berhasil');location.href='?page=data_jk';</script>";
+      echo "<script>popUp(false, '?page=data_jk', 'Berhasil menambahkan jam kerja', 'Mengalihkan ke halaman data jam kerja...', 'success');</script>";
     } else {
-      echo "<script>alert('Tambah Jam Kerja Gagal');</script>";
+      echo "<script>popUp(false, '?page=data_jk', 'Gagal menambahkan jam kerja', 'Mengalihkan ke halaman data jam kerja...', 'error');</script>";
     }
   } catch (Exception $e) {
-    echo "<script>alert('Tidak dapat menambahkan jam kerja');location.href='?page=data_jk';</script>";
+    echo "<script>popUp(false, '?page=data_jk', 'Tidak dapat menambahkan jam kerja', 'Mengalihkan ke halaman data jam kerja...', 'error');</script>";
   }
 }
 ?>
