@@ -1,28 +1,30 @@
 <?php include 'config/functions.php';
-// redirect user (admin only)
-if ($_SESSION['pengguna']['level'] === 'Karyawan') { echo "<script>alert('Hanya admin yang dapat mengakses');location.href='index.php';</script>"; };
-
-$idJK = $_GET['id'];
-$queryJamKerja = querySQL("SELECT * FROM jam_kerja WHERE id_jk = '$idJK'");
-$dataJamKerja = mysqli_fetch_assoc($queryJamKerja);
-
-if(isset($_POST['ubah_jam_kerja'])) {
-  try {
-    $jamMasuk = $_POST['jamMasuk'];
-    $jamPulang = $_POST['jamPulang'];
+// mengalihkan karyawan ke halaman utama
+if ($_SESSION['pengguna']['level'] === 'Karyawan') {
+  echo "<script>alertPopUp('index.php', 'error', 'Gagal', 'Anda tidak memiliki akses ke halaman ini.');</script>";
+} else {
+  if (isset($_GET['id'])) {
+    $idJK = $_GET['id'];
+    $queryJamKerja = querySQL("SELECT * FROM jam_kerja WHERE id_jk = '$idJK'");
+    $dataJamKerja = mysqli_fetch_assoc($queryJamKerja);
   
-    $queryUpdate = querySQL("UPDATE jam_kerja SET jam_masuk = '$jamMasuk', jam_pulang = '$jamPulang' WHERE id_jk = '$idJK'");
-    if($queryUpdate) {
-      echo "<script>popUp(false, '?page=data_jk', 'Berhasil mengubah jam kerja', 'Mengalihkan ke halaman data jam kerja...', 'success');</script>";
-    } else {
-      echo "<script>popUp(false, '?page=data_jk', 'Gagal mengubah jam kerja', 'Mengalihkan ke halaman data jam kerja...', 'error');</script>";
+    if (isset($_POST['ubah_jam_kerja'])) {
+      try {
+        $jamMasuk = $_POST['jamMasuk'];
+        $jamPulang = $_POST['jamPulang'];
+  
+        $queryUpdate = querySQL("UPDATE jam_kerja SET jam_masuk = '$jamMasuk', jam_pulang = '$jamPulang' WHERE id_jk = '$idJK'");
+        if ($queryUpdate) {
+          echo "<script>alertPopUp('?page=data_jk', 'success', 'Berhasil menghubah data jam kerja', 'Mengalihkan ke halaman data jam kerja...');</script>";
+        } else {
+          echo "<script>alertPopUp('?page=data_jk', 'error', 'Gagal menghubah data jam kerja', 'Mengalihkan ke halaman data jam kerja...');</script>";
+        }
+      } catch (Exception $e) {
+        echo "<script>alertPopUp('?page=data_jk', 'warning', 'Tidak dapat menghubah data jam kerja', 'Mengalihkan ke halaman data jam kerja...');</script>";
+      }
     }
-  } catch (Exception $e) {
-    echo "<script>popUp(false, '?page=data_jk', 'Tidak dapat mengubah jam kerja', 'Mengalihkan ke halaman data jam kerja...', 'error');</script>";
-  }
-}
 ?>
-<?php $namaHalaman = "Ubah Jam Kerja"; $linkHalaman = "Ubah Data Jam Kerja"; include 'components/breadcrumb.php';?>
+<?php $namaHalaman = "Ubah Jam Kerja"; $linkHalaman = "Ubah Data Jam Kerja"; include 'components/breadcrumb.php'; ?>
 <div class="row">
   <div class="col-12">
     <div class="card card-outline card-warning">
@@ -45,3 +47,8 @@ if(isset($_POST['ubah_jam_kerja'])) {
     </div>
   </div>
 </div>
+<?php } else { ?>
+  <script>
+    alertPopUp('?page=data_jk', 'error', 'Tidak ada data jam kerja yang dipilih', 'Mengalihkan ke halaman data jam kerja...');
+  </script>
+<?php } } ?>

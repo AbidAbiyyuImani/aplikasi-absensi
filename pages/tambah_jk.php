@@ -1,22 +1,23 @@
 <?php include 'config/functions.php';
 // mengalihkan karyawan ke halaman utama
-if ($_SESSION['pengguna']['level'] === 'Karyawan') { echo "<script>popUp(false, 'index.php', 'Hanya admin yang dapat mengakses', 'Mengalihkan ke halaman utama...', 'error', 3000);</script>"; }
-
-if(isset($_POST['tambahJamKerja'])) {
-  try {
-    $jamMasuk = $_POST['jamMasuk'];
-    $jamPulang = $_POST['jamPulang'];
-  
-    $queryInsert = querySQL("INSERT INTO jam_kerja(jam_masuk, jam_pulang) VALUES('$jamMasuk', '$jamPulang')");
-    if($queryInsert) {
-      echo "<script>popUp(false, '?page=data_jk', 'Berhasil menambahkan jam kerja', 'Mengalihkan ke halaman data jam kerja...', 'success');</script>";
-    } else {
-      echo "<script>popUp(false, '?page=data_jk', 'Gagal menambahkan jam kerja', 'Mengalihkan ke halaman data jam kerja...', 'error');</script>";
+if ($_SESSION['pengguna']['level'] === 'Karyawan') {
+  echo "<script>alertPopUp('index.php', 'error', 'Gagal', 'Anda tidak memiliki akses ke halaman ini.');</script>";
+} else {
+  if(isset($_POST['tambahJamKerja'])) {
+    try {
+      $jamMasuk = $_POST['jamMasuk'];
+      $jamPulang = $_POST['jamPulang'];
+    
+      $queryInsert = querySQL("INSERT INTO jam_kerja(jam_masuk, jam_pulang) VALUES('$jamMasuk', '$jamPulang')");
+      if($queryInsert) {
+        echo "<script>alertPopUp('?page=data_jk', 'success', 'Berhasil menambahkan data jam kerja', 'Mengalihkan ke halaman data jam kerja...');</script>";
+      } else {
+        echo "<script>alertPopUp(null, 'error', 'Gagal menambahkan data jam kerja', null);</script>";
+      }
+    } catch (Exception $e) {
+      echo "<script>alertPopUp(null, 'error', 'Tidak dapat menambahkan data jam kerja', null);</script>";
     }
-  } catch (Exception $e) {
-    echo "<script>popUp(false, '?page=data_jk', 'Tidak dapat menambahkan jam kerja', 'Mengalihkan ke halaman data jam kerja...', 'error');</script>";
   }
-}
 ?>
 <?php $namaHalaman = "Tambah Jam Kerja"; $linkHalaman = "Tambah Data Jam Kerja"; include 'components/breadcrumb.php';?>
 <div class="row">
@@ -42,3 +43,4 @@ if(isset($_POST['tambahJamKerja'])) {
     </div>
   </div>
 </div>
+<?php } ?>

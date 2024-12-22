@@ -1,16 +1,22 @@
 <?php include 'config/functions.php';
-// redirect user (admin only)
-if ($_SESSION['pengguna']['level'] === 'Karyawan') { echo "<script>alert('Hanya admin yang dapat mengakses');location.href='index.php';</script>"; };
-
-$idJK = $_GET['id'];
-try {
-  $queryDelete = querySQL("DELETE FROM jam_kerja WHERE id_jk = $idJK");
-  if($queryDelete) {
-    echo "<script>popUp(false, '?page=data_jk', 'Berhasil menghapus jam kerja', 'Mengalihkan ke halaman data jam kerja...', 'error');</script>";
+// mengalihkan karyawan ke halaman utama
+if ($_SESSION['pengguna']['level'] === 'Karyawan') {
+  echo "<script>alertPopUp('index.php', 'error', 'Gagal', 'Anda tidak memiliki akses ke halaman ini.');</script>";
+} else {
+  if (isset($_GET['id'])) {
+    try {
+      $idJK = $_GET['id'];
+      $queryDelete = querySQL("DELETE FROM jam_kerja WHERE id_jk = $idJK");
+      if($queryDelete) {
+        echo "<script>alertPopUp('?page=data_jk', 'success', 'Berhasil menghapus jam kerja', 'Mengalihkan ke halaman data jam kerja...');</script>";
+      } else {
+        echo "<script>alertPopUp('?page=data_jk', 'error', 'Gagal menghapus jam kerja', 'Mengalihkan ke halaman data jam kerja...');</script>";
+      }
+    } catch (Exception $e) {
+      echo "<script>alertPopUp('?page=data_jk', 'warning', 'Tidak dapat menghapus jam kerja', 'Mengalihkan ke halaman data jam kerja...');</script>";
+    }
   } else {
-    echo "<script>popUp(false, '?page=data_jk', 'Gagal menghapus jam kerja', 'Mengalihkan ke halaman data jam kerja...', 'error');</script>";
+    echo "<script>alertPopUp('?page=data_jk', 'error', 'Tidak ada data jam kerja yang dipilih', 'Mengalihkan ke halaman data jam kerja...');</script>";
   }
-} catch (Exception $e) {
-  echo "<script>popUp(false, '?page=data_jk', 'Tidak dapat menghapus jam kerja', 'Mengalihkan ke halaman data jam kerja...', 'error');</script>";
 }
 ?>

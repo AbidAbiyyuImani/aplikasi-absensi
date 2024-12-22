@@ -1,8 +1,10 @@
 <?php include 'config/functions.php';
-// redirect user (admin only)
-if ($_SESSION['pengguna']['level'] === 'Karyawan') { echo "<script>alert('Hanya admin yang dapat mengakses');location.href='index.php';</script>"; };
+// mengalihkan karyawan ke halaman utama
+if ($_SESSION['pengguna']['level'] === 'Karyawan') {
+  echo "<script>alertPopUp('index.php', 'error', 'Gagal', 'Anda tidak memiliki akses ke halaman ini.');</script>";
+} else {
 ?>
-<?php $namaHalaman = "Jam Kerja"; $linkHalaman = "Data Jam Kerja"; include 'components/breadcrumb.php';?>
+<?php $namaHalaman = "Jam Kerja"; $linkHalaman = "Data Jam Kerja"; include 'components/breadcrumb.php'; ?>
 <div class="row">
   <div class="col-12">
     <div class="card card-outline card-info">
@@ -19,17 +21,17 @@ if ($_SESSION['pengguna']['level'] === 'Karyawan') { echo "<script>alert('Hanya 
             </thead>
             <tbody>
               <?php
-                $i = 1;
-                $queryJamKerja = querySQL("SELECT * FROM jam_kerja");
-                while ($dataJamKerja = mysqli_fetch_assoc($queryJamKerja)) {
-              ?>
+              $i = 1;
+              $queryJamKerja = querySQL("SELECT * FROM jam_kerja");
+              while ($dataJamKerja = mysqli_fetch_assoc($queryJamKerja)) {
+                ?>
                 <tr>
                   <td><?= $i++ ?></td>
                   <td><?= $dataJamKerja['jam_masuk'] ?></td>
                   <td><?= $dataJamKerja['jam_pulang'] ?></td>
                   <td>
                     <a href="?page=ubah_jk&id=<?= $dataJamKerja['id_jk'] ?>" class="btn btn-warning">Ubah</a>
-                    <a href="?page=hapus_jk&id=<?= $dataJamKerja['id_jk'] ?>" onclick="return confirm('Apakah anda yakin akan menghapus data jam kerja ini?')" class="btn btn-danger">Hapus</a>
+                    <a onclick="return confirmPopUp('warning', 'Hapus Jam Kerja', 'Apakah anda yakin ingin menghapus jam kerja ini?', 'Yakin', 'Tidak', '?page=hapus_jk&id=<?= $dataJamKerja['id_jk'] ?>', '?page=data_jk');" class="btn btn-danger">Hapus</a>
                   </td>
                 </tr>
               <?php } ?>
@@ -44,3 +46,4 @@ if ($_SESSION['pengguna']['level'] === 'Karyawan') { echo "<script>alert('Hanya 
     </div>
   </div>
 </div>
+<?php } ?>
