@@ -28,6 +28,16 @@ $dataDetail = mysqli_fetch_assoc($queryDetail);
             </tr>
           </table>
         </div>
+        <div class="row">
+          <div class="col-12 col-md-6 mb-3 d-flex flex-column align-items-center">
+            <p>Foto Absen Masuk :</p>
+            <img width="50%" height="50%" src="dist/img/absensi/<?= $dataDetail['foto_masuk'] ?>" class="img-fluid">
+          </div>
+          <div class="col-12 col-md-6 mb-3 d-flex flex-column align-items-center">
+            <p>Foto Absen Keluar :</p>
+            <img width="50%" height="50%" src="dist/img/absensi/<?= $dataDetail['foto_keluar'] ?>" class="img-fluid">
+          </div>
+        </div>
       </div>
       <div class="card-footer">
         <a href="index.php?page=data_absensi" class="btn btn-secondary">Kembali</a>

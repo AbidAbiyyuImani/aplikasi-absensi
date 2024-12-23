@@ -31,7 +31,7 @@ function upload($source, $allowed, $destination) {
   $namaFile .= $ekstensi;
 
   move_uploaded_file($tmp, $destination . $namaFile);
-
+  
   return $namaFile;
 }
 
@@ -44,9 +44,9 @@ function getTotal($table) {
 // get date now
 function dateToFullDate() {
   date_default_timezone_set('Asia/Jakarta');
-  $date = date('D-d-F-Y');
+  $date = date('D-d-m-Y');
   $format = explode('-', $date);
-  $month = [
+  $months = [
     '01' => 'Januari',
     '02' => 'Februari',
     '03' => 'Maret',
@@ -70,7 +70,7 @@ function dateToFullDate() {
     'Sat' => 'Sabtu'
   ];
   $format[0] = strtr($format[0], $days);
-  $format[2] = strtr($format[2], $month);
+  $format[2] = strtr($format[2], $months);
   return $format[0] . ', ' . $format[1] . ' ' . $format[2] . ' ' . $format[3];
 }
 

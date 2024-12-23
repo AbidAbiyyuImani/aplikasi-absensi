@@ -43,3 +43,25 @@ http://localhost:8081/aplikasi-absensi/index.php?page=data_karyawan
 http://localhost:8081/aplikasi-absensi/register.php
 http://localhost:8081/aplikasi-absensi/index.php?page=ubah_karyawan&id=
 http://localhost:8081/aplikasi-absensi/index.php?page=hapus_karyawan&id=
+
+
+
+sampah tapi bukan sampah
+function snapshot() {
+  Webcam.snap(function(data_uri) {
+    document.getElementById('my_camera').classList.add('d-none');
+    document.getElementById('results').classList.remove('d-none');
+    document.getElementById('imageprev').src = data_uri;
+    document.getElementById('foto').value = data_uri;
+    document.querySelector('.take').classList.add('d-none');
+    document.querySelector('.retake').classList.remove('d-none');
+  });
+}
+function retake() {
+  document.getElementById('my_camera').classList.remove('d-none');
+  document.getElementById('results').classList.add('d-none');
+  document.getElementById('imageprev').src = '';
+  document.getElementById('foto').value = '';
+  document.querySelector('.take').classList.remove('d-none');
+  document.querySelector('.retake').classList.add('d-none');
+}

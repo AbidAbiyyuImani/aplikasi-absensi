@@ -1,54 +1,99 @@
-<?php include 'config/functions.php'; $userId = $_SESSION['pengguna']['id_user'];
-$now = date('Y-m-d');
-$queryAbsensiNow = querySQL("SELECT jam_masuk, tanggal_absensi FROM absensi WHERE user_id = '$userId' AND tanggal_absensi = '$now'");
+<?php include 'config/functions.php';
+$userId = $_SESSION['pengguna']['id_user']; $now = date('Y-m-d');
+$queryAbsensiNow = querySQL("SELECT jam_masuk, jam_keluar, tanggal_absensi FROM absensi WHERE user_id = '$userId' AND tanggal_absensi = '$now'");
 $dataAbsensi = mysqli_fetch_assoc($queryAbsensiNow);
-
-if(isset($_POST['absen_keluar'])) {
-  try {
-    $userId = $_SESSION['pengguna']['id_user'];
-    $jamKeluar = date('H:i:s');
-    $tanggal = date('Y-m-d');
-    $fotoAbsen = upload('foto', ['jpg', 'jpeg', 'png'], 'dist/img/absensi/');
-
-    $queryAbsensi = querySQL("UPDATE absensi SET jam_keluar = '$jamKeluar', foto_absen_keluar = '$fotoAbsen' WHERE user_id = '$userId'");
-    if($queryAbsensi) {
-      echo "<script>alert('Absen Keluar Berhasil');location.href='index.php';</script>";
-    } else {
-      echo "<script>alert('Absen Keluar Gagal');</script>";
-    }
-  } catch (Exception $e) {
-    echo "<script>alert('Absen Keluar Gagal');</script>";
+if ($_SESSION['pengguna']['jk_id'] !== null) {
+  if ($dataAbsensi == null) {
+    echo "<script>alertPopUp('?page=absen_masuk', 'error', 'Anda belum melakukan absen masuk', 'Mengalihkan ke halaman absen masuk...');</script>";
   }
+} else {
+  echo "<script>alertPopUp('index.php', 'error', 'Jam Kerja belum di tentukan', 'Mengalihkan ke halaman utama...');</script>";
 }
 ?>
-
+<script src="dist/js/webcam.js"></script>
 <div class="row">
   <div class="col-12">
     <h3 class="mb-3">Absen Keluar</h3>
-    <div class="card card-outline card-primary">
-      <div class="card-body">
-        <form method="post" enctype="multipart/form-data">
-          <div class="form-group">
-            <label for="foto">Foto Absen</label>
-            <div class="custom-file">
-              <input type="file" name="foto" id="foto" required class="custom-file-input">
-              <label for="foto" class="custom-file-label">Foto Absen</label>
-            </div>
-          </div>
-          <?php if (isset($dataAbsensi['jam_masuk'])) { ?>
-            <div class="alert alert-success">Absen masuk telah dilakukan pada : <?= $dataAbsensi['jam_masuk'] ?></div>
-          <?php } ?>
-          <div class="alert alert-warning">Pastikan memori anda tidak penuh!</div>
+    <div class="card">
+      <div class="card-body pb-3">
+        <div id="my_camera"></div>
+        <div id="results" class="d-none">
+          <img id="imageprev" src="" class="img-fluid">
+        </div>
+        <!-- hidden form -->
+        <form id="form_absen" method="post" enctype="multipart/form-data">
+          <input type="hidden" name="foto" id="foto">
+        </form>
+        <div class="alert alert-warning mt-3 <?= ($_SESSION['pengguna']['jk_id'] !== null) ? 'd-none' : '' ?>">Jam Kerja belum di tentukan</div>
       </div>
       <div class="card-footer">
         <a href="index.php" class="btn btn-secondary">Kembali</a>
-        <?php if (isset($dataJamKerja['jam_keluar'])) { ?>
-          <button type="submit" name="absen_keluar" disabled class="btn btn-primary float-right">Absen Keluar</button>
-        <?php } else { ?>
-          <button type="submit" name="absen_keluar" class="btn btn-primary float-right">Absen Keluar</button>
+        <button type="button" onclick="retake()" class="retake btn btn-warning d-none">Ambil Ulang</button>
+        <?php if (isset($dataAbsensi)) { ?>
+          <button type="button" onclick="snapshot()" <?= ($dataAbsensi['jam_keluar'] !== null) ? 'disabled' : '' ?> class="take btn btn-primary">Ambil Foto</button>
+          <?php } else { ?>
+            <button type="button" onclick="snapshot()" disabled class="take btn btn-primary">Ambil Foto</button>
         <?php } ?>
-      </form>
+        <button type="submit" name="absen_keluar" form="form_absen" class="absen btn btn-primary d-none">Absen Keluar</button>
       </div>
     </div>
   </div>
 </div>
+<script>
+  Webcam.set({
+    width: 320,
+    height: 240,
+    image_format: 'jpeg',
+    jpeg_quality: 90
+  });
+  Webcam.attach('#my_camera');
+  function snapshot() {
+    Webcam.snap(function(data_uri) {
+      $('#my_camera').addClass('d-none');
+      $('#results').removeClass('d-none');
+      $('#imageprev').attr('src', data_uri);
+      $('#foto').val(data_uri);
+      $('.take').addClass('d-none');
+      $('.retake').removeClass('d-none');
+      $('.absen').removeClass('d-none');
+    })
+  }
+  function retake() {
+    $('#my_camera').removeClass('d-none');
+    $('#results').addClass('d-none');
+    $('#imageprev').attr('src', '');
+    $('#foto').val('');
+    $('.take').removeClass('d-none');
+    $('.retake').addClass('d-none');
+    $('.absen').addClass('d-none');
+  }
+</script>
+
+<?php
+
+if (isset($_POST['absen_keluar'])) {
+  try {
+    $userId = $_SESSION['pengguna']['id_user'];
+    $jamKeluar = date('H:i:s');
+    $tanggal = date('Y-m-d');
+
+    // decode base64 image $_POST['foto'] and move to dist/img/absensi/
+    $foto = $_POST['foto'];
+    $foto = str_replace('data:image/jpeg;base64,', '', $foto);
+    $foto = str_replace(' ', '+', $foto);
+    $foto = base64_decode($foto);
+    $filename = 'absen_keluar_'.date('Ymd_His').'.jpg';
+    file_put_contents('dist/img/absensi/'.$filename, $foto);
+
+    $queryAbsensi = querySQL("UPDATE absensi SET jam_keluar = '$jamKeluar', foto_keluar = '$filename' WHERE user_id = '$userId' AND tanggal_absensi = '$tanggal'");
+    if($queryAbsensi) {
+      echo "<script>alertPopUp('index.php', 'success', 'Berhasil melakukan absen keluar', 'Mengalihkan ke halaman utama...');</script>";
+    } else {
+      echo "<script>alertPopUp(null, 'error', 'Gagal melakukan absen keluar');</script>";
+    }
+  } catch (Exception $e) {
+    echo "<script>alertPopUp(null, 'warning', 'Tidak dapat melakukan absen keluar');</script>";
+  }
+}
+
+?>

@@ -15,7 +15,7 @@ if ($_SESSION['pengguna']['level'] === 'Karyawan') {
         echo "<script>alertPopUp(null, 'error', 'Gagal menambahkan data jam kerja');</script>";
       }
     } catch (Exception $e) {
-      echo "<script>alertPopUp(null, 'error', 'Tidak dapat menambahkan data jam kerja');</script>";
+      echo "<script>alertPopUp(null, 'warning', 'Tidak dapat menambahkan data jam kerja');</script>";
     }
   }
 ?>
