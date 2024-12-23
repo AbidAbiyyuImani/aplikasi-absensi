@@ -53,7 +53,7 @@ $cekAbsensi = querySQL("SELECT * FROM absensi WHERE user_id = '$idUser' AND tang
         <div class="alert alert-secondary"><?= dateToFullDate(); ?></div>
         <div class="row">
           <div class="col-12 col-sm-6 col-md-3">
-            <a href="<?= (mysqli_num_rows($cekAbsensi) !== 0) ? '?page=absen_keluar' : '?page=absen_masuk' ?>">
+            <a href="<?= (mysqli_num_rows($cekAbsensi) !== 0) ? '?page=absensi_keluar' : '?page=absensi_masuk' ?>">
               <div class="info-box bg-gradient-success">
                 <span class="info-box-icon"><i class="fas fa-calendar-check"></i></span>
                 <div class="info-box-content">
@@ -63,7 +63,7 @@ $cekAbsensi = querySQL("SELECT * FROM absensi WHERE user_id = '$idUser' AND tang
             </a>
           </div>
           <div class="col-12 col-sm-6 col-md-3">
-            <a href="?page=absen_izin">
+            <a href="?page=absensi_izin">
               <div class="info-box bg-gradient-warning">
                 <span class="info-box-icon"><i class="fas fa-calendar-day"></i></span>
                 <div class="info-box-content">
@@ -73,7 +73,7 @@ $cekAbsensi = querySQL("SELECT * FROM absensi WHERE user_id = '$idUser' AND tang
             </a>
           </div>
           <div class="col-12 col-sm-6 col-md-3">
-            <a href="?page=absen_sakit">
+            <a href="?page=absensi_sakit">
               <div class="info-box bg-gradient-danger">
                 <span class="info-box-icon"><i class="fas fa-calendar-times"></i></span>
                 <div class="info-box-content">
@@ -83,7 +83,7 @@ $cekAbsensi = querySQL("SELECT * FROM absensi WHERE user_id = '$idUser' AND tang
             </a>
           </div>
           <div class="col-12 col-sm-6 col-md-3">
-            <a href="?page=permohonan_cuti">
+            <a href="?page=absensi_cuti">
               <div class="info-box bg-gradient-info">
                 <span class="info-box-icon"><i class="fas fa-calendar-week"></i></span>
                 <div class="info-box-content">
