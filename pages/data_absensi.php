@@ -1,14 +1,16 @@
 <?php include 'config/functions.php';
-// redirect user (admin only)
-if ($_SESSION['pengguna']['level'] === 'User') { echo "<script>alert('Hanya admin yang dapat mengakses');location.href='index.php';</script>"; };
+// mengalihkan karyawan ke halaman utama
+if ($_SESSION['pengguna']['level'] === 'Karyawan') {
+  echo "<script>alertPopUp('index.php', 'error', 'Gagal', 'Anda tidak memiliki akses ke halaman ini.');</script>";
+} else {
 ?>
-<?php $namaHalaman = "Absensi"; $linkHalaman = "Data Absensi"; include 'components/breadcrumb.php';?>
 <div class="row">
   <div class="col-12">
+    <h3 class="mb-3">Data Absensi</h3>
     <div class="card card-outline card-primary">
       <div class="card-body">
         <div class="table-responsive">
-          <table id="table-data" class="table table-bordered text-nowrap table-data">
+          <table id="export-table-data" class="table table-bordered text-nowrap">
             <thead>
               <tr>
                 <th>No</th>
@@ -20,11 +22,11 @@ if ($_SESSION['pengguna']['level'] === 'User') { echo "<script>alert('Hanya admi
               </tr>
             </thead>
             <tbody>
-              <?php 
-                $i = 1;
-                $queryAbsensi = querySQL("SELECT * FROM absensi LEFT JOIN users ON absensi.user_id = users.id_user");
-                while ($dataAbsensi = mysqli_fetch_assoc($queryAbsensi)) {
-              ?>
+              <?php
+              $i = 1;
+              $queryAbsensi = querySQL("SELECT * FROM absensi LEFT JOIN users ON absensi.user_id = users.id_user");
+              while ($dataAbsensi = mysqli_fetch_assoc($queryAbsensi)) {
+                ?>
                 <tr>
                   <td><?= $i++ ?></td>
                   <td><?= $dataAbsensi['nama_lengkap'] ?></td>
@@ -46,3 +48,4 @@ if ($_SESSION['pengguna']['level'] === 'User') { echo "<script>alert('Hanya admi
     </div>
   </div>
 </div>
+<?php } ?>

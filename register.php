@@ -74,7 +74,7 @@ if (isset($_SESSION['pengguna'])) {
   <script src="dist/js/adminlte.min.js"></script>
   <!-- Toastr -->
   <script src="plugins/toastr/toastr.min.js"></script>
-  <script src="plugins/toastr/toastr-options.js"></script>
+  <script src="dist/js/toastr-options.js"></script>
   <!-- Sweetalert2 -->
   <script src="plugins/sweetalert2/sweetalert2.all.min.js"></script>
   <!-- Bootstrap 4 -->

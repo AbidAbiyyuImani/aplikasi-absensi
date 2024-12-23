@@ -29,9 +29,9 @@ if ($_SESSION['pengguna']['level'] === 'Karyawan') {
       }
     }
 ?>
-<?php $namaHalaman = "Ubah Karyawan"; $linkHalaman = "Ubah Data Karyawan"; include 'components/breadcrumb.php'; ?>
 <div class="row">
   <div class="col-12">
+    <h3 class="mb">Ubah Data Karyawan</h3>
     <div class="card card-outline card-warning">
       <div class="card-body">
         <form method="post">

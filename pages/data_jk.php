@@ -4,9 +4,9 @@ if ($_SESSION['pengguna']['level'] === 'Karyawan') {
   echo "<script>alertPopUp('index.php', 'error', 'Gagal', 'Anda tidak memiliki akses ke halaman ini.');</script>";
 } else {
 ?>
-<?php $namaHalaman = "Jam Kerja"; $linkHalaman = "Data Jam Kerja"; include 'components/breadcrumb.php'; ?>
 <div class="row">
   <div class="col-12">
+    <h3 class="mb-3">Data Jam Kerja</h3>
     <div class="card card-outline card-info">
       <div class="card-body">
         <div class="table-responsive">
