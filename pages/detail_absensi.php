@@ -1,5 +1,5 @@
 <?php include 'config/functions.php';
-$idDetail = $_GET['id'];
+$idDetail = $_GET['id']; $level = $_SESSION['pengguna']['level'];
 $queryDetail = querySQL("SELECT * FROM absensi LEFT JOIN users ON absensi.user_id = users.id_user WHERE id_absensi = '$idDetail'");
 $dataDetail = mysqli_fetch_assoc($queryDetail);
 ?>
@@ -44,7 +44,11 @@ $dataDetail = mysqli_fetch_assoc($queryDetail);
         </div>
       </div>
       <div class="card-footer">
-        <a href="index.php?page=data_absensi" class="btn btn-secondary">Kembali</a>
+        <?php if ($level === 'Karyawan') { ?>
+          <a href="?page=histori" class="btn btn-secondary">Kembali</a>
+        <?php } else { ?>
+          <a href="?page=data_absensi" class="btn btn-secondary">Kembali</a>
+        <?php } ?>
       </div>
     </div>
   </div>

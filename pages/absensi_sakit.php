@@ -8,7 +8,7 @@ if ($_SESSION['pengguna']['jk_id'] == null) {
 }
 
 if (isset($_POST['permohonan_sakit'])) {
-  $suratSakit = upload('surat_sakit', ['jpg', 'jpeg', 'png', 'pdf'], 'dist/files/surat-sakit/');
+  $suratSakit = upload('surat_sakit', ['jpg', 'jpeg', 'png'], 'dist/img/surat-sakit/');
   $keterangan = $_POST['keterangan'];
   $statusPermohonan = 'Menunggu';
 

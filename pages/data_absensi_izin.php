@@ -6,6 +6,7 @@ if ($_SESSION['pengguna']['level'] === 'Karyawan') {
 if (isset($_POST['status_permohonan'])) {
   $idAbsenPermohonan = $_POST['id_absen_permohonan'];
   $statusPermohonan = $_POST['status_permohonan'];
+  
   $queryUpdateStatusPermohonan = querySQL("UPDATE absensi_izin SET status_permohonan = '$statusPermohonan' WHERE id_absensi_izin = '$idAbsenPermohonan'");
   if ($queryUpdateStatusPermohonan) {
     echo "<script>alertPopUp(null, 'success', 'Berhasil mengubah status permohonan izin');</script>";
