@@ -21,10 +21,10 @@ if ($_SESSION['pengguna']['level'] === 'Karyawan') {
             </thead>
             <tbody>
               <?php
-              $i = 1;
-              $queryJamKerja = querySQL("SELECT * FROM jam_kerja");
-              while ($dataJamKerja = mysqli_fetch_assoc($queryJamKerja)) {
-                ?>
+                $i = 1;
+                $queryJamKerja = querySQL("SELECT * FROM jam_kerja");
+                while ($dataJamKerja = mysqli_fetch_assoc($queryJamKerja)) {
+              ?>
                 <tr>
                   <td><?= $i++ ?></td>
                   <td><?= $dataJamKerja['jam_masuk'] ?></td>

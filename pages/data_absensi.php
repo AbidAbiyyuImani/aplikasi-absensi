@@ -23,10 +23,10 @@ if ($_SESSION['pengguna']['level'] === 'Karyawan') {
             </thead>
             <tbody>
               <?php
-              $i = 1;
-              $queryAbsensi = querySQL("SELECT * FROM absensi LEFT JOIN users ON absensi.user_id = users.id_user");
-              while ($dataAbsensi = mysqli_fetch_assoc($queryAbsensi)) {
-                ?>
+                $i = 1;
+                $queryAbsensi = querySQL("SELECT * FROM absensi LEFT JOIN users ON absensi.user_id = users.id_user");
+                while ($dataAbsensi = mysqli_fetch_assoc($queryAbsensi)) {
+              ?>
                 <tr>
                   <td><?= $i++ ?></td>
                   <td><?= $dataAbsensi['nama_lengkap'] ?></td>

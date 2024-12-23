@@ -25,10 +25,10 @@ if ($_SESSION['pengguna']['level'] === 'Karyawan') {
             </thead>
             <tbody>
               <?php
-              $i = 1;
-              $queryUsers = querySQL("SELECT * FROM users LEFT JOIN divisi ON users.divisi_id = divisi.id_divisi LEFT JOIN jam_kerja ON users.jk_id = jam_kerja.id_jk");
-              while ($dataUser = mysqli_fetch_assoc($queryUsers)) {
-                ?>
+                $i = 1;
+                $queryUsers = querySQL("SELECT * FROM users LEFT JOIN divisi ON users.divisi_id = divisi.id_divisi LEFT JOIN jam_kerja ON users.jk_id = jam_kerja.id_jk");
+                while ($dataUser = mysqli_fetch_assoc($queryUsers)) {
+              ?>
                 <tr>
                   <td><?= $i++ ?></td>
                   <td><?= $dataUser['nama_lengkap'] ?></td>
