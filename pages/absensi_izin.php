@@ -26,7 +26,7 @@ if (isset($_POST['permohonan_izin'])) {
     <h3 class="mb-3">Permohonan Izin</h3>
     <div class="card mb-3">
       <div class="card-body my-3">
-        <form id="form_absen" method="post">
+        <form id="form_absensi_izin" method="post">
           <div class="row">
             <div class="col-12 col-md-6">
               <div class="form-group">
@@ -52,7 +52,7 @@ if (isset($_POST['permohonan_izin'])) {
         <?php if (isset($dataAbsensi)) { ?>
           <button type="submit" disabled class="btn btn-primary">Kirim permohonan</button>
         <?php } else { ?>
-          <button type="submit" form="form_absen" name="permohonan_izin" class="btn btn-primary">Kirim permohonan</button>
+          <button type="submit" form="form_absensi_izin" name="permohonan_izin" class="btn btn-primary">Kirim permohonan</button>
         <?php } ?>
       </div>
     </div>

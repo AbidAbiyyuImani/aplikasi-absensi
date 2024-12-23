@@ -22,7 +22,7 @@ if ($_SESSION['pengguna']['jk_id'] !== null) {
           <img id="imageprev" src="" class="img-fluid">
         </div>
         <!-- hidden form -->
-        <form id="form_absen" method="post" enctype="multipart/form-data" class="mb-3">
+        <form id="form_absensi_masuk" method="post" enctype="multipart/form-data" class="mb-3">
           <input type="hidden" name="foto" id="foto">
         </form>
         <div class="alert alert-warning <?= ($_SESSION['pengguna']['jk_id'] !== null) ? 'd-none' : '' ?>">Jam Kerja belum di tentukan</div>
@@ -31,7 +31,7 @@ if ($_SESSION['pengguna']['jk_id'] !== null) {
         <a href="index.php" class="btn btn-secondary">Kembali</a>
         <button type="button" onclick="retake()" class="retake btn btn-warning d-none">Ambil Ulang</button>
         <button type="button" onclick="snapshot()" <?= ($_SESSION['pengguna']['jk_id'] !== null) ? '' : 'disabled' ?> class="take btn btn-primary">Ambil Foto</button>
-        <button type="submit" name="absen_masuk" form="form_absen" class="absen btn btn-primary d-none">Absen Masuk</button>
+        <button type="submit" name="absen_masuk" form="form_absensi_masuk" class="absen btn btn-primary d-none">Absen Masuk</button>
       </div>
     </div>
   </div>

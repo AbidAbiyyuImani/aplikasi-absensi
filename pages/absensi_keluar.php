@@ -22,7 +22,7 @@ if ($_SESSION['pengguna']['jk_id'] !== null) {
           <img id="imageprev" src="" class="img-fluid">
         </div>
         <!-- hidden form -->
-        <form id="form_absen" method="post" enctype="multipart/form-data" class="mb-3">
+        <form id="form_absensi_keluar" method="post" enctype="multipart/form-data" class="mb-3">
           <input type="hidden" name="foto" id="foto">
         </form>
         <?php if (isset($dataAbsensi)) { ?>
@@ -38,7 +38,7 @@ if ($_SESSION['pengguna']['jk_id'] !== null) {
           <?php } else { ?>
             <button type="button" onclick="snapshot()" disabled class="take btn btn-primary">Ambil Foto</button>
         <?php } ?>
-        <button type="submit" name="absen_keluar" form="form_absen" class="absen btn btn-primary d-none">Absen Keluar</button>
+        <button type="submit" name="absen_keluar" form="form_absensi_keluar" class="absen btn btn-primary d-none">Absen Keluar</button>
       </div>
     </div>
   </div>
