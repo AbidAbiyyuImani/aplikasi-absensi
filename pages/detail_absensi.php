@@ -35,7 +35,11 @@ $dataDetail = mysqli_fetch_assoc($queryDetail);
           </div>
           <div class="col-12 col-md-6 mb-3 d-flex flex-column align-items-center">
             <p>Foto Absen Keluar :</p>
-            <img width="50%" height="50%" src="dist/img/absensi/<?= $dataDetail['foto_keluar'] ?>" class="img-fluid">
+            <?php if ($dataDetail['foto_keluar'] !== null) { ?>
+              <img width="50%" height="50%" src="dist/img/absensi/<?= $dataDetail['foto_keluar'] ?>" class="img-fluid">
+            <?php } else { ?>
+              <p class="text-center">Karyawan belum melakukan absen keluar</p>
+            <?php } ?>
           </div>
         </div>
       </div>

@@ -18,7 +18,7 @@ if ($_SESSION['pengguna']['level'] === 'Karyawan') {
                 <th>Tanggal</th>
                 <th>Jam Masuk</th>
                 <th>Jam Keluar</th>
-                <th>Detail</th>
+                <th>Aksi</th>
               </tr>
             </thead>
             <tbody>
@@ -35,6 +35,7 @@ if ($_SESSION['pengguna']['level'] === 'Karyawan') {
                   <td><?= $dataAbsensi['jam_keluar'] ?></td>
                   <td>
                     <a href="?page=detail_absensi&id=<?= $dataAbsensi['id_absensi'] ?>" class="btn btn-info">Detail</a>
+                    <button onclick="return confirmPopUp('warning', 'Hapus Absensi', 'Apakah anda yakin ingin menghapus data absensi ini?', 'Yakin', 'Tidak', '?page=hapus_absensi&id=<?= $dataAbsensi['id_absensi'] ?>', '?page=data_absensi');" class="btn btn-danger">Hapus</button>
                   </td>
                 </tr>
               <?php } ?>

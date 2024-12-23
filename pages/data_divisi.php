@@ -29,7 +29,7 @@ if ($_SESSION['pengguna']['level'] === 'Karyawan') {
                   <td><?= $dataDivisi['nama_divisi'] ?></td>
                   <td>
                     <a href="?page=ubah_divisi&id=<?= $dataDivisi['id_divisi'] ?>" class="btn btn-warning">Ubah</a>
-                    <button onclick="return confirmPopUp('warning', 'Hapus Divisi', 'Apakah anda yakin ingin menghapus divisi ini?', 'Yakin', 'Tidak', '?page=hapus_divisi&id=<?= $dataDivisi['id_divisi'] ?>', '?page=data_divisi');" class="btn btn-danger">Hapus</button>
+                    <button onclick="return confirmPopUp('warning', 'Hapus Divisi', 'Apakah anda yakin ingin menghapus data divisi ini?', 'Yakin', 'Tidak', '?page=hapus_divisi&id=<?= $dataDivisi['id_divisi'] ?>', '?page=data_divisi');" class="btn btn-danger">Hapus</button>
                   </td>
                 </tr>
               <?php } ?>
