@@ -228,7 +228,7 @@ switch ($level) { case "Admin": ?>
   <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
   <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
   <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-
+  <!-- DataTables Options -->
   <script src="dist/js/dataTablesOptions.js"></script>
   <script>
     if(window.history.replaceState) {
@@ -380,20 +380,9 @@ switch ($level) { case "Admin": ?>
   <!-- DataTables  & Plugins -->
   <script src="plugins/datatables/jquery.dataTables.min.js"></script></script>
   <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-  <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script></script>
-  <script>
-    $(function () {
-      $(".table-data").dataTable({
-        "paging": true,
-        "lengthChange": true,
-        "searching": true,
-        "ordering": false,
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,
-      });
-    });
-  </script>
+  <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+  <!-- DataTables Options -->
+  <script src="dist/js/dataTablesOptions.js"></script>
   <script>
     if(window.history.replaceState) {
       window.history.replaceState(null, null, window.location.href);

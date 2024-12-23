@@ -59,7 +59,7 @@ if (isset($_POST['permohonan_izin'])) {
     <div class="card">
       <div class="card-body">
         <div class="table-responsive">
-          <table class="table table-bordered text-nowrap">
+          <table id="table-data" class="table table-bordered text-nowrap">
             <thead>
               <th>No</th>
               <th>Tanggal</th>
@@ -68,10 +68,10 @@ if (isset($_POST['permohonan_izin'])) {
             </thead>
             <tbody>
               <?php
-              $i = 1;
-              $queryAbsensiIzin = querySQL("SELECT * FROM absensi_izin WHERE user_id = '$userId'");
-              while ($dataAbsensiIzin = mysqli_fetch_assoc($queryAbsensiIzin)) {
-                ?>
+                $i = 1;
+                $queryAbsensiIzin = querySQL("SELECT * FROM absensi_izin WHERE user_id = '$userId'");
+                while ($dataAbsensiIzin = mysqli_fetch_assoc($queryAbsensiIzin)) {
+              ?>
                 <tr>
                   <td><?= $i++ ?></td>
                   <td><?= $dataAbsensiIzin['tanggal_permohonan'] ?></td>
