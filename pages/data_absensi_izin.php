@@ -26,6 +26,7 @@ if (isset($_POST['status_permohonan'])) {
               <th>Karyawan</th>
               <th>Jam</th>
               <th>Keterangan</th>
+              <th>Tanggal</th>
               <th>Status Permohonan</th>
               <th>Aksi</th>
             </thead>
@@ -40,6 +41,7 @@ if (isset($_POST['status_permohonan'])) {
                   <td><?= $dataAbsensiIzin['nama_lengkap'] ?></td>
                   <td><?= $dataAbsensiIzin['jam_awal'] . " - " . $dataAbsensiIzin['jam_akhir'] ?></td>
                   <td><?= $dataAbsensiIzin['keterangan'] ?></td>
+                  <td><?= $dataAbsensiIzin['tanggal_permohonan'] ?></td>
                   <td>
                     <form id="form_ubah_permohonan" method="post">
                       <input type="hidden" name="id_absen_permohonan" value="<?= $dataAbsensiIzin['id_absensi_izin'] ?>">
@@ -52,7 +54,7 @@ if (isset($_POST['status_permohonan'])) {
                     </form>
                   </td>
                   <td>
-                    <button onclick="return confirmPopUp('warning', 'Hapus Permohonan Izin', 'Apakah anda yakin ingin menghapus data permohonan izin ini?', 'Yakin', 'Tidak', '?page=hapus_izin&id=<?= $dataAbsensiIzin['id_absensi_izin'] ?>', '?page=data_izin');" class="btn btn-danger">Hapus</button>
+                    <button onclick="return confirmPopUp('warning', 'Hapus Permohonan Izin', 'Apakah anda yakin ingin menghapus data permohonan izin ini?', 'Yakin', 'Tidak', '?page=hapus_absensi_izin&id=<?= $dataAbsensiIzin['id_absensi_izin'] ?>', '?page=data_izin');" class="btn btn-danger">Hapus</button>
                   </td>
                 </tr>
               <?php } ?>

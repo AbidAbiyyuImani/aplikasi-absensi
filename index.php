@@ -119,12 +119,12 @@ switch ($level) { case "Admin": ?>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="?page=data_izin" class="nav-link">
+                <a href="?page=data_absensi_izin" class="nav-link">
                   <p>Izin</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="?page=data_cuti" class="nav-link">
+                <a href="?page=data_absensi_cuti" class="nav-link">
                   <p>Cuti</p>
                 </a>
               </li>
