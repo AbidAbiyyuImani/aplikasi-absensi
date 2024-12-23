@@ -5,6 +5,7 @@ Register: mengubah alert (aman)
 Data, Tambah, Ubah, Hapus Divisi: mengubah alert dan mengamankan akses (check)
 Data, Tampah, Ubah, Hapus Jam Kerja: mengubah alert dan mengamankan akses (check)
 Data, Register, Ubah, Hapus Karyawan: mengubah alert dan mengamankan akses (check)
+Absen Masuk dan Keluar: Absensi dengan kamera webcam
 ---
 
 Ketentuan lain:

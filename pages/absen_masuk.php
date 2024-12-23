@@ -2,8 +2,13 @@
 $userId = $_SESSION['pengguna']['id_user']; $now = date('Y-m-d');
 $queryAbsensiNow = querySQL("SELECT jam_masuk, tanggal_absensi FROM absensi WHERE user_id = '$userId' AND tanggal_absensi = '$now'");
 $dataAbsensi = mysqli_fetch_assoc($queryAbsensiNow);
-if ($dataAbsensi !== null) {
-  echo "<script>alertPopUp('?page=absen_keluar', 'error', 'Anda sudah melakukan absen masuk', 'Mengalihkan ke halaman absen keluar...');</script>";
+
+if ($_SESSION['pengguna']['jk_id'] !== null) {
+  if ($dataAbsensi !== null) {
+    echo "<script>alertPopUp('?page=absen_keluar', 'error', 'Anda sudah melakukan absen masuk', 'Mengalihkan ke halaman absen keluar...');</script>";
+  }
+} else {
+  echo "<script>alertPopUp('index.php', 'error', 'Jam Kerja belum di tentukan', 'Mengalihkan ke halaman utama...');</script>";
 }
 ?>
 <script src="dist/js/webcam.js"></script>
@@ -11,16 +16,16 @@ if ($dataAbsensi !== null) {
   <div class="col-12">
     <h3 class="mb-3">Absen Masuk</h3>
     <div class="card">
-      <div class="card-body pb-3">
+      <div class="card-body my-3">
         <div id="my_camera"></div>
         <div id="results" class="d-none">
           <img id="imageprev" src="" class="img-fluid">
         </div>
         <!-- hidden form -->
-        <form id="form_absen" method="post" enctype="multipart/form-data">
+        <form id="form_absen" method="post" enctype="multipart/form-data" class="mb-3">
           <input type="hidden" name="foto" id="foto">
         </form>
-        <div class="alert alert-warning mt-3 <?= ($_SESSION['pengguna']['jk_id'] !== null) ? 'd-none' : '' ?>">Jam Kerja belum di tentukan</div>
+        <div class="alert alert-warning <?= ($_SESSION['pengguna']['jk_id'] !== null) ? 'd-none' : '' ?>">Jam Kerja belum di tentukan</div>
       </div>
       <div class="card-footer">
         <a href="index.php" class="btn btn-secondary">Kembali</a>
@@ -67,8 +72,7 @@ if (isset($_POST['absen_masuk'])) {
     $userId = $_SESSION['pengguna']['id_user'];
     $jamMasuk = date('H:i:s');
     $tanggal = date('Y-m-d');
-    
-    // decode base64 image $_POST['foto'] and move to dist/img/absensi/
+
     $foto = $_POST['foto'];
     $foto = str_replace('data:image/jpeg;base64,', '', $foto);
     $foto = str_replace(' ', '+', $foto);
@@ -87,5 +91,4 @@ if (isset($_POST['absen_masuk'])) {
   }
   
 }
-
 ?>

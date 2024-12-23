@@ -2,6 +2,7 @@
 $userId = $_SESSION['pengguna']['id_user']; $now = date('Y-m-d');
 $queryAbsensiNow = querySQL("SELECT jam_masuk, jam_keluar, tanggal_absensi FROM absensi WHERE user_id = '$userId' AND tanggal_absensi = '$now'");
 $dataAbsensi = mysqli_fetch_assoc($queryAbsensiNow);
+
 if ($_SESSION['pengguna']['jk_id'] !== null) {
   if ($dataAbsensi == null) {
     echo "<script>alertPopUp('?page=absen_masuk', 'error', 'Anda belum melakukan absen masuk', 'Mengalihkan ke halaman absen masuk...');</script>";
@@ -15,16 +16,19 @@ if ($_SESSION['pengguna']['jk_id'] !== null) {
   <div class="col-12">
     <h3 class="mb-3">Absen Keluar</h3>
     <div class="card">
-      <div class="card-body pb-3">
+      <div class="card-body my-3">
         <div id="my_camera"></div>
         <div id="results" class="d-none">
           <img id="imageprev" src="" class="img-fluid">
         </div>
         <!-- hidden form -->
-        <form id="form_absen" method="post" enctype="multipart/form-data">
+        <form id="form_absen" method="post" enctype="multipart/form-data" class="mb-3">
           <input type="hidden" name="foto" id="foto">
         </form>
-        <div class="alert alert-warning mt-3 <?= ($_SESSION['pengguna']['jk_id'] !== null) ? 'd-none' : '' ?>">Jam Kerja belum di tentukan</div>
+        <?php if (isset($dataAbsensi)) { ?>
+          <div class="alert alert-info <?= ($dataAbsensi['jam_keluar'] !== null) ? 'd-block' : 'd-none' ?>">Hari ini sudah dilakukan absen, <a href="?page=histori">lihat histori absen</a></div>
+        <?php } ?>
+        <div class="alert alert-warning <?= ($_SESSION['pengguna']['jk_id'] !== null) ? 'd-none' : '' ?>">Jam Kerja belum di tentukan</div>
       </div>
       <div class="card-footer">
         <a href="index.php" class="btn btn-secondary">Kembali</a>
@@ -70,14 +74,12 @@ if ($_SESSION['pengguna']['jk_id'] !== null) {
 </script>
 
 <?php
-
 if (isset($_POST['absen_keluar'])) {
   try {
     $userId = $_SESSION['pengguna']['id_user'];
     $jamKeluar = date('H:i:s');
     $tanggal = date('Y-m-d');
 
-    // decode base64 image $_POST['foto'] and move to dist/img/absensi/
     $foto = $_POST['foto'];
     $foto = str_replace('data:image/jpeg;base64,', '', $foto);
     $foto = str_replace(' ', '+', $foto);
@@ -95,5 +97,4 @@ if (isset($_POST['absen_keluar'])) {
     echo "<script>alertPopUp(null, 'warning', 'Tidak dapat melakukan absen keluar');</script>";
   }
 }
-
 ?>
