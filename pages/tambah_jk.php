@@ -19,12 +19,12 @@ if ($_SESSION['pengguna']['level'] === 'Karyawan') {
     }
   }
 ?>
-<?php $namaHalaman = "Tambah Jam Kerja"; $linkHalaman = "Tambah Data Jam Kerja"; include 'components/breadcrumb.php';?>
 <div class="row">
   <div class="col-12">
+    <h3 class="mb-3">Tambah Jam Kerja</h3>
     <div class="card card-outline card-primary">
       <div class="card-body">
-        <form method="post">
+        <form id="form_tambah_jk" method="post">
           <h3 class="mb-3">Tambah Jam Kerja</h3>
           <div class="row">
             <div class="form-group col-12 col-sm-6">
@@ -36,9 +36,9 @@ if ($_SESSION['pengguna']['level'] === 'Karyawan') {
               <input type="time" name="jamPulang" id="jamPulang" required class="form-control">
             </div>
           </div>
-          <a href="?page=data_jk" class="btn btn-secondary">Kembali</a>
-          <button type="submit" name="tambahJamKerja" class="btn btn-primary">Tambah Jam Kerja</button>
         </form>
+        <a href="?page=data_jk" class="btn btn-secondary">Kembali</a>
+        <button type="submit" form="form_tambah_jk" name="tambahJamKerja" class="btn btn-primary">Tambah Jam Kerja</button>
       </div>
     </div>
   </div>
