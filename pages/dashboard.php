@@ -63,7 +63,7 @@ $cekAbsensi = querySQL("SELECT * FROM absensi WHERE user_id = '$idUser' AND tang
             </a>
           </div>
           <div class="col-12 col-sm-6 col-md-3">
-            <a href="?page=absen_keluar">
+            <a href="?page=absen_izin">
               <div class="info-box bg-gradient-warning">
                 <span class="info-box-icon"><i class="fas fa-calendar-day"></i></span>
                 <div class="info-box-content">

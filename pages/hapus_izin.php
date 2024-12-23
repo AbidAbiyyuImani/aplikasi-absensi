@@ -1,16 +1,22 @@
 <?php include 'config/functions.php';
-// redirect user (admin only)
-if ($_SESSION['pengguna']['level'] === 'User') { echo "<script>alert('Hanya admin yang dapat mengakses');location.href='index.php';</script>"; };
-
-$idIzin = $_GET['id'];
-try {
-  $queryDelete = querySQL("DELETE FROM absensi_sakit WHERE id_sakit = $idIzin");
-  if($queryDelete) {
-    echo "<script>alert('Hapus Data Izin Berhasil'); location.href='?page=data_izin';</script>";
+// mengalihkan karyawan ke halaman utama
+if ($_SESSION['pengguna']['level'] === 'Karyawan') {
+  echo "<script>alertPopUp('index.php', 'error', 'Gagal', 'Anda tidak memiliki akses ke halaman ini.');</script>";
+} else {
+  if (isset($_GET['id'])) {
+    try {
+      $idIzin = $_GET['id'];
+      $queryDelete = querySQL("DELETE FROM absensi_izin WHERE id_absensi_izin = $idIzin");
+      if ($queryDelete) {
+        echo "<script>alertPopUp('?page=data_izin', 'success', 'Berhasil menghapus data permohonan izin', 'Mengalihkan ke halaman data izin...');</script>";
+      } else {
+        echo "<script>alertPopUp('?page=data_izin', 'error', 'Gagal menghapus data permohonan izin', 'Mengalihkan ke halaman data izin...');</script>";
+      }
+    } catch (Exception $e) {
+      echo "<script>alertPopUp('?page=data_izin', 'warning', 'Tidak dapat menghapus data permohonan izin', 'Mengalihkan ke halaman data izin...');</script>";
+    }
   } else {
-    echo "<script>alert('Hapus Data Izin Gagal');</script>";
+    echo "<script>alertPopUp('?page=data_izin', 'error', 'Tidak ada data permohonan izin yang dipilih', 'Mengalihkan ke halaman data izin...');</script>";
   }
-} catch (Exception $e) {
-  echo "<script>alert('Hapus Data Izin Gagal');location.href='?page=izin';</script>";
 }
 ?>

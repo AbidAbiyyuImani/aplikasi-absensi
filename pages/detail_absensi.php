@@ -3,9 +3,9 @@ $idDetail = $_GET['id'];
 $queryDetail = querySQL("SELECT * FROM absensi LEFT JOIN users ON absensi.user_id = users.id_user WHERE id_absensi = '$idDetail'");
 $dataDetail = mysqli_fetch_assoc($queryDetail);
 ?>
-<?php $namaHalaman = "Absensi"; $linkHalaman = "Detail Absensi"; include 'components/breadcrumb.php';?>
 <div class="row">
   <div class="col-12">
+    <h3 class="mb-3">Detail Absensi</h3>
     <div class="card card-outline card-info">
       <div class="card-body">
         <div class="table-responsive">

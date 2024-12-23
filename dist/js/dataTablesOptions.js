@@ -10,7 +10,6 @@ $(function () {
   });
 });
 
-// export to csv, excel, pdf datatables
 $(function () {
   $("#export-table-data").DataTable({
     paging: true,
@@ -53,8 +52,3 @@ $(function () {
     ]
   }).buttons(0, null).container().appendTo("#export-table-data_wrapper .col-md-6:eq(0)");
 });
-
-
-// exportOptions: {
-//   columns: "th:not(:last-child)",
-// },

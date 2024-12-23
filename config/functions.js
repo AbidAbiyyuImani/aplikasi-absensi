@@ -44,4 +44,3 @@ function confirmPopUp(icon, title, text, confirmText, cancelText, href, rdHref =
   });
 }
 // echo "<script>confirmPopUp('icon', 'title', 'text', 'confirmText', 'cancelText', 'href', 'rdHref');</script>";
-
