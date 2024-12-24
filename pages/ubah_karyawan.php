@@ -34,7 +34,7 @@ if ($_SESSION['pengguna']['level'] === 'Karyawan') {
     <h3 class="mb">Ubah Data Karyawan</h3>
     <div class="card card-outline card-warning">
       <div class="card-body">
-        <form method="post">
+        <form id="ubah_data_karyawan" method="post">
           <div class="form-group">
             <label for="namaLengkap">Nama Lengkap</label>
             <input type="text" name="namaLengkap" id="namaLengkap" required value="<?= $dataKaryawan['nama_lengkap']; ?>" readonly class="form-control">
@@ -111,9 +111,9 @@ if ($_SESSION['pengguna']['level'] === 'Karyawan') {
               </select>
             <?php } ?>
           </div>
-          <a href="?page=data_karyawan" class="btn btn-secondary">Kembali</a>
-          <button type="submit" name="ubah_karyawan" class="btn btn-warning float-right">Ubah Data Karyawan</button>
         </form>
+        <a href="?page=data_karyawan" class="btn btn-secondary">Kembali</a>
+        <button type="submit" name="ubah_karyawan" form="ubah_data_karyawan" class="btn btn-warning float-right">Ubah Data Karyawan</button>
       </div>
     </div>
   </div>

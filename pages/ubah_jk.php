@@ -29,7 +29,7 @@ if ($_SESSION['pengguna']['level'] === 'Karyawan') {
     <h3 class="mb-3">Ubah Data Jam Kerja</h3>
     <div class="card card-outline card-warning">
       <div class="card-body">
-        <form method="post">
+        <form id="ubah_data_jk" method="post">
           <div class="row">
             <div class="form-group col-12 col-sm-6">
               <label for="jamMasuk" class="form-label">Jam Masuk</label>
@@ -40,9 +40,9 @@ if ($_SESSION['pengguna']['level'] === 'Karyawan') {
               <input type="time" name="jamPulang" id="jamPulang" required value="<?= $dataJamKerja['jam_pulang']; ?>" class="form-control">
             </div>
           </div>
-          <a href="?page=data_jk" class="btn btn-secondary">Kembali</a>
-          <button type="submit" name="ubah_jam_kerja" class="btn btn-warning float-right">Ubah Jam Kerja</button>
         </form>
+        <a href="?page=data_jk" class="btn btn-secondary">Kembali</a>
+        <button type="submit" name="ubah_jam_kerja" form="ubah_data_jk" class="btn btn-warning float-right">Ubah Jam Kerja</button>
       </div>
     </div>
   </div>
