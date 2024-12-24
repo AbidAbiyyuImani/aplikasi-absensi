@@ -1,5 +1,5 @@
 <?php include 'config/functions.php';
-if (isset($_POST['UbahUser'])) {
+if (isset($_POST['ubah_user'])) {
   try {
     $idUser = $_SESSION['pengguna']['id_user'];
     $namaLengkap = $_POST['namaLengkap'];
@@ -9,33 +9,32 @@ if (isset($_POST['UbahUser'])) {
     $divisi = ($_POST['divisi'] === "Belum ada divisi") ? null : $_POST['divisi'];
     $jamKerja = ($_POST['jamKerja'] === "Belum ada jam kerja") ? null : $_POST['jamKerja'];
   
-    if($_FILES['foto']['error'] === 4) {
+    if ($_FILES['foto']['error'] === 4) {
       $foto = $_POST['fotoLama'];
     } else {
       $foto = upload('foto', ['jpg', 'jpeg', 'png'], 'dist/img/avatar/');
     }
   
-    if($divisi == null && $jamKerja == null) {
+    if ($divisi == null && $jamKerja == null) {
       $queryUpdate = querySQL("UPDATE users SET nama_lengkap = '$namaLengkap', username = '$username', email = '$email', foto = '$foto' WHERE id_user = $idUser");
-      if($queryUpdate) {
-        echo "<script>alert('Ubah Profile Berhasil');location.href='logout.php'</script>";
+      if ($queryUpdate) {
+        echo "<script>alertPopUp('logout.php', 'success', 'Berhasil mengubah profile', 'Mengalihkan ke halaman login...');</script>";
       } else {
-        echo "<script>alert('Ubah Profile Gagal');location.href='?page=profile';</script>";
+        echo "<script>alertPopUp('?page=profile', 'error', 'Gagal mengubah profile');</script>";
       }
     } else {
       $queryUpdate = querySQL("UPDATE users SET nama_lengkap = '$namaLengkap', username = '$username', email = '$email', divisi_id = '$divisi', jam_id = '$jamKerja', foto = '$foto' WHERE id_user = $idUser");
-      if($queryUpdate) {
-        echo "<script>alert('Ubah Profile Berhasil');location.href='logout.php'</script>";
+      if ($queryUpdate) {
+        echo "<script>alertPopUp('logout.php', 'success', 'Berhasil mengubah profile', 'Mengalihkan ke halaman login...');</script>";
       } else {
-        echo "<script>alert('Ubah Profile Gagal');location.href='?page=profile';</script>";
+        echo "<script>alertPopUp('?page=profile', 'error', 'Gagal mengubah profile');</script>";
       }
     }
   } catch (Exception $e) {
-    echo "<script>alert('Ubah Profile Gagal');location.href='?page=profile';</script>";
+    echo "<script>alertPopUp('?page=profile', 'warning', 'Tidak dapat mengubah profile');</script>";
   }
 }
 ?>
-
 <div class="row">
   <div class="col-12">
     <div class="card">
@@ -99,10 +98,10 @@ if (isset($_POST['UbahUser'])) {
                 <label for="foto" class="custom-file-label"><?= $_SESSION['pengguna']['foto']; ?></label>
               </div>
             </div>
-            <button type="button" onclick="ubahUser()" href="?page=ubah_profile" class="ubahProfile btn btn-warning float-right">Ubah Profile</button>
             <a href="index.php" class="kembaliKeDashboard btn btn-secondary">Kembali</a>
+            <button type="button" onclick="ubahUser()" href="?page=ubah_profile" class="ubahProfile btn btn-warning">Ubah Profile</button>
             <a href="?page=profile" class="kembaliKeProfile btn btn-secondary d-none">Kembali</a>
-            <button type="submit" name="UbahUser" class="simpahProfile btn btn-primary float-right d-none">Simpan</button>
+            <button type="submit" name="ubah_user" class="simpahProfile btn btn-primary d-none">Simpan</button>
           </form>
         </div>
       </div>
