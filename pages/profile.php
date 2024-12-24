@@ -65,12 +65,12 @@ if (isset($_POST['ubah_user'])) {
               <label for="divisi" class="form-label">Divisi</label>
               <select name="divisi" id="divisi" disabled class="form-control">
                 <?php 
-                if($_SESSION['pengguna']['divisi_id'] != null) {
+                if ($_SESSION['pengguna']['divisi_id'] != null) {
                 $queryDivisi = querySQL("SELECT * FROM divisi");
                 while ($dataDivisi = mysqli_fetch_assoc($queryDivisi)) {
                 ?>
                   <option value="<?= $dataDivisi['id_divisi']; ?>" <?= ($dataDivisi['id_divisi'] === $_SESSION['pengguna']['divisi_id']) ? 'selected' : '' ?>><?= $dataDivisi['nama_divisi']; ?></option>
-                <?php } }else { ?>
+                <?php } } else { ?>
                   <option selected>Belum ada divisi</option>
                 <?php } ?>
               </select>
@@ -80,12 +80,12 @@ if (isset($_POST['ubah_user'])) {
               <select name="jamKerja" id="jamKerja" disabled class="form-control">
                 <option selected disabled>Pilih Jam Kerja</option>
                 <?php 
-                if($_SESSION['pengguna']['jam_id'] != null) {
+                if ($_SESSION['pengguna']['jam_id'] != null) {
                   $queryJamKerja = querySQL("SELECT * FROM jam_kerja");
                   while ($dataJamKerja = mysqli_fetch_assoc($queryJamKerja)) {
                 ?>
                   <option value="<?= $dataJamKerja['id_jam']; ?>" <?= ($dataJamKerja['id_jam'] === $_SESSION['pengguna']['jam_id']) ? 'selected' : '' ?>><?= $dataJamKerja['jam_masuk']; ?> - <?= $dataJamKerja['jam_keluar']; ?></option>
-                <?php } }else { ?>
+                <?php } } else { ?>
                   <option selected>Belum ada jam kerja</option>
                 <?php } ?>
               </select>
