@@ -298,10 +298,10 @@ switch ($level) { case "Admin": ?>
           <li class="nav-item dropdown">
             <a id="absenDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Absensi</a>
             <ul aria-labelledby="absenDropdown" class="dropdown-menu border-0 shadow">
-              <li><a href="?page=izin" class="dropdown-item">Izin</a></li>
-              <li><a href="?page=sakit" class="dropdown-item">Sakit</a></li>
-              <li><a href="?page=cuti" class="dropdown-item">Cuti</a></li>
-              <li><a href="?page=histori" class="dropdown-item">Histori Absensi</a></li>
+              <li><a href="?page=absensi_izin" class="dropdown-item">Izin</a></li>
+              <li><a href="?page=absensi_sakit" class="dropdown-item">Sakit</a></li>
+              <li><a href="?page=absensi_cuti" class="dropdown-item">Cuti</a></li>
+              <li><a href="?page=histori&td=absensi" class="dropdown-item">Histori Absensi</a></li>
             </ul>
           </li>
         </ul>
