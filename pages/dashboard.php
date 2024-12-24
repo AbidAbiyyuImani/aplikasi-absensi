@@ -1,7 +1,6 @@
 <?php include 'config/functions.php'; $level = $_SESSION['pengguna']['level'];
 switch ($level) { case "Admin": ?>
-
-<!-- Dashboard Admin -->
+<!-- Awal Dashboard Admin -->
 <div class="row">
   <div class="col-12">
     <h3 class="mb-3"><?= dateToFullDate(); ?></h3>
@@ -40,12 +39,13 @@ switch ($level) { case "Admin": ?>
     </a>
   </div>
 </div>
-
-<?php break; case "Karyawan": ?>
-<?php $idUser = $_SESSION['pengguna']['id_user']; $date = date('Y-m-d');
+<!-- Akhir Dashboard Admin -->
+<?php break; case "Karyawan":
+$idUser = $_SESSION['pengguna']['id_user']; $date = date('Y-m-d');
+// CEK ABSEN KARYAWAN
 $cekAbsensi = querySQL("SELECT * FROM absensi WHERE user_id = '$idUser' AND tanggal_absensi = '$date'");
 ?>
-<!-- Dashboard Karyawan -->
+<!-- Awal Dashboard Karyawan -->
 <div class="row">
   <div class="col-12">
     <div class="card">
@@ -97,5 +97,5 @@ $cekAbsensi = querySQL("SELECT * FROM absensi WHERE user_id = '$idUser' AND tang
     </div>
   </div>
 </div>
-
+<!-- Akhir Dashboard Karyawan -->
 <?php break; } ?>

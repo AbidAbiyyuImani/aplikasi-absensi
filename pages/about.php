@@ -1,7 +1,6 @@
-<?php $namaHalaman = "About"; $linkHalaman = "About Page"; include 'components/breadcrumb.php'; ?>
-
 <div class="row">
   <div class="col-12">
+    <h3 class="mb-3">About</h3>
     <div class="card card-outline card-info">
       <div class="card-body">
         <h3 class="mb-2">Aplikasi Absensi Karyawan Berbasis Website</h3>
