@@ -23,14 +23,14 @@ if ($_SESSION['pengguna']['level'] === 'Karyawan') {
     <h3 class="mb-3">Tambah Divisi</h3>
     <div class="card card-outline card-primary">
       <div class="card-body">
-        <form id="form_tambah_divisi" method="post">
+        <form id="tambah_divisi" method="post">
           <div class="form-group">
             <label for="namaDivisi">Nama Divisi</label>
             <input type="text" name="namaDivisi" id="namaDivisi" required class="form-control">
           </div>
         </form>
         <a href="?page=data_divisi" class="btn btn-secondary">Kembali</a>
-        <button type="submit" form="form_tambah_divisi" name="tambahDivisi" class="btn btn-primary">Tambahkan Divisi</button>
+        <button type="submit" form="tambah_divisi" name="tambahDivisi" class="btn btn-primary">Tambahkan Divisi</button>
       </div>
     </div>
   </div>

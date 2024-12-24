@@ -24,7 +24,7 @@ if ($_SESSION['pengguna']['level'] === 'Karyawan') {
     <h3 class="mb-3">Tambah Jam Kerja</h3>
     <div class="card card-outline card-primary">
       <div class="card-body">
-        <form id="form_tambah_jk" method="post">
+        <form id="tambah_jk" method="post">
           <h3 class="mb-3">Tambah Jam Kerja</h3>
           <div class="row">
             <div class="form-group col-12 col-sm-6">
@@ -38,7 +38,7 @@ if ($_SESSION['pengguna']['level'] === 'Karyawan') {
           </div>
         </form>
         <a href="?page=data_jk" class="btn btn-secondary">Kembali</a>
-        <button type="submit" form="form_tambah_jk" name="tambahJamKerja" class="btn btn-primary">Tambah Jam Kerja</button>
+        <button type="submit" form="tambah_jk" name="tambahJamKerja" class="btn btn-primary">Tambah Jam Kerja</button>
       </div>
     </div>
   </div>
