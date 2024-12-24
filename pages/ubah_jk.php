@@ -42,7 +42,7 @@ if ($_SESSION['pengguna']['level'] === 'Karyawan') {
           </div>
         </form>
         <a href="?page=data_jk" class="btn btn-secondary">Kembali</a>
-        <button type="submit" name="ubah_jam_kerja" form="ubah_data_jk" class="btn btn-warning float-right">Ubah Jam Kerja</button>
+        <button type="submit" name="ubah_jam_kerja" form="ubah_data_jk" class="btn btn-warning">Ubah Jam Kerja</button>
       </div>
     </div>
   </div>

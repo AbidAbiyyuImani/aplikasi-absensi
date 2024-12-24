@@ -35,7 +35,7 @@ if ($_SESSION['pengguna']['level'] === 'Karyawan') {
           </div>
         </form>
         <a href="?page=data_divisi" class="btn btn-secondary">Kembali</a>
-        <button type="submit" name="ubah_divisi" form="ubah_data_divisi" class="btn btn-warning float-right">Ubah Data Divisi</button>
+        <button type="submit" name="ubah_divisi" form="ubah_data_divisi" class="btn btn-warning">Ubah Data Divisi</button>
       </div>
     </div>
   </div>
