@@ -51,7 +51,7 @@ if (isset($_POST['status_permohonan'])) {
                     </form>
                   </td>
                   <td>
-                    <a href="?page=surat_sakit&id=<?= $dataAbsensiSakit['id_absensi_sakit'] ?>" class="btn btn-info">Lihat Surat Sakit</a>
+                    <a href="dist/img/surat-sakit/<?= $dataAbsensiSakit['surat_sakit'] ?>" target="_blank" class="btn btn-info">Lihat Surat Sakit</a>
                     <button onclick="return confirmPopUp('warning', 'Hapus Permohonan Sakit', 'Apakah anda yakin ingin menghapus data permohonan sakit ini?', 'Yakin', 'Tidak', '?page=hapus_absensi_sakit&id=<?= $dataAbsensiSakit['id_absensi_sakit'] ?>', '?page=data_sakit');" class="btn btn-danger">Hapus</button>
                   </td>
                 </tr>
