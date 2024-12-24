@@ -4,12 +4,12 @@ if ($_SESSION['pengguna']['level'] === 'Karyawan') {
   echo "<script>alertPopUp('index.php', 'error', 'Gagal', 'Anda tidak memiliki akses ke halaman ini.');</script>";
 } else {
 if (isset($_POST['status_permohonan'])) {
-  $idAbsenPermohonan = $_POST['id_absen_permohonan'];
+  $idAbsenPermohonanSakit = $_POST['id_absen_sakit'];
   $statusPermohonan = $_POST['status_permohonan'];
 
-  $queryUpdateStatusPermohonan = querySQL("UPDATE absensi_sakit SET status_permohonan = '$statusPermohonan' WHERE id_absensi_sakit = '$idAbsenPermohonan'");
+  $queryUpdateStatusPermohonan = querySQL("UPDATE absensi_sakit SET status_permohonan = '$statusPermohonan' WHERE id_absensi_sakit = '$idAbsenPermohonanSakit'");
   if ($queryUpdateStatusPermohonan) {
-    echo "<script>alertPopUp(null, 'success', 'Berhasil mengubah status permohonan sakit');</script>";
+    echo "<script>alertPopUp('?page=data_absensi_sakit', 'success', 'Berhasil mengubah status permohonan sakit');</script>";
   } else {
     echo "<script>alertPopUp(null, 'error', 'Gagal mengubah status permohonan sakit');</script>";
   }
@@ -24,9 +24,10 @@ if (isset($_POST['status_permohonan'])) {
           <table id="export-table-data" class="table table-bordered text-nowrap">
             <thead>
               <th>No</th>
-              <th>Karyawan</th>
-              <th>Tanggal</th>
               <th>Status Permohonan</th>
+              <th>Karyawan</th>
+              <th>Keterangan</th>
+              <th>Tanggal</th>
               <th>Aksi</th>
             </thead>
             <tbody>
@@ -37,22 +38,25 @@ if (isset($_POST['status_permohonan'])) {
               ?>
                 <tr>
                   <td><?= $i++ ?></td>
-                  <td><?= $dataAbsensiSakit['nama_lengkap'] ?></td>
-                  <td><?= $dataAbsensiSakit['tanggal_permohonan'] ?></td>
                   <td>
                     <form id="form_ubah_permohonan" method="post">
-                      <input type="hidden" name="id_absen_permohonan" value="<?= $dataAbsensiSakit['id_absensi_sakit'] ?>">
+                      <input type="hidden" name="id_absen_sakit" value="<?= $dataAbsensiSakit['id_absensi_sakit'] ?>">
                       <select name="status_permohonan" id="status_permohonan" class="form-control" onchange="this.form.submit()">
-                        <?php $statusPermohonan = ['Menunggu', 'Diterima', 'Ditolak'];
-                        foreach ($statusPermohonan as $status) { ?>
+                        <?php
+                          $statusPermohonan = ['Menunggu', 'Diterima', 'Ditolak'];
+                          foreach ($statusPermohonan as $status) {
+                        ?>
                           <option value="<?= $status ?>" <?= ($dataAbsensiSakit['status_permohonan'] === $status) ? 'selected' : '' ?>><?= $status ?></option>
                         <?php } ?>
                       </select>
                     </form>
                   </td>
+                  <td><?= $dataAbsensiSakit['nama_lengkap'] ?></td>
+                  <td><?= $dataAbsensiSakit['keterangan'] ?></td>
+                  <td><?= $dataAbsensiSakit['tanggal_permohonan'] ?></td>
                   <td>
                     <a href="dist/img/surat-sakit/<?= $dataAbsensiSakit['surat_sakit'] ?>" target="_blank" class="btn btn-info">Lihat Surat Sakit</a>
-                    <button onclick="return confirmPopUp('warning', 'Hapus Permohonan Sakit', 'Apakah anda yakin ingin menghapus data permohonan sakit ini?', 'Yakin', 'Tidak', '?page=hapus_absensi_sakit&id=<?= $dataAbsensiSakit['id_absensi_sakit'] ?>', '?page=data_sakit');" class="btn btn-danger">Hapus</button>
+                    <button onclick="return confirmPopUp('warning', 'Hapus Permohonan Sakit', 'Apakah anda yakin ingin menghapus data permohonan sakit ini?', 'Yakin', 'Tidak', '?page=hapus_absensi_sakit&id=<?= $dataAbsensiSakit['id_absensi_sakit'] ?>', '?page=data_absensi_sakit');" class="btn btn-danger">Hapus</button>
                   </td>
                 </tr>
               <?php } ?>

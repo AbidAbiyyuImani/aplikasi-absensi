@@ -7,7 +7,7 @@ if ($_SESSION['pengguna']['level'] === 'Karyawan') {
 <div class="row">
   <div class="col-12">
     <h3 class="mb-3">Data Absensi</h3>
-    <div class="card card-outline card-primary">
+    <div class="card card-outline card-info">
       <div class="card-body">
         <div class="table-responsive">
           <table id="export-table-data" class="table table-bordered text-nowrap">

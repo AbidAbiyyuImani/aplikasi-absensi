@@ -1,4 +1,4 @@
-<?php include 'config/functions.php'; $level = $_SESSION['pengguna']['level']; $idKaryawan = $_SESSION['pengguna']['id_user'];
+<?php include 'config/functions.php'; $idKaryawan = $_SESSION['pengguna']['id_user']; $level = $_SESSION['pengguna']['level'];
 // mengalihkan karyawan ke halaman utama
 if ($_SESSION['pengguna']['level'] === 'Karyawan') {
   echo "<script>alertPopUp('index.php', 'error', 'Gagal', 'Anda tidak memiliki akses ke halaman ini.');</script>";
