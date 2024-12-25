@@ -16,7 +16,9 @@ if ($_SESSION['pengguna']['jk_id'] == null) {
     <h3 class="mb-3">Absen Keluar</h3>
     <div class="card">
       <div class="card-body my-3">
-        <div id="kamera" class="<?= ($dataAbsensi == null) ? 'd-none' : '' ?>"></div>
+        <div class="d-flex justify-content-center">
+          <div id="kamera" class="<?= ($dataAbsensi == null) ? 'd-none' : '' ?>"></div>
+        </div>
         <div id="hasil" class="d-none">
           <img id="gambar" src="" class="img-fluid">
         </div>
