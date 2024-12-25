@@ -1,5 +1,5 @@
 <?php include 'config/functions.php';
-$idDetail = $_GET['id']; $level = $_SESSION['pengguna']['level'];
+$idDetail = $_GET['id']; $level = $_SESSION['pengguna']['level']; $now = date('Y-m-d');
 $queryDetail = querySQL("SELECT * FROM absensi LEFT JOIN users ON absensi.user_id = users.id_user WHERE id_absensi = '$idDetail'");
 $dataDetail = mysqli_fetch_assoc($queryDetail);
 ?>
@@ -52,6 +52,8 @@ $dataDetail = mysqli_fetch_assoc($queryDetail);
             <p>Foto Absen Keluar :</p>
             <?php if ($dataDetail['foto_keluar'] !== null) { ?>
               <img width="50%" height="50%" src="dist/img/absensi/<?= $dataDetail['foto_keluar'] ?>" class="img-fluid">
+            <?php } else if ($dataDetail['tanggal_absensi'] !== $now) { ?>
+              <p class="text-center">Karyawan tidak melakukan absen keluar</p>
             <?php } else { ?>
               <p class="text-center">Karyawan belum melakukan absen keluar</p>
             <?php } ?>
