@@ -100,9 +100,9 @@ if (isset($_POST['ubahUser'])) {
               </div>
             </div>
             <a href="index.php" class="kembaliKeDashboard btn btn-secondary">Kembali</a>
-            <button type="button" onclick="ubahUser()" href="?page=ubah_profile" class="ubahProfile btn btn-warning">Ubah Profile</button>
+            <button type="button" onclick="ubahDataUser()" href="?page=ubah_profile" class="ubahProfile btn btn-warning">Ubah Profile</button>
             <a href="?page=profile" class="kembaliKeProfile btn btn-secondary d-none">Kembali</a>
-            <button type="submit" name="ubahUser" class="simpahProfile btn btn-primary d-none">Simpan</button>
+            <button type="submit" name="ubahUser" class="simpanProfile btn btn-primary d-none">Simpan</button>
           </form>
         </div>
       </div>
@@ -110,12 +110,12 @@ if (isset($_POST['ubahUser'])) {
   </div>
 </div>
 <script>
-  function ubahUser() {
+  function ubahDataUser() {
     $('.form-control').removeAttr('disabled');
     $('.custom-file-input').removeAttr('disabled').attr('required');
     $('.ubahProfile').addClass('d-none');
     $('.kembaliKeDashboard').addClass('d-none');
     $('.kembaliKeProfile').removeClass('d-none');
-    $('.simpahProfile').removeClass('d-none');
+    $('.simpanProfile').removeClass('d-none');
   }
 </script>
