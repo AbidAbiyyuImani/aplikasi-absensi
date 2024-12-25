@@ -21,12 +21,12 @@ if ($_SESSION['pengguna']['level'] === 'Karyawan') {
   
           $queryUpdate = querySQL("UPDATE users SET divisi_id = '$divisi', jk_id = '$jamKerja' WHERE id_user = '$idKaryawan'");
           if ($queryUpdate) {
-            echo "<script>alertPopUp('?page=data_karyawan', 'success', 'Berhasil menghubah data karyawan', 'Mengalihkan ke halaman data karyawan...');</script>";
+            echo "<script>alertPopUp('?page=data_karyawan', 'success', 'Berhasil mengubah data karyawan', 'Mengalihkan ke halaman data karyawan...');</script>";
           } else {
-            echo "<script>alertPopUp(null, 'error', 'Gagal menghubah data karyawan');</script>";
+            echo "<script>alertPopUp(null, 'error', 'Gagal mengubah data karyawan');</script>";
           }
         } catch (Exception $e) {
-          echo "<script>alertPopUp('?page=data_karyawan', 'warning', 'Tidak dapat menghubah data karyawan', 'Mengalihkan ke halaman data karyawan...');</script>";
+          echo "<script>alertPopUp('?page=data_karyawan', 'warning', 'Tidak dapat mengubah data karyawan', 'Mengalihkan ke halaman data karyawan...');</script>";
         }
       } else {
         echo "<script>alertPopUp(null, 'warning', 'Tidak dapat mengubah data karyawan');</script>";
