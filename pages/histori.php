@@ -1,4 +1,5 @@
-<?php include 'config/functions.php'; $idUser = $_SESSION['pengguna']['id_user'];
+<?php include 'config/functions.php';
+$idUser = $_SESSION['pengguna']['id_user'];
 if (isset($_GET['td'])) {
   $td = $_GET['td'];
 ?>
@@ -30,6 +31,7 @@ if (isset($_GET['td'])) {
                   <th>Tanggal</th>
                   <th>Jam Masuk</th>
                   <th>Jam Keluar</th>
+                  <th>Keterangan</th>
                   <th>Detail</th>
                 </tr>
               </thead>
@@ -44,6 +46,18 @@ if (isset($_GET['td'])) {
                     <td><?= $dataAbsensi['tanggal_absensi'] ?></td>
                     <td><?= $dataAbsensi['jam_masuk'] ?></td>
                     <td><?= $dataAbsensi['jam_keluar'] ?></td>
+                    <td>
+                      <?php
+                        $idJK = $_SESSION['pengguna']['jk_id'];
+                        $queryJamKerja = querySQL("SELECT jam_masuk FROM jam_kerja WHERE id_jk = '$idJK'");
+                        $dataJamKerja = mysqli_fetch_assoc($queryJamKerja);
+                        if ($dataAbsensi['jam_masuk'] <= $dataJamKerja['jam_masuk']) {
+                      ?>
+                        <div class="badge badge-success">Tepat Waktu</div>
+                      <?php } else { ?>
+                        <div class="badge badge-danger">Terlambat</div>
+                      <?php } ?>
+                    </td>
                     <td>
                       <a href="?page=detail_absensi&id=<?= $dataAbsensi['id_absensi'] ?>" class="btn btn-info">Detail</a>
                     </td>
@@ -159,4 +173,8 @@ if (isset($_GET['td'])) {
     </div>
   </div>
 </div>
-<?php } else { echo "<script>location.href='?page=histori&td=absensi'</script>"; } ?>
+<?php } else { ?>
+  <script>
+    location.href='?page=histori&td=absensi';
+  </script>
+<?php } ?>

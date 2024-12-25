@@ -26,6 +26,21 @@ $dataDetail = mysqli_fetch_assoc($queryDetail);
               <th>Jam Keluar</th>
               <td><?= $dataDetail['jam_keluar'] ?></td>
             </tr>
+            <tr>
+              <th>Keterangan</th>
+              <td>
+                <?php
+                  $idJK = $dataDetail['jk_id'];
+                  $queryJamKerja = querySQL("SELECT jam_masuk FROM jam_kerja WHERE id_jk = '$idJK'");
+                  $dataJamKerja = mysqli_fetch_assoc($queryJamKerja);
+                  if ($dataDetail['jam_masuk'] <= $dataJamKerja['jam_masuk']) {
+                ?>
+                  <div class="badge badge-success">Tepat Waktu</div>
+                <?php } else { ?>
+                  <div class="badge badge-danger">Terlambat</div>
+                <?php } ?>
+              </td>
+            </tr>
           </table>
         </div>
         <div class="row">
