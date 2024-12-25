@@ -24,7 +24,7 @@ $dataDetail = mysqli_fetch_assoc($queryDetail);
             </tr>
             <tr>
               <th>Jam Keluar</th>
-              <td><?= $dataDetail['jam_keluar'] ?></td>
+              <td><?= isset($dataDetail['jam_keluar']) ? $dataDetail['jam_keluar'] : '-' ?></td>
             </tr>
             <tr>
               <th>Keterangan</th>
