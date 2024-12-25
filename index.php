@@ -175,7 +175,7 @@ if (isset($_SESSION['pengguna'])) {
           </div>
           <!-- /.content-wrapper -->
           <footer class="main-footer">
-            <strong>Copyright &copy; 2024 <a href="#">Name</a>.</strong>
+            <strong>Copyright &copy; 2024 <a href="https://aplikasi-absensi.nandradigital.site">Aplikasi Absensi</a>.</strong>
             All rights reserved.
             <div class="float-right d-none d-sm-inline-block">
               <b>Login as</b> <?= $level ?>
@@ -346,7 +346,7 @@ if (isset($_SESSION['pengguna'])) {
               <b>Login as</b> <?= $level ?>
             </div>
             <!-- Default to the left -->
-            <strong>Copyright &copy; 2024 <a href="#">Name</a>.</strong> All rights reserved.
+            <strong>Copyright &copy; 2024 <a href="https://aplikasi-absensi.nandradigital.site">Aplikasi Absensi</a>.</strong> All rights reserved.
           </footer>
         </div>
         <!-- ./wrapper -->
