@@ -16,7 +16,7 @@ if ($_SESSION['pengguna']['jk_id'] == null) {
     <h3 class="mb-3">Absen Keluar</h3>
     <div class="card">
       <div class="card-body my-3">
-        <div id="kamera" class="<?= ($dataAbsensi !== null) ? 'd-none' : '' ?>"></div>
+        <div id="kamera" class="<?= ($dataAbsensi == null) ? 'd-none' : '' ?>"></div>
         <div id="hasil" class="d-none">
           <img id="gambar" src="" class="img-fluid">
         </div>
@@ -41,7 +41,9 @@ if ($_SESSION['pengguna']['jk_id'] == null) {
     </div>
   </div>
 </div>
-<?php if ($dataAbsensi == null) { ?>
+<?php if ($dataAbsensi !== null) {
+  if ($dataAbsensi['jam_keluar'] == null) {
+?>
 <script src="dist/js/webcam.js"></script>
 <script>
   Webcam.set({
@@ -72,7 +74,7 @@ if ($_SESSION['pengguna']['jk_id'] == null) {
     $('.absen').addClass('d-none');
   }
 </script>
-<?php }
+<?php } }
   if (isset($_POST['absen_keluar'])) {
     try {
       $userId = $_SESSION['pengguna']['id_user'];

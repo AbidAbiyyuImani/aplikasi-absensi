@@ -45,7 +45,7 @@ $dataDetail = mysqli_fetch_assoc($queryDetail);
       </div>
       <div class="card-footer">
         <?php if ($level === 'Karyawan') { ?>
-          <a href="?page=histori" class="btn btn-secondary">Kembali</a>
+          <a href="?page=histori&td=absensi" class="btn btn-secondary">Kembali</a>
         <?php } else { ?>
           <a href="?page=data_absensi" class="btn btn-secondary">Kembali</a>
         <?php } ?>

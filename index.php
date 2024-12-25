@@ -298,7 +298,7 @@ if (isset($_SESSION['pengguna'])) {
                       <li><a href="?page=absensi_izin" class="dropdown-item">Izin</a></li>
                       <li><a href="?page=absensi_sakit" class="dropdown-item">Sakit</a></li>
                       <li><a href="?page=absensi_cuti" class="dropdown-item">Cuti</a></li>
-                      <li><a href="?page=histori&td=absensi" class="dropdown-item">Histori Absensi</a></li>
+                      <li><a href="?page=histori" class="dropdown-item">Histori Absensi</a></li>
                     </ul>
                   </li>
                 </ul>

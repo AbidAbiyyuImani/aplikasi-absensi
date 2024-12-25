@@ -1,4 +1,7 @@
-<?php include 'config/functions.php'; $idUser = $_SESSION['pengguna']['id_user']; $td = $_GET['td']; ?>
+<?php include 'config/functions.php'; $idUser = $_SESSION['pengguna']['id_user'];
+if (isset($_GET['td'])) {
+  $td = $_GET['td'];
+?>
 <div class="row">
   <div class="col-12">
     <h3 class="mb-3">Histori Absensi</h3>
@@ -156,3 +159,4 @@
     </div>
   </div>
 </div>
+<?php } else { echo "<script>location.href='?page=histori&td=absensi'</script>"; } ?>
