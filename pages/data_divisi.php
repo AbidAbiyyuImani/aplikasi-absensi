@@ -39,7 +39,7 @@ if ($_SESSION['pengguna']['level'] === 'Karyawan') {
       </div>
       <div class="card-footer">
         <a href="index.php" class="btn btn-secondary">Kembali</a>
-        <a href="?page=tambah_divisi" class="btn btn-primary float-right">Tambah</a>
+        <a href="?page=tambah_divisi" class="btn btn-primary">Tambahkan Divisi</a>
       </div>
     </div>
   </div>

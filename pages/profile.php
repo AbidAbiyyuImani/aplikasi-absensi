@@ -1,13 +1,13 @@
 <?php include 'config/functions.php';
-if (isset($_POST['ubah_user'])) {
+if (isset($_POST['ubahUser'])) {
   try {
     $idUser = $_SESSION['pengguna']['id_user'];
     $namaLengkap = $_POST['namaLengkap'];
     $username = $_POST['username'];
     $email = $_POST['email'];
   
-    $divisi = ($_POST['divisi'] === "Belum ada divisi") ? null : $_POST['divisi'];
-    $jamKerja = ($_POST['jamKerja'] === "Belum ada jam kerja") ? null : $_POST['jamKerja'];
+    $divisi = ($_POST['divisi'] !== "") ? $_POST['divisi'] : null;
+    $jamKerja = ($_POST['jamKerja'] !== "") ? $_POST['jamKerja'] : null;
   
     if ($_FILES['foto']['error'] === 4) {
       $foto = $_POST['fotoLama'];
@@ -23,7 +23,7 @@ if (isset($_POST['ubah_user'])) {
         echo "<script>alertPopUp('?page=profile', 'error', 'Gagal mengubah profile');</script>";
       }
     } else {
-      $queryUpdate = querySQL("UPDATE users SET nama_lengkap = '$namaLengkap', username = '$username', email = '$email', divisi_id = '$divisi', jam_id = '$jamKerja', foto = '$foto' WHERE id_user = $idUser");
+      $queryUpdate = querySQL("UPDATE users SET nama_lengkap = '$namaLengkap', username = '$username', email = '$email', divisi_id = '$divisi', jk_id = '$jamKerja', foto = '$foto' WHERE id_user = $idUser");
       if ($queryUpdate) {
         echo "<script>alertPopUp('logout.php', 'success', 'Berhasil mengubah profile', 'Mengalihkan ke halaman login...');</script>";
       } else {
@@ -64,29 +64,30 @@ if (isset($_POST['ubah_user'])) {
             <div class="form-group">
               <label for="divisi" class="form-label">Divisi</label>
               <select name="divisi" id="divisi" disabled class="form-control">
+                <option disabled>Tidak dapat mengubah divisi yang ditentukan</option>
                 <?php 
-                if ($_SESSION['pengguna']['divisi_id'] != null) {
-                $queryDivisi = querySQL("SELECT * FROM divisi");
-                while ($dataDivisi = mysqli_fetch_assoc($queryDivisi)) {
+                  if ($_SESSION['pengguna']['divisi_id'] != null) {
+                    $queryDivisi = querySQL("SELECT * FROM divisi");
+                    while ($dataDivisi = mysqli_fetch_assoc($queryDivisi)) {
                 ?>
                   <option value="<?= $dataDivisi['id_divisi']; ?>" <?= ($dataDivisi['id_divisi'] === $_SESSION['pengguna']['divisi_id']) ? 'selected' : '' ?>><?= $dataDivisi['nama_divisi']; ?></option>
                 <?php } } else { ?>
-                  <option selected>Belum ada divisi</option>
+                  <option selected value="">Belum ada divisi</option>
                 <?php } ?>
               </select>
             </div>
             <div class="form-group">
               <label for="jam_kerja" class="form-label">Jam Kerja</label>
               <select name="jamKerja" id="jamKerja" disabled class="form-control">
-                <option selected disabled>Pilih Jam Kerja</option>
+                <option disabled>Tidak dapat mengubah jam kerja yang ditentukan</option>
                 <?php 
-                if ($_SESSION['pengguna']['jam_id'] != null) {
-                  $queryJamKerja = querySQL("SELECT * FROM jam_kerja");
-                  while ($dataJamKerja = mysqli_fetch_assoc($queryJamKerja)) {
+                  if ($_SESSION['pengguna']['jk_id'] != null) {
+                    $queryJamKerja = querySQL("SELECT * FROM jam_kerja");
+                    while ($dataJamKerja = mysqli_fetch_assoc($queryJamKerja)) {
                 ?>
-                  <option value="<?= $dataJamKerja['id_jam']; ?>" <?= ($dataJamKerja['id_jam'] === $_SESSION['pengguna']['jam_id']) ? 'selected' : '' ?>><?= $dataJamKerja['jam_masuk']; ?> - <?= $dataJamKerja['jam_keluar']; ?></option>
+                    <option value="<?= $dataJamKerja['id_jk']; ?>" <?= ($dataJamKerja['id_jk'] === $_SESSION['pengguna']['jk_id']) ? 'selected' : '' ?>><?= $dataJamKerja['jam_masuk']; ?> - <?= $dataJamKerja['jam_keluar']; ?></option>
                 <?php } } else { ?>
-                  <option selected>Belum ada jam kerja</option>
+                    <option selected value="">Belum ada jam kerja</option>
                 <?php } ?>
               </select>
             </div>
@@ -101,7 +102,7 @@ if (isset($_POST['ubah_user'])) {
             <a href="index.php" class="kembaliKeDashboard btn btn-secondary">Kembali</a>
             <button type="button" onclick="ubahUser()" href="?page=ubah_profile" class="ubahProfile btn btn-warning">Ubah Profile</button>
             <a href="?page=profile" class="kembaliKeProfile btn btn-secondary d-none">Kembali</a>
-            <button type="submit" name="ubah_user" class="simpahProfile btn btn-primary d-none">Simpan</button>
+            <button type="submit" name="ubahUser" class="simpahProfile btn btn-primary d-none">Simpan</button>
           </form>
         </div>
       </div>

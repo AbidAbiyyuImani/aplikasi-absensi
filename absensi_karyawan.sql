@@ -85,7 +85,7 @@ CREATE TABLE `divisi` (
 CREATE TABLE `jam_kerja` (
   `id_jk` int NOT NULL,
   `jam_masuk` time NOT NULL,
-  `jam_pulang` time NOT NULL
+  `jam_keluar` time NOT NULL
 );
 
 -- --------------------------------------------------------

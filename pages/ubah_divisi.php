@@ -8,15 +8,15 @@ if ($_SESSION['pengguna']['level'] === 'Karyawan') {
     $queryDivisi = querySQL("SELECT * FROM divisi WHERE id_divisi = '$idDivisi'");
     $dataDivisi = mysqli_fetch_assoc($queryDivisi);
 
-    if (isset($_POST['ubah_divisi'])) {
+    if (isset($_POST['ubahDivisi'])) {
       try {
         $namaDivisi = $_POST['namaDivisi'];
 
         $queryUpdate = querySQL("UPDATE divisi SET nama_divisi = '$namaDivisi' WHERE id_divisi = '$idDivisi'");
         if ($queryUpdate) {
-          echo "<script>alertPopUp('?page=data_divisi', 'success', 'Berhasil menghubah data divisi', 'Mengalihkan ke halaman data divisi...');</script>";
+          echo "<script>alertPopUp('?page=data_divisi', 'success', 'Berhasil mengubah data divisi', 'Mengalihkan ke halaman data divisi...');</script>";
         } else {
-          echo "<script>alertPopUp(null, 'error', 'Gagal menghubah data divisi');</script>";
+          echo "<script>alertPopUp(null, 'error', 'Gagal mengubah data divisi');</script>";
         }
       } catch (Exception $e) {
         echo "<script>alertPopUp(null, 'warning', 'Nama divisi sudah terdaftar');</script>";
@@ -34,8 +34,10 @@ if ($_SESSION['pengguna']['level'] === 'Karyawan') {
             <input type="text" name="namaDivisi" id="namaDivisi" value="<?= $dataDivisi['nama_divisi']; ?>" required class="form-control">
           </div>
         </form>
+      </div>
+      <div class="card-footer">
         <a href="?page=data_divisi" class="btn btn-secondary">Kembali</a>
-        <button type="submit" name="ubah_divisi" form="ubah_data_divisi" class="btn btn-warning">Ubah Data Divisi</button>
+        <button type="submit" name="ubahDivisi" form="ubah_data_divisi" class="btn btn-warning">Ubah Data Divisi</button>
       </div>
     </div>
   </div>

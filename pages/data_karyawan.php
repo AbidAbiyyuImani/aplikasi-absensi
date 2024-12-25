@@ -35,7 +35,7 @@ if ($_SESSION['pengguna']['level'] === 'Karyawan') {
                   <td><?= $dataUser['username'] ?></td>
                   <td><?= $dataUser['email'] ?></td>
                   <td><?= ($dataUser['nama_divisi']) ? $dataUser['nama_divisi'] : '-' ?></td>
-                  <td><?= $dataUser['jam_masuk'] ?> - <?= $dataUser['jam_pulang'] ?></td>
+                  <td><?= $dataUser['jam_masuk'] ?> - <?= $dataUser['jam_keluar'] ?></td>
                   <td><?= $dataUser['level'] ?></td>
                   <td>
                     <a href="?page=ubah_karyawan&id=<?= $dataUser['id_user'] ?>" class="btn btn-warning">Ubah</a>
@@ -53,7 +53,7 @@ if ($_SESSION['pengguna']['level'] === 'Karyawan') {
       </div>
       <div class="card-footer">
         <a href="index.php" class="btn btn-secondary">Kembali</a>
-        <a href="register.php" class="btn btn-primary float-right">Tambahkan Karyawan</a>
+        <a href="register.php" class="btn btn-primary">Tambahkan Karyawan</a>
       </div>
     </div>
   </div>

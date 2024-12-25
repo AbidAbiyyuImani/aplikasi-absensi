@@ -9,23 +9,27 @@ if ($_SESSION['pengguna']['level'] === 'Karyawan') {
     $dataKaryawan = mysqli_fetch_assoc($queryKaryawan);
 
     if (isset($_POST['ubah_karyawan'])) {
-      try {
-        $divisi = $_POST['divisi'];
-        $jamKerja = $_POST['jamKerja'];
-
-        if ($idKaryawan == $_SESSION['pengguna']['id_user']) {
-          $_SESSION['pengguna']['divisi_id'] = $divisi;
-          $_SESSION['pengguna']['jk_id'] = $jamKerja;
+      if (isset($_POST['divisi']) && isset($_POST['jamKerja'])) {
+        try {
+          $divisi = $_POST['divisi'];
+          $jamKerja = $_POST['jamKerja'];
+  
+          if ($idKaryawan == $_SESSION['pengguna']['id_user']) {
+            $_SESSION['pengguna']['divisi_id'] = $divisi;
+            $_SESSION['pengguna']['jk_id'] = $jamKerja;
+          }
+  
+          $queryUpdate = querySQL("UPDATE users SET divisi_id = '$divisi', jk_id = '$jamKerja' WHERE id_user = '$idKaryawan'");
+          if ($queryUpdate) {
+            echo "<script>alertPopUp('?page=data_karyawan', 'success', 'Berhasil menghubah data karyawan', 'Mengalihkan ke halaman data karyawan...');</script>";
+          } else {
+            echo "<script>alertPopUp(null, 'error', 'Gagal menghubah data karyawan');</script>";
+          }
+        } catch (Exception $e) {
+          echo "<script>alertPopUp('?page=data_karyawan', 'warning', 'Tidak dapat menghubah data karyawan', 'Mengalihkan ke halaman data karyawan...');</script>";
         }
-
-        $queryUpdate = querySQL("UPDATE users SET divisi_id = '$divisi', jk_id = '$jamKerja' WHERE id_user = '$idKaryawan'");
-        if ($queryUpdate) {
-          echo "<script>alertPopUp('?page=data_karyawan', 'success', 'Berhasil menghubah data karyawan', 'Mengalihkan ke halaman data karyawan...');</script>";
-        } else {
-          echo "<script>alertPopUp(null, 'error', 'Gagal menghubah data karyawan');</script>";
-        }
-      } catch (Exception $e) {
-        echo "<script>alertPopUp('?page=data_karyawan', 'warning', 'Tidak dapat menghubah data karyawan', 'Mengalihkan ke halaman data karyawan...');</script>";
+      } else {
+        echo "<script>alertPopUp(null, 'warning', 'Tidak dapat mengubah data karyawan');</script>";
       }
     }
 ?>
@@ -49,69 +53,37 @@ if ($_SESSION['pengguna']['level'] === 'Karyawan') {
           </div>
           <div class="form-group">
             <label for="divisi">Divisi</label>
-            <?php if ($dataKaryawan['divisi_id'] == null) { ?>
-              <!-- ga ada isi -->
-              <select name="divisi" id="divisi" class="form-control">
-                <option selected disabled>Pilih Divisi</option>
-                <?php
+            <select name="divisi" id="divisi" class="form-control">
+              <option selected disabled value="null">Pilih Divisi</option>
+              <?php 
                 $queryDivisi = querySQL("SELECT * FROM divisi");
                 if (mysqli_num_rows($queryDivisi) > 0) {
                   while ($dataDivisi = mysqli_fetch_assoc($queryDivisi)) {
-                    ?>
-                  <option value="<?= $dataDivisi['id_divisi']; ?>"><?= $dataDivisi['nama_divisi']; ?></option>
-                <?php }
-                } else { ?>
-                  <option disabled>Tidak ada divisi</option>
-                <?php } ?>
-              </select>
-            <?php } else { ?>
-              <!-- ada isi -->
-              <select name="divisi" id="divisi" class="form-control">
-                <option selected disabled>Pilih Divisi</option>
-                <?php
-                $queryDivisi = querySQL("SELECT * FROM divisi");
-                if (mysqli_num_rows($queryDivisi) > 0) {
-                  while ($dataDivisi = mysqli_fetch_assoc($queryDivisi)) {
-                    ?>
-                  <option value="<?= $dataDivisi['id_divisi']; ?>" <?= ($dataKaryawan['divisi_id'] == $dataDivisi['id_divisi']) ? 'selected' : '' ?>><?= $dataDivisi['nama_divisi']; ?></option>
-                <?php }
-                } ?>
-              </select>
-            <?php } ?>
+              ?>
+                <option value="<?= $dataDivisi['id_divisi']; ?>" <?= ($dataKaryawan['divisi_id'] == $dataDivisi['id_divisi']) ? 'selected' : '' ?>><?= $dataDivisi['nama_divisi']; ?></option>
+              <?php } } else { ?>
+                <option disabled>Tidak ada data divisi</option>
+              <?php } ?>
+            </select>
           </div>
           <div class="form-group">
             <label for="jamKerja">Jam Kerja</label>
-            <?php if ($dataKaryawan['jk_id'] == null) { ?>
-              <!-- ga ada isi -->
-              <select name="jamKerja" id="jamKerja" class="form-control">
-                <option selected disabled>Pilih Jam Masuk</option>
-                <?php
+            <select name="jamKerja" id="jamKerja" class="form-control">
+              <option selected disabled value="null">Pilih Jam Kerja</option>
+              <?php 
                 $queryJamKerja = querySQL("SELECT * FROM jam_kerja");
                 if (mysqli_num_rows($queryJamKerja) > 0) {
                   while ($dataJamKerja = mysqli_fetch_assoc($queryJamKerja)) {
-                    ?>
-                  <option value="<?= $dataJamKerja['id_jk']; ?>"><?= $dataJamKerja['jam_masuk']; ?> - <?= $dataJamKerja['jam_pulang']; ?></option>
-                <?php }
-                } else { ?>
-                  <option disabled>Tidak ada jam kerja</option>
-                <?php } ?>
-              </select>
-            <?php } else { ?>
-              <!-- ada isi -->
-               <select name="jamKerja" id="jamKerja" class="form-control">
-                <option selected disabled>Pilih Jam Masuk</option>
-                <?php
-                $queryJamKerja = querySQL("SELECT * FROM jam_kerja");
-                if (mysqli_num_rows($queryJamKerja) > 0) {
-                  while ($dataJamKerja = mysqli_fetch_assoc($queryJamKerja)) {
-                    ?>
-                  <option value="<?= $dataJamKerja['id_jk']; ?>" <?= ($dataKaryawan['jk_id'] == $dataJamKerja['id_jk']) ? 'selected' : '' ?>><?= $dataJamKerja['jam_masuk']; ?> - <?= $dataJamKerja['jam_pulang']; ?></option>
-                <?php }
-                } ?>
-              </select>
-            <?php } ?>
+              ?>
+                <option value="<?= $dataJamKerja['id_jk']; ?>" <?= ($dataKaryawan['jk_id'] == $dataJamKerja['id_jk']) ? 'selected' : '' ?>><?= $dataJamKerja['jam_masuk'] . ' - ' . $dataJamKerja['jam_keluar']; ?></option>
+              <?php } } else { ?>
+                <option disabled>Tidak ada data jam kerja</option>
+              <?php } ?>
+            </select>
           </div>
         </form>
+      </div>
+      <div class="card-footer">
         <a href="?page=data_karyawan" class="btn btn-secondary">Kembali</a>
         <button type="submit" name="ubah_karyawan" form="ubah_data_karyawan" class="btn btn-warning">Ubah Data Karyawan</button>
       </div>

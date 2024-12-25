@@ -19,7 +19,7 @@ if ($_SESSION['pengguna']['jk_id'] == null) {
         <div class="d-flex justify-content-center">
           <div id="kamera"></div>
         </div>
-        <div id="hasil" class="d-none">
+        <div id="hasil" class="d-none d-flex justify-content-center">
           <img id="gambar" src="" class="img-fluid">
         </div>
         <!-- hidden form -->

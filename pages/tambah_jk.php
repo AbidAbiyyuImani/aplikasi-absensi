@@ -3,19 +3,19 @@
 if ($_SESSION['pengguna']['level'] === 'Karyawan') {
   echo "<script>alertPopUp('index.php', 'error', 'Gagal', 'Anda tidak memiliki akses ke halaman ini.');</script>";
 } else {
-  if(isset($_POST['tambahJamKerja'])) {
+  if(isset($_POST['tambahJk'])) {
     try {
       $jamMasuk = $_POST['jamMasuk'];
-      $jamPulang = $_POST['jamPulang'];
+      $jamKeluar = $_POST['jamKeluar'];
     
-      $queryInsert = querySQL("INSERT INTO jam_kerja(jam_masuk, jam_pulang) VALUES('$jamMasuk', '$jamPulang')");
+      $queryInsert = querySQL("INSERT INTO jam_kerja(jam_masuk, jam_keluar) VALUES('$jamMasuk', '$jamKeluar')");
       if($queryInsert) {
         echo "<script>alertPopUp('?page=data_jk', 'success', 'Berhasil menambahkan data jam kerja', 'Mengalihkan ke halaman data jam kerja...');</script>";
       } else {
         echo "<script>alertPopUp(null, 'error', 'Gagal menambahkan data jam kerja');</script>";
       }
     } catch (Exception $e) {
-      echo "<script>alertPopUp(null, 'warning', 'Tidak dapat menambahkan data jam kerja');</script>";
+      echo "<script>alertPopUp('?page=data_jk', 'warning', 'Tidak dapat menambahkan data jam kerja');</script>";
     }
   }
 ?>
@@ -24,8 +24,7 @@ if ($_SESSION['pengguna']['level'] === 'Karyawan') {
     <h3 class="mb-3">Tambah Jam Kerja</h3>
     <div class="card card-outline card-primary">
       <div class="card-body">
-        <form id="tambah_jk" method="post">
-          <h3 class="mb-3">Tambah Jam Kerja</h3>
+        <form id="form_tambah_jk" method="post">
           <div class="row">
             <div class="form-group col-12 col-sm-6">
               <label for="jamMasuk" class="form-label">Jam Masuk</label>
@@ -33,12 +32,14 @@ if ($_SESSION['pengguna']['level'] === 'Karyawan') {
             </div>
             <div class="form-group col-12 col-sm-6">
               <label for="jamMasuk" class="form-label">Jam Keluar</label>
-              <input type="time" name="jamPulang" id="jamPulang" required class="form-control">
+              <input type="time" name="jamKeluar" id="jamKeluar" required class="form-control">
             </div>
           </div>
         </form>
+      </div>
+      <div class="card-footer">
         <a href="?page=data_jk" class="btn btn-secondary">Kembali</a>
-        <button type="submit" form="tambah_jk" name="tambahJamKerja" class="btn btn-primary">Tambah Jam Kerja</button>
+        <button type="submit" name="tambahJk" form="form_tambah_jk" class="btn btn-primary">Tambahkan Jam Kerja</button>
       </div>
     </div>
   </div>
