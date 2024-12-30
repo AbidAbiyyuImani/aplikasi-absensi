@@ -108,7 +108,8 @@ if (isset($_GET['td'])) {
                   <th>Tanggal</th>
                   <th>Surat Sakit</th>
                   <th>Keterangan</th>
-                  <th>Status Permohonan</th>
+                  <th>Tanggal Mulai Sakit</th>
+                  <th>Tanggal Selesai Sakit</th>
                 </tr>
               </thead>
               <tbody>
@@ -120,21 +121,12 @@ if (isset($_GET['td'])) {
                   <tr>
                     <td><?= $i++ ?></td>
                     <td><?= $dataAbsensiSakit['tanggal_permohonan'] ?></td>
+                    <td><?= $dataAbsensiSakit['keterangan'] ?></td>
                     <td>
                       <a href="dist/img/surat-sakit/<?= $dataAbsensiSakit['surat_sakit'] ?>" target="_blank" class="btn btn-info">Lihat</a>
                     </td>
-                    <td><?= $dataAbsensiSakit['keterangan'] ?></td>
-                    <td>
-                      <?php
-                      $status = $dataAbsensiSakit['status_permohonan'];
-                      switch ($status) { case 'Menunggu': ?>
-                        <div class="badge badge-secondary">Menunggu</div>
-                      <?php break; case 'Diterima': ?>
-                        <div class="badge badge-success">Diterima</div>
-                      <?php break; case 'Ditolak': ?>
-                        <div class="badge badge-danger">Ditolak</div>
-                      <?php break; } ?>
-                    </td>
+                    <td><?= $dataAbsensiSakit['tanggal_mulai'] ?></td>
+                    <td><?= $dataAbsensiSakit['tanggal_selesai'] ?></td>
                   </tr>
                 <?php } ?>
               </tbody>

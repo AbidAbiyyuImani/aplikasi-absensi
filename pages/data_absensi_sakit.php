@@ -24,10 +24,11 @@ if (isset($_POST['status_permohonan'])) {
           <table id="export-table-data" class="table table-bordered text-nowrap">
             <thead>
               <th>No</th>
-              <th>Status Permohonan</th>
               <th>Karyawan</th>
               <th>Keterangan</th>
-              <th>Tanggal</th>
+              <th>Tanggal Mulai Sakit</th>
+              <th>Tanggal Selesai Sakit</th>
+              <th>Tanggal Permohonan</th>
               <th>Aksi</th>
             </thead>
             <tbody>
@@ -38,22 +39,11 @@ if (isset($_POST['status_permohonan'])) {
               ?>
                 <tr>
                   <td><?= $i++ ?></td>
-                  <td>
-                    <form id="form_ubah_permohonan" method="post">
-                      <input type="hidden" name="id_absen_sakit" value="<?= $dataAbsensiSakit['id_absensi_sakit'] ?>">
-                      <select name="status_permohonan" id="status_permohonan" class="form-control" onchange="this.form.submit()">
-                        <?php
-                          $statusPermohonan = ['Menunggu', 'Diterima', 'Ditolak'];
-                          foreach ($statusPermohonan as $status) {
-                        ?>
-                          <option value="<?= $status ?>" <?= ($dataAbsensiSakit['status_permohonan'] === $status) ? 'selected' : '' ?>><?= $status ?></option>
-                        <?php } ?>
-                      </select>
-                    </form>
-                  </td>
                   <td><?= $dataAbsensiSakit['nama_lengkap'] ?></td>
                   <td><?= $dataAbsensiSakit['keterangan'] ?></td>
-                  <td><?= $dataAbsensiSakit['tanggal_permohonan'] ?></td>
+                  <td><?= $dataAbsensiSakit['tanggal_mulai'] ?></td>
+                  <td><?= $dataAbsensiSakit['tanggal_selesai'] ?></td></td>
+                  <td><?= $dataAbsensiSakit['tanggal_permohonan'] ?></td></td>
                   <td>
                     <a href="dist/img/surat-sakit/<?= $dataAbsensiSakit['surat_sakit'] ?>" target="_blank" class="btn btn-info">Lihat Surat Sakit</a>
                     <button onclick="return confirmPopUp('warning', 'Hapus Permohonan Sakit', 'Apakah anda yakin ingin menghapus data permohonan sakit ini?', 'Yakin', 'Tidak', '?page=hapus_absensi_sakit&id=<?= $dataAbsensiSakit['id_absensi_sakit'] ?>', '?page=data_absensi_sakit');" class="btn btn-danger">Hapus</button>

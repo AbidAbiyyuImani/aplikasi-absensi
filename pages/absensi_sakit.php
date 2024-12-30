@@ -5,15 +5,16 @@ if ($_SESSION['pengguna']['jk_id'] == null) {
   echo "<script>alertPopUp('index.php', 'error', 'Jam Kerja belum di tentukan', 'Mengalihkan ke halaman utama...');</script>";
 } else {
   // CEK APAKAH SUDAH MENGIRIMKAN PERMOHONAN ATAU BELUM
-  $queryAbsensiNow = querySQL("SELECT tanggal_permohonan, status_permohonan FROM absensi_sakit WHERE user_id = '$userId' AND tanggal_permohonan = '$now'");
+  $queryAbsensiNow = querySQL("SELECT tanggal_permohonan FROM absensi_sakit WHERE user_id = '$userId' AND tanggal_permohonan = '$now'");
   $dataAbsensi = mysqli_fetch_assoc($queryAbsensiNow);
 
   if (isset($_POST['permohonan_sakit'])) {
     $suratSakit = upload('surat_sakit', ['jpg', 'jpeg', 'png'], 'dist/img/surat-sakit/');
+    $tanggalMulai = $_POST['tanggal_mulai'];
+    $tanggalSelesai = $_POST['tanggal_selesai'];
     $keterangan = $_POST['keterangan'];
-    $statusPermohonan = 'Menunggu';
   
-    $queryPermohonan = querySQL("INSERT INTO absensi_sakit (user_id, surat_sakit, keterangan, status_permohonan, tanggal_permohonan) VALUES ('$userId', '$suratSakit', '$keterangan', '$statusPermohonan', '$now')");
+    $queryPermohonan = querySQL("INSERT INTO absensi_sakit (user_id, surat_sakit, keterangan, tanggal_mulai, tanggal_selesai, tanggal_permohonan) VALUES ('$userId', '$suratSakit', '$keterangan', '$tanggalMulai', '$tanggalSelesai', '$now')");
     if ($queryPermohonan) {
       echo "<script>alertPopUp('?page=absensi_sakit', 'success', 'Permohonan sakit berhasil dikirim');</script>";
     } else {
@@ -27,6 +28,20 @@ if ($_SESSION['pengguna']['jk_id'] == null) {
     <div class="card card-outline card-primary">
       <div class="card-body my-3">
         <form id="form_absensi_sakit" method="post" enctype="multipart/form-data">
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <div class="form-group">
+                <label for="tanggal_mulai">Tanggal Mulai</label>
+                <input type="date" name="tanggal_mulai" id="tanggal_mulai" class="form-control">
+              </div>
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="form-group">
+                <label for="tanggal_selesai">Tanggal Selesai</label>
+                <input type="date" name="tanggal_selesai" id="tanggal_selesai" class="form-control">
+              </div>
+            </div>
+          </div>
           <div class="form-group">
             <label for="surat_sakit">Surat Sakit</label>
             <div class="custom-file">
