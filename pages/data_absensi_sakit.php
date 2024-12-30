@@ -17,7 +17,7 @@ if (isset($_POST['status_permohonan'])) {
 ?>
 <div class="row">
   <div class="col-12">
-    <h3 class="mb-3">Data Permohonan Sakit</h3>
+    <h3 class="mb-3">Data Absensi Sakit</h3>
     <div class="card card-outline card-info">
       <div class="card-body">
         <div class="table-responsive">
